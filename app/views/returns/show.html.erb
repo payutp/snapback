@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Status:</b>
+  <%= @return.status %>
+</p>
+
+<p>
+  <b>To:</b>
+  <%= @return.to %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @return.user_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_return_path(@return) %> |
+<%= link_to 'Back', returns_path %>

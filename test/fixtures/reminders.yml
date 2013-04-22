@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  return_date: 2013-04-22
+  frequency: 1
+  return_id: 1
+  sent: 1
+  last_sent: 2013-04-22
+
+two:
+  return_date: 2013-04-22
+  frequency: 1
+  return_id: 1
+  sent: 1
+  last_sent: 2013-04-22

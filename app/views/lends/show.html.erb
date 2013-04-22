@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Status:</b>
+  <%= @lend.status %>
+</p>
+
+<p>
+  <b>To:</b>
+  <%= @lend.to %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @lend.user_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_lend_path(@lend) %> |
+<%= link_to 'Back', lends_path %>

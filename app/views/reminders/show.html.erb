@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Return date:</b>
+  <%= @reminder.return_date %>
+</p>
+
+<p>
+  <b>Frequency:</b>
+  <%= @reminder.frequency %>
+</p>
+
+<p>
+  <b>Return:</b>
+  <%= @reminder.return_id %>
+</p>
+
+<p>
+  <b>Sent:</b>
+  <%= @reminder.sent %>
+</p>
+
+<p>
+  <b>Last sent:</b>
+  <%= @reminder.last_sent %>
+</p>
+
+
+<%= link_to 'Edit', edit_reminder_path(@reminder) %> |
+<%= link_to 'Back', reminders_path %>

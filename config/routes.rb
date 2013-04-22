@@ -1,4 +1,16 @@
 Starfleet::Application.routes.draw do
+  resources :reminders
+
+
+  resources :items
+
+
+  resources :returns
+
+
+  resources :lends
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

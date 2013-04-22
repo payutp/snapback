@@ -1,0 +1,27 @@
+<h1>Listing lends</h1>
+
+<table>
+  <tr>
+    <th>Status</th>
+    <th>To</th>
+    <th>User</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @lends.each do |lend| %>
+  <tr>
+    <td><%= lend.status %></td>
+    <td><%= lend.to %></td>
+    <td><%= lend.user_id %></td>
+    <td><%= link_to 'Show', lend %></td>
+    <td><%= link_to 'Edit', edit_lend_path(lend) %></td>
+    <td><%= link_to 'Destroy', lend, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Lend', new_lend_path %>
