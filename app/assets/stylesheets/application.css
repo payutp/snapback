@@ -11,3 +11,102 @@
  *= require_self
  *= require_tree .
  */
+
+ul li{
+  	display: inline;
+  	padding: 10px;
+}
+
+body {
+	background-color: green;
+}
+
+body > h1 {
+	text-align: center;
+}
+
+textarea {
+	position: relative;
+	resize: none;
+	width: 90%;
+	height: 90%;
+	left: 5px;
+	top: 5px;
+}
+
+.navbar p {
+	display: inline;
+	padding: 10px 20px 10px 20px;
+	cursor: pointer;
+	color: gray;
+	border: 2px solid black;
+}
+
+.navbar p:hover, #btn_filter:hover {
+	display: inline;
+	padding: 10px 20px 10px 20px;
+	color: white;
+}
+
+.navbar{
+	width: 100%;
+	height: auto;
+	left:0%;
+	top: 0px;
+	position: fixed;
+	text-align: center;
+	background-color: black;
+	z-index: 999;
+}
+
+.chunk {
+	height: 50px;
+	float: left;
+	color: white;
+	display: inline;
+}
+
+.nav_item {
+	font-size: 25px !important;
+	margin-top: 20px;
+}
+
+.navbar a {
+	text-decoration: none;
+}
+
+.brand {
+	font-size: 60px;
+	height: 50px;
+	position: relative;
+	top: 20px;
+}
+
+.wrap {
+	padding-top: 65px;
+}
+
+.footer {
+	bottom: 0px;
+	height: auto;
+	left:0%;
+	position: fixed;
+	text-align: center;
+	background-color: black;
+	z-index: 999;
+	width: 25%;
+}
+
+.footer_item {
+	font-size: 25px !important;
+	margin-top: 12px;
+	margin-bottom: 15px;
+}
+
+.footer p {
+	display: inline;
+	padding: 10px 20px 10px 20px;
+	cursor: pointer;
+	color: gray;
+	border: 2px solid black;
+}

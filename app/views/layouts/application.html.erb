@@ -13,18 +13,42 @@
   <% end %>
 
 
-  <div class="user_nav">
-  <% if current_user %>
-    Logged in as <%= current_user.email %>
-    <%= link_to "Log out", logout_path %>
-  <% else %>
-    <%= link_to "Sign up", signup_path %> or 
-    <%= link_to "Log in", login_path %>
-    test
-  <% end %>
+  <div id="mainNav" class="navbar">
+            <div class="brand chunk">
+                <a href="/"> 
+                    SnapBack
+                </a>
+            </div>
+            <% if current_user %>
+              <div id="leftNav" class="nav_item chunk">
+                <p>Logged in as <%= current_user.email %></p>
+                <p id="btn_home">Home</p>
+                <p id="btn_look">Looking for</p>
+                <p id="btn_act">Activity</p>
+                <p id="btn_logout"><%= link_to "Log out", logout_path %></p>
+              </div>
+            <% else %>
+              <div id="leftNav" class="nav_item chunk">
+                <p id="btn_signup"><%= link_to "Sign up", signup_path %></p>
+                <p id="btn_login"><%= link_to "Log in", login_path %></p>
+              </div>
+            <% end %>
+
+              <div class="nav_item chunk">
+                  <p id="btn_new">About</p>
+              </div>
+
+                <% flash.each do |name, msg| %>
+                  <%= content_tag :div, msg, :id => "flash_#{name}" %>
+                <% end %>
+
+              </div><!--/.nav-collapse -->
+          </div>
+      </div>
   </div>
 
-  <%= yield %>
-
+  <div class="wrap">
+    <%= yield %>
+  </div>
 </body>
 </html>
