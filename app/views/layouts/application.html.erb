@@ -1,28 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>LoginApp</title>
+  <title>SnapBack</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-  <% flash.each do |name, msg| %>
-    <%= content_tag :div, msg, :id => "flash#{name}" %>
-  <% end %>
+<h1> SnapBack </h1>
 
 
   <div class="user_nav">
   <% if current_user %>
-    Logged in as <%= current_user.email %>
-    <%= link_to "Log out", logout_path %>
+    <ul>
+      <li> <%= link_to "Home" %> </li>
+      <li> <%= link_to "Looking For" %> </li>
+      <li> <%= link_to "Activity" %> </li>
+      <li> <%= link_to "Log Out" %> </li>
+      Logged in as <%= current_user.email %>
+      <%= link_to "Log out", logout_path %>
+    </ul>
   <% else %>
-    <%= link_to "Sign up", signup_path %> or 
-    <%= link_to "Log in", login_path %>
-    test
+    <ul>  
+      <%= link_to "Sign up", signup_path %> or 
+      <%= link_to "Log in", login_path %>
+    </ul>
   <% end %>
   </div>
+
+  <% flash.each do |name, msg| %>
+  <%= content_tag :div, msg, :id => "flash#{name}" %>
+  <% end %>
 
   <%= yield %>
 

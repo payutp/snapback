@@ -34,15 +34,6 @@ ActiveRecord::Schema.define(:version => 20130424201654) do
   end
 
   create_table "reminders", :force => true do |t|
-<<<<<<< HEAD
-    t.date     "return_date"
-    t.integer  "frequency"
-    t.integer  "return_id"
-    t.integer  "sent"
-    t.date     "last_sent"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-=======
     t.integer  "frequency"
     t.integer  "return_id"
     t.integer  "sent"
@@ -50,7 +41,6 @@ ActiveRecord::Schema.define(:version => 20130424201654) do
     t.datetime "updated_at",  :null => false
     t.datetime "return_date"
     t.datetime "last_sent"
->>>>>>> d8ced93ba3438588c704248ba33c33e4c737cc85
   end
 
   create_table "returns", :force => true do |t|
