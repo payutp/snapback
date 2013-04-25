@@ -10,30 +10,43 @@
 
 <h1> SnapBack </h1>
 
+  <div id="mainNav" class="navbar">
+            <div class="brand chunk">
+                <a href="/"> 
+                    SnapBack
+                </a>
+            </div>
+            <% if current_user %>
+              <div id="leftNav" class="nav_item chunk">
+                <p>Logged in as <%= current_user.email %></p>
+                <p id="btn_home">Home</p>
+                <p id="btn_look">Looking for</p>
+                <p id="btn_act">Activity</p>
+                <p id="btn_logout"><%= link_to "Log out", logout_path %></p>
+              </div>
+            <% else %>
+              <div id="leftNav" class="nav_item chunk">
+                <p id="btn_signup"><%= link_to "Sign up", signup_path %></p>
+                <p id="btn_login"><%= link_to "Log in", login_path %></p>
+              </div>
+            <% end %>
 
-  <div class="user_nav">
-  <% if current_user %>
-    <ul>
-      <li> <%= link_to "Home" %> </li>
-      <li> <%= link_to "Looking For" %> </li>
-      <li> <%= link_to "Activity" %> </li>
-      <li> <%= link_to "Log Out" %> </li>
-      Logged in as <%= current_user.email %>
-      <%= link_to "Log out", logout_path %>
-    </ul>
-  <% else %>
-    <ul>  
-      <%= link_to "Sign up", signup_path %> or 
-      <%= link_to "Log in", login_path %>
-    </ul>
-  <% end %>
+              <div class="nav_item chunk">
+                  <p id="btn_new">About</p>
+              </div>
+
+                <% flash.each do |name, msg| %>
+                  <%= content_tag :div, msg, :id => "flash_#{name}" %>
+                <% end %>
+>>>>>>> 8b0761c32af028cc6e6420c438a0babcaac021e0
+
+              </div><!--/.nav-collapse -->
+          </div>
+      </div>
   </div>
 
-  <% flash.each do |name, msg| %>
-  <%= content_tag :div, msg, :id => "flash#{name}" %>
-  <% end %>
-
-  <%= yield %>
-
+  <div class="wrap">
+    <%= yield %>
+  </div>
 </body>
 </html>
