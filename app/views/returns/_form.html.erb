@@ -1,15 +1,4 @@
 <%= form_for(@return) do |f| %>
-  <% if @return.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@return.errors.count, "error") %> prohibited this return from being saved:</h2>
-
-      <ul>
-      <% @return.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
 
   <div class="field">
     <%= f.label :status %><br />
@@ -24,6 +13,6 @@
     <%= f.number_field :user_id %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Save" %>
   </div>
 <% end %>

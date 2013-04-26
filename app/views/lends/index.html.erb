@@ -4,7 +4,7 @@
   <tr>
     <th>Status</th>
     <th>To</th>
-    <th>User</th>
+    <th> Item </th>
     <th></th>
     <th></th>
     <th></th>
@@ -13,8 +13,14 @@
 <% @lends.each do |lend| %>
   <tr>
     <td><%= lend.status %></td>
-    <td><%= lend.to %></td>
-    <td><%= lend.user_id %></td>
+    <td>
+      <% if lend.to == nil %>
+        <%= "Waiting" %>
+      <% else %>
+        <%= lend.to %>
+      <% end %>
+    </td>
+    <td><%= lend.item.name %> </td>
     <td><%= link_to 'Show', lend %></td>
     <td><%= link_to 'Edit', edit_lend_path(lend) %></td>
     <td><%= link_to 'Destroy', lend, method: :delete, data: { confirm: 'Are you sure?' } %></td>

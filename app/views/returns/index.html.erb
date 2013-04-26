@@ -10,14 +10,14 @@
     <th></th>
   </tr>
 
-<% @returns.each do |return| %>
+<% @returns.each do |r| %>
   <tr>
-    <td><%= return.status %></td>
-    <td><%= return.to %></td>
-    <td><%= return.user_id %></td>
-    <td><%= link_to 'Show', return %></td>
-    <td><%= link_to 'Edit', edit_return_path(return) %></td>
-    <td><%= link_to 'Destroy', return, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= r.status %></td>
+    <td><%= r.to %></td>
+    <td><%= r.user_id %></td>
+    <td><%= link_to 'Show', r %></td>
+    <td><%= link_to 'Edit', edit_return_path(r) %></td>
+    <td><%= link_to 'Destroy', r, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>

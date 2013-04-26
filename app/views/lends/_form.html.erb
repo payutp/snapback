@@ -1,22 +1,16 @@
-<%= form_for(@lend) do |f| %>
-  <% if @lend.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@lend.errors.count, "error") %> prohibited this lend from being saved:</h2>
+<%= form_tag('/lends/', :method => :post)  %>
 
-      <ul>
-      <% @lend.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <h2> What would you like to borrow? </h2>
 
+  <div>
+    From: <%= current_user.email %>
+  </div>
+
+</br>
   <div class="field">
-    <%= f.label :to, "dkd" %><br />
-    <%= f.text_field :to %>
+    Item: <%= text_field_tag "item_name" %>
   </div>
   
   <div class="actions">
-    <%= f.submit 'Create Request' %>
+    <%= submit_tag 'Create Request' %>
   </div>
-<% end %>
