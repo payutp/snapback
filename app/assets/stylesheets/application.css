@@ -38,14 +38,14 @@ textarea {
 	display: inline;
 	padding: 10px 20px 10px 20px;
 	cursor: pointer;
-	color: gray;
-	border: 2px solid black;
+	color: black;
+	border: 2px solid white;
 }
 
 .navbar p:hover, #btn_filter:hover {
 	display: inline;
 	padding: 10px 20px 10px 20px;
-	color: white;
+	color: black;
 }
 
 .navbar{
@@ -55,19 +55,19 @@ textarea {
 	top: 0px;
 	position: fixed;
 	text-align: center;
-	background-color: black;
+	background-color: white;
 	z-index: 999;
 }
 
 .chunk {
 	height: 50px;
 	float: left;
-	color: white;
+	color: black;
 	display: inline;
 }
 
 .nav_item {
-	font-size: 25px !important;
+	font-size: 40px !important;
 	margin-top: 20px;
 }
 
@@ -86,27 +86,5 @@ textarea {
 	padding-top: 65px;
 }
 
-.footer {
-	bottom: 0px;
-	height: auto;
-	left:0%;
-	position: fixed;
-	text-align: center;
-	background-color: black;
-	z-index: 999;
-	width: 25%;
-}
-
-.footer_item {
-	font-size: 25px !important;
-	margin-top: 12px;
-	margin-bottom: 15px;
-}
-
-.footer p {
-	display: inline;
-	padding: 10px 20px 10px 20px;
-	cursor: pointer;
-	color: gray;
-	border: 2px solid black;
+.headers {
 }
