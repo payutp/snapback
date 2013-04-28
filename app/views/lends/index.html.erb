@@ -13,10 +13,10 @@
     <tr>
       <td><%= lend.status %></td>
       <td>
-        <% if lend.to == nil %>
+        <% if lend.to_id == nil %>
           <%= "Waiting for a nice person to lend" %>
         <% else %>
-          <%= lend.to %>
+          <%= User.find(lend.to_id).email %>
         <% end %>
       </td>
       <td><%= lend.item.name %> </td>
@@ -28,10 +28,10 @@
     <tr>
       <td><%= lend.status %></td>
       <td>
-        <% if lend.to == nil %>
+        <% if lend.to_id == nil %>
           <%= "Waiting for a nice person to lend" %>
         <% else %>
-          <%= lend.to %>
+          <%= User.find(lend.to_id).email %>
         <% end %>
       </td>
       <td><%= lend.item.name %> </td>
