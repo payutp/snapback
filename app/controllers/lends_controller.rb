@@ -1,8 +1,11 @@
 class LendsController < ApplicationController
 
   def home
-    @lends = Lend.all
-
+    if current_user
+      @lends = Lend.where("user_id != ?", current_user.id)
+    else
+      @lends = Lend.all
+    end
     respond_to do |format|
       format.html
       format.json { render json: @lends }
@@ -50,7 +53,7 @@ class LendsController < ApplicationController
   # POST /lends
   # POST /lends.json
   def create
-    @lend = current_user.lends.new({:status => "Waiting"})
+    @lend = current_user.lends.new({:status => "opened"})
 
     respond_to do |format|
       if @lend.save
