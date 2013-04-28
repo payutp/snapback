@@ -1,0 +1,45 @@
+<table rules="all">
+  <tr>
+    <th>Item</th>
+    <th>Return Date</th>
+    <th>Action</th>
+  </tr>
+
+</table>
+
+<h2>Need to Return</h2>
+<table>
+
+<% @returns.each do |lend| %>
+  <tr>
+    <td><%= lend.status %></td>
+    <td>
+      <% if lend.to == nil %>
+        <%= "Waiting" %>
+      <% else %>
+        <%= lend.to %>
+      <% end %>
+    </td>
+    <td><%= lend.item.name %> </td>
+  </tr>
+<% end %>
+</table>
+
+<h2>What I've Lent</h2>
+
+<table>
+
+<% @lends.each do |lend| %>
+  <tr>
+    <td><%= lend.status %></td>
+    <td>
+      <% if lend.to == nil %>
+        <%= "Waiting" %>
+      <% else %>
+        <%= lend.to %>
+      <% end %>
+    </td>
+    <td><%= lend.item.name %> </td>
+  </tr>
+<% end %>
+</table>

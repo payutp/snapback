@@ -3,16 +3,19 @@ Starfleet::Application.routes.draw do
   get "logout" => "sessions#destroy", :as => "logout"
   get "login" => "sessions#new", :as => "login"
   get "signup" => "users#new", :as => "signup"
+  get "about" => "about#index", :as => "about"
+  get "activity" => "users#activity", :as => "activity"
   
   resources :users
   resources :sessions
 
-  root :to => "sessions#new"
+  root :to => "lends#index"
 
   resources :reminders
   resources :items
   resources :returns
   resources :lends
+  resources :about
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

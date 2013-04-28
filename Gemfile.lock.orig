@@ -29,11 +29,15 @@ GEM
       i18n (~> 0.6)
       multi_json (~> 1.0)
     arel (3.0.2)
+<<<<<<< HEAD
     authlogic (3.3.0)
       activerecord (>= 3.2)
       activesupport (>= 3.2)
     bcrypt-ruby (3.0.1)
     bcrypt-ruby (3.0.1-x86-mingw32)
+=======
+    bcrypt-ruby (3.0.1)
+>>>>>>> 33bd4b2de8f455c30378c587ee5135fb19f9c6ef
     builder (3.0.4)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
@@ -120,7 +124,11 @@ DEPENDENCIES
   jquery-rails
   pg
   rails (= 3.2.11)
+<<<<<<< HEAD
   rails3-generators
+=======
+  rufus-scheduler
+>>>>>>> 33bd4b2de8f455c30378c587ee5135fb19f9c6ef
   sass-rails (~> 3.2.3)
   sqlite3
   uglifier (>= 1.0.3)

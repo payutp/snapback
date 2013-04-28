@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :perishable_token, :verified, :persistence_token
 
-  has_secure_password 
+  has_secure_password
   
   # Simple validations.
   validates_presence_of :email
