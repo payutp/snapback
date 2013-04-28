@@ -35,4 +35,13 @@ class UsersController < ApplicationController
 		flash[:notice] = "Unable to find your account." unless @user
 	end
 
+  def activity
+    @lends = Lend.where("to_id = ?", current_user)
+    @returns = current_user.returns
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @lends }
+    end
+  end
+
 end
