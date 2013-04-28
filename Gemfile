@@ -43,3 +43,6 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 
 # To use debugger
 # gem 'debugger'
+
+# Used to schedule email sending
+gem 'rufus-scheduler'
