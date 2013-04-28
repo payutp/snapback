@@ -50,7 +50,7 @@ class LendsController < ApplicationController
   # POST /lends
   # POST /lends.json
   def create
-    @lend = current_user.lends.new({:status => "Waiting"})
+    @lend = current_user.lends.new({:status => "opened"})
 
     respond_to do |format|
       if @lend.save
