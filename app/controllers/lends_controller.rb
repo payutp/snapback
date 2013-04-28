@@ -2,12 +2,14 @@ class LendsController < ApplicationController
   # GET /lends
   # GET /lends.json
   def index
-    @lends = current_user.lends.all
 
     if current_user
       @lends_others = Lend.where("user_id != ?", current_user.id)
+      @lends_open = current_user.lends.where("status=='open'")
+      @lends_pending = current_user.lends.where("status=='pending'")
     else
       @lends_others = Lend.all
+      @lends = Lend.all
     end
 
     respond_to do |format|
@@ -46,11 +48,11 @@ class LendsController < ApplicationController
   # POST /lends
   # POST /lends.json
   def create
-    @lend = current_user.lends.new({:status => "opened"})
+    @lend = current_user.lends.new({:status => "open"})
 
     respond_to do |format|
       if @lend.save
-        format.html { redirect_to @lend, notice: 'Lend was successfully created.' }
+        format.html { redirect_to lends_path, notice: 'Lend was successfully created.' }
         format.json { render json: @lend, status: :created, location: @lend }
 
         @lend.create_item({:name => params[:item_name], :lend_id => current_user.id})
@@ -62,21 +64,6 @@ class LendsController < ApplicationController
     end
   end
 
-  # PUT /lends/1
-  # PUT /lends/1.json
-  def update
-    @lend = current_user.lends.find(params[:id])
-
-    respond_to do |format|
-      if @lend.update_attributes(params[:lend])
-        format.html { redirect_to @lend, notice: 'Lend was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @lend.errors, status: :unprocessable_entity }
-      end
-    end
-  end
 
   # DELETE /lends/1
   # DELETE /lends/1.json

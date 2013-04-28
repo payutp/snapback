@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130424201654) do
+ActiveRecord::Schema.define(:version => 20130425053651) do
 
   create_table "items", :force => true do |t|
     t.string   "name"
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(:version => 20130424201654) do
 
   create_table "lends", :force => true do |t|
     t.string   "status"
-    t.integer  "to"
+    t.integer  "to_id"
     t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
@@ -41,8 +41,13 @@ ActiveRecord::Schema.define(:version => 20130424201654) do
 
   create_table "returns", :force => true do |t|
     t.string   "status"
-    t.integer  "to"
+    t.integer  "to_id"
     t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "user_sessions", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -50,8 +55,12 @@ ActiveRecord::Schema.define(:version => 20130424201654) do
   create_table "users", :force => true do |t|
     t.string   "email"
     t.string   "password_digest"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
+    t.string   "perishable_token", :default => "",    :null => false
+    t.boolean  "verified",         :default => false
   end
+
+  add_index "users", ["perishable_token"], :name => "index_users_on_perishable_token"
 
 end
