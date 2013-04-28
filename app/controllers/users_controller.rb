@@ -30,7 +30,7 @@ class UsersController < ApplicationController
 
 	private  
 	def load_user_using_perishable_token  
-		@user = User.find_using_perishable_token(params[:id])
+		@user = User.where("perishable_token = ?", params[:id])[0]
 		flash[:notice] = "Unable to find your account." unless @user
 	end
 
