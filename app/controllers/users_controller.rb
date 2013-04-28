@@ -14,4 +14,13 @@ class UsersController < ApplicationController
       render :new
     end
   end
+
+  def activity
+    @lends = current_user.lends
+    @returns = current_user.returns
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @lends }
+    end
+  end
 end

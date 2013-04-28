@@ -4,6 +4,7 @@ Starfleet::Application.routes.draw do
   get "login" => "sessions#new", :as => "login"
   get "signup" => "users#new", :as => "signup"
   get "about" => "about#index", :as => "about"
+  get "activity" => "users#activity", :as => "activity"
   
   resources :users
   resources :sessions
