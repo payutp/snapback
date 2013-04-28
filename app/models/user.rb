@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email
   validates_confirmation_of :password
   validates_presence_of :password, :on => :create
+  validates_format_of :email, :with => /@mit.edu/, :message => "is invalid. Must sign up with MIT email."
 
   has_many :lends
   has_many :returns

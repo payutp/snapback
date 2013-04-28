@@ -11,7 +11,7 @@ class UsersController < ApplicationController
     @user.generate_perishable_token
 
     if @user.save
-	  # Tell the UserMailer to send a welcome Email after save
+	  # Tell the UserMailer to send a verification email after save
 	  @user.deliver_verification_instructions!
       # Set the session for the newly created user.
       redirect_to root_url, :notice => "You are signed up."
@@ -30,10 +30,8 @@ class UsersController < ApplicationController
 
 	private  
 	def load_user_using_perishable_token  
-		@user = User.where('perishable_token = ?', params[:id])[0]
-		puts "user"
-		puts @user
+		@user = User.find_using_perishable_token(params[:id])
 		flash[:notice] = "Unable to find your account." unless @user
-	end  
+	end
 
 end
