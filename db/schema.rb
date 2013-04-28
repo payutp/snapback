@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(:version => 20130424201654) do
 
   create_table "lends", :force => true do |t|
     t.string   "status"
-    t.integer  "to"
+    t.integer  "to_id"
     t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(:version => 20130424201654) do
 
   create_table "returns", :force => true do |t|
     t.string   "status"
-    t.integer  "to"
+    t.integer  "to_id"
     t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false

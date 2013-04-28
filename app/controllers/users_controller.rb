@@ -16,7 +16,7 @@ class UsersController < ApplicationController
   end
 
   def activity
-    @lends = current_user.lends
+    @lends = Lend.where("to_id = ?", current_user)
     @returns = current_user.returns
     respond_to do |format|
       format.html # index.html.erb
