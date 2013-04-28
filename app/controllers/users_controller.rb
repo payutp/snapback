@@ -14,7 +14,7 @@ class UsersController < ApplicationController
 	  # Tell the UserMailer to send a verification email after save
       @user.deliver_verification_instructions!
       # Set the session for the newly created user.
-      redirect_to root_url, :notice => "You are signed up."
+      redirect_to root_url, :notice => "Check your email for verification."
     else
       render :new
     end
@@ -24,6 +24,7 @@ class UsersController < ApplicationController
   	if @user
       @user.verify!
       flash[:notice] = "Thank you for verifying your account. You may now login."
+      session[:user_id] = @user.id
     end
     redirect_to root_url
   end

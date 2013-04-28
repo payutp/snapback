@@ -20,7 +20,6 @@ class UsersController < ApplicationController
     end
   end
 
-<<<<<<< HEAD
   def show
   	if @user
       @user.verify!
@@ -35,7 +34,6 @@ class UsersController < ApplicationController
 		flash[:notice] = "Unable to find your account." unless @user
 	end
 
-=======
   def activity
     @lends = Lend.where("to_id = ?", current_user)
     @returns = current_user.returns
@@ -44,5 +42,4 @@ class UsersController < ApplicationController
       format.json { render json: @lends }
     end
   end
->>>>>>> 33bd4b2de8f455c30378c587ee5135fb19f9c6ef
 end
