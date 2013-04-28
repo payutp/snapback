@@ -4,7 +4,8 @@ require 'rufus/scheduler'
 scheduler = Rufus::Scheduler.start_new
 
 # check if there are emails to send each hour
-scheduler.every '60m' do
+scheduler.every '1d' do
+  puts 'emailing'
   @reminders = Reminder.all
   @reminders.each do |reminder|
     if reminder.should_mail
