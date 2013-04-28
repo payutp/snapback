@@ -1,21 +1,14 @@
 class LendsController < ApplicationController
-
-  def home
-    if current_user
-      @lends = Lend.where("user_id != ?", current_user.id)
-    else
-      @lends = Lend.all
-    end
-    respond_to do |format|
-      format.html
-      format.json { render json: @lends }
-    end
-  end
-
   # GET /lends
   # GET /lends.json
   def index
     @lends = current_user.lends.all
+
+    if current_user
+      @lends_others = Lend.where("user_id != ?", current_user.id)
+    else
+      @lends_others = Lend.all
+    end
 
     respond_to do |format|
       format.html # index.html.erb

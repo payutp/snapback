@@ -8,7 +8,7 @@ Starfleet::Application.routes.draw do
   resources :users
   resources :sessions
 
-  root :to => "lends#home"
+  root :to => "lends#index"
 
   resources :reminders
   resources :items
