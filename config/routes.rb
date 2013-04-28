@@ -13,7 +13,9 @@ Starfleet::Application.routes.draw do
 
   resources :reminders
   resources :items
-  resources :returns
+  resources :returns do
+    resource :reminders
+  end
   resources :lends
   resources :about
   

@@ -1,4 +1,4 @@
-<%= form_for(@reminder) do |f| %>
+<%= form_for @reminder, :url => return_reminders_path(@return) do |f| %>
   <% if @reminder.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@reminder.errors.count, "error") %> prohibited this reminder from being saved:</h2>
@@ -17,19 +17,13 @@
   </div>
   <div class="field">
     <%= f.label :frequency %><br />
-    <%= f.number_field :frequency %>
-  </div>
-  <div class="field">
-    <%= f.label :return_id %><br />
-    <%= f.number_field :return_id %>
-  </div>
-  <div class="field">
-    <%= f.label :sent %><br />
-    <%= f.number_field :sent %>
-  </div>
-  <div class="field">
-    <%= f.label :last_sent %><br />
-    <%= f.date_select :last_sent %>
+    <select name="frequency" id="frequency">
+      <option value="">Select Frequency</option>
+      <option value="1" <% if @reminder.frequency == 1 %> selected="selected" <% end %>>Daily</option>
+      <option value="2" <% if @reminder.frequency == 2 %> selected="selected" <% end %>>Every Other Day</option>
+      <option value="3" <% if @reminder.frequency == 3 %> selected="selected" <% end %>>Every 7 Days</option>
+      <option value="4" <% if @reminder.frequency == 4 %> selected="selected" <% end %>>Every 14 Days</option>
+    </select>
   </div>
   <div class="actions">
     <%= f.submit %>

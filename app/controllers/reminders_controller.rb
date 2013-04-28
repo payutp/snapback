@@ -13,7 +13,8 @@ class RemindersController < ApplicationController
   # GET /reminders/1
   # GET /reminders/1.json
   def show
-    @reminder = Reminder.find(params[:id])
+    @reminder = Return.find(params[:return_id]).reminder
+    @return = Return.find(params[:return_id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -34,7 +35,8 @@ class RemindersController < ApplicationController
 
   # GET /reminders/1/edit
   def edit
-    @reminder = Reminder.find(params[:id])
+    @reminder = Return.find(params[:return_id]).reminder
+    @return = Return.find(params[:return_id])
   end
 
   # POST /reminders
@@ -56,11 +58,12 @@ class RemindersController < ApplicationController
   # PUT /reminders/1
   # PUT /reminders/1.json
   def update
-    @reminder = Reminder.find(params[:id])
+    @reminder = Return.find(params[:return_id]).reminder
+    @return = Return.find(params[:return_id])
 
     respond_to do |format|
-      if @reminder.update_attributes(params[:reminder])
-        format.html { redirect_to @reminder, notice: 'Reminder was successfully updated.' }
+      if @reminder.update_attributes(params[:reminder]) and @reminder.update_attributes(:frequency=>params[:frequency])
+        format.html { redirect_to return_reminders_path(@return), notice: 'Reminder was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

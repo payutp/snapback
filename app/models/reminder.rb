@@ -1,6 +1,5 @@
 class Reminder < ActiveRecord::Base
   attr_accessible :frequency, :last_sent, :return_date, :return_id, :sent
-
   belongs_to :return
 
   def get_user_to
@@ -33,4 +32,5 @@ class Reminder < ActiveRecord::Base
       return false
     end      
   end
+
 end

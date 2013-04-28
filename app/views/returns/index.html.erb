@@ -17,6 +17,7 @@
     <td><%= r.user_id %></td>
     <td><%= link_to 'Show', r %></td>
     <td><%= link_to 'Edit', edit_return_path(r) %></td>
+    <td><%= link_to 'Reminder', return_reminders_path(r) %></td>
     <td><%= link_to 'Destroy', r, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
