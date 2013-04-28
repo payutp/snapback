@@ -24,7 +24,6 @@ class UsersController < ApplicationController
   	if @user
       @user.verify!
       flash[:notice] = "Thank you for verifying your account. You may now login."
-      session[:user_id] = @user.id
     end
     redirect_to root_url
   end
