@@ -12,7 +12,7 @@ class UsersController < ApplicationController
 
     if @user.save
 	  # Tell the UserMailer to send a verification email after save
-	  @user.deliver_verification_instructions!
+      @user.deliver_verification_instructions!
       # Set the session for the newly created user.
       redirect_to root_url, :notice => "You are signed up."
     else
