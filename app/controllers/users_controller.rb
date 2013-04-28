@@ -25,7 +25,7 @@ class UsersController < ApplicationController
       @user.verify!
       flash[:notice] = "Thank you for verifying your account. You may now login."
     end
-    redirect_to root_url
+    redirect_to login_path
   end
 
 	private  

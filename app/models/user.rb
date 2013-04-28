@@ -24,8 +24,8 @@ class User < ActiveRecord::Base
   end  
 
   def generate_perishable_token
-  	o =  [('a'..'z'),('A'..'Z')].map{|i| i.to_a}.flatten
-	random  =  (0...15).map{ o[rand(o.length)] }.join
+  	o =  [('a'..'z'),('A'..'Z'),(1..9)].map{|i| i.to_a}.flatten
+	random  =  (0...25).map{ o[rand(o.length)] }.join
 	self.perishable_token = random
   end
 
