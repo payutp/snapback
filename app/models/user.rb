@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :password, :password_confirmation
+  attr_accessible :email, :password, :password_confirmation, :perishable_token, :verified, :persistence_token
 
   has_secure_password 
   
@@ -11,5 +11,21 @@ class User < ActiveRecord::Base
 
   has_many :lends
   has_many :returns
+
+  def verify!
+    self.verified = true
+    self.save
+  end
+
+  def deliver_verification_instructions!  
+	reset_perishable_token!  
+	UserMailer.verification_email(self).deliver 
+  end  
+
+  def generate_perishable_token
+  	o =  [('a'..'z'),('A'..'Z')].map{|i| i.to_a}.flatten
+	random  =  (0...15).map{ o[rand(o.length)] }.join
+	self.perishable_token = random
+  end
 
 end
