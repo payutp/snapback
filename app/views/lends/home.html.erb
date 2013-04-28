@@ -1,1 +1,17 @@
-<h2> People are looking for these items: </h2>
+<h1> People are looking for these items: </h1>
+
+<table>
+<tr>
+	<th> User </th>
+	<th> Item </th>
+	<th> </th>
+</tr>
+
+<% @lends.each do |lend| %>
+<tr>
+<th> <%= User.find(lend.user_id).email %></th>
+<th> <%= lend.item.name %></th>
+<th> <%= link_to "Accept" %> </th>
+</tr>
+<% end %>
+</table>
