@@ -8,38 +8,41 @@
 </table>
 
 <h2>Need to Return</h2>
-<table>
-
-<% @returns.each do |lend| %>
-  <tr>
-    <td><%= lend.status %></td>
-    <td>
-      <% if lend.to == nil %>
-        <%= "Waiting" %>
-      <% else %>
-        <%= lend.to %>
-      <% end %>
-    </td>
-    <td><%= lend.item.name %> </td>
-  </tr>
+<% if !@returns.nil? %>
+  <table>
+  <% @returns.each do |lend| %>
+    <tr>
+      <td><%= lend.status %></td>
+      <td>
+        <% if lend.to == nil %>
+          <%= "Waiting" %>
+        <% else %>
+          <%= lend.to %>
+        <% end %>
+      </td>
+      <td><%= lend.item.name %> </td>
+    </tr>
+  <% end %>
+  </table>
 <% end %>
-</table>
 
 <h2>What I've Lent</h2>
 
-<table>
+<% if !@lends.nil? %>
+  <table>
 
-<% @lends.each do |lend| %>
-  <tr>
-    <td><%= lend.status %></td>
-    <td>
-      <% if lend.to == nil %>
-        <%= "Waiting" %>
-      <% else %>
-        <%= lend.to %>
-      <% end %>
-    </td>
-    <td><%= lend.item.name %> </td>
-  </tr>
+  <% @lends.each do |lend| %>
+    <tr>
+      <td><%= lend.status %></td>
+      <td>
+        <% if lend.to == nil %>
+          <%= "Waiting" %>
+        <% else %>
+          <%= lend.to %>
+        <% end %>
+      </td>
+      <td><%= lend.item.name %> </td>
+    </tr>
+  <% end %>
+  </table>
 <% end %>
-</table>
