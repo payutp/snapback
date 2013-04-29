@@ -1,13 +1,14 @@
-<h2>Need to Return</h2>
-<% if !@returns.nil? %>
+<h1>Need to Return</h1>
+<% if !@lends_pending.nil? %>
   <table>
   <tr>
     <th>Status</th>
     <th> To </th>
     <th> User</th>
+    <th> </th>
   </tr>
 
-  <% @lends.each do |lend| %>
+  <% @lends_pending.each do |lend| %>
     <tr>
       <td><%= lend.status %></td>
       <td>
@@ -18,39 +19,16 @@
         <% end %>
       </td>
       <td><%= lend.item.name %> </td>
+      <td><%= link_to "Return" %> </td>
     </tr>
   <% end %>
   </table>
 <% end %>
 
-<h2>What I've Lent</h2>
-
-<% if !@returns.nil? %>
-  <table>
-  <tr>
-    <th>Status</th>
-    <th> To </th>
-    <th> User</th>
-    <th> </th>
-  </tr>
-  <% @returns.each do |r| %>
-    <tr>
-      <td><%= r.status %></td>
-      <td>
-        <% if r.to_id == nil %>
-          <%= "Waiting" %>
-        <% else %>
-          <%= User.find(r.to_id).email %>
-        <% end %>
-      </td>
-      <td><%= r.item.name %> </td>
-      <td><%= link_to "Cancel" %> </td>
-    </tr>
-  <% end %>
-  </table>
-<% end %>
+<h1>What I've Lent</h1>
 
 <% if !@returns_pending.nil? %>
+  <h2> Still not returned </h2>
   <table>
   <tr>
     <th>Status</th>
@@ -76,6 +54,7 @@
 <% end %>
 
 <% if !@returns_returned.nil? %>
+  <h2> Returned to you, please confirm </h2>
   <table>
   <tr>
     <th>Status</th>
@@ -100,14 +79,39 @@
   </table>
 <% end %>
 
-<% if !@returns_closed.nil? %>
+<% if !@returns_close.nil? %>
+  <h2> Close requests </h2>
   <table>
   <tr>
     <th>Status</th>
     <th> To </th>
     <th> User</th>
   </tr>
-  <% @returns_closed.each do |r| %>
+  <% @returns_close.each do |r| %>
+    <tr>
+      <td><%= r.status %></td>
+      <td>
+        <% if r.to_id == nil %>
+          <%= "Waiting" %>
+        <% else %>
+          <%= User.find(r.to_id).email %>
+        <% end %>
+      </td>
+      <td><%= r.item.name %> </td>
+    </tr>
+  <% end %>
+  </table>
+<% end %>
+
+<h1> Past Returned Items </h1>
+<% if !@lends_close.nil? %>
+  <table>
+  <tr>
+    <th>Status</th>
+    <th> To </th>
+    <th> User</th>
+  </tr>
+  <% @lends_close.each do |r| %>
     <tr>
       <td><%= r.status %></td>
       <td>
