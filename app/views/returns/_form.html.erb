@@ -11,7 +11,20 @@
       To: <% text_field_tag "email" %>
     <% end %>
   </div>
-
+  <div class="field">
+    <%= label_tag "return_date" %><br />
+    <%= select_date(date = Date.current) %>
+  </div>
+  <div class="field">
+    <%= label_tag "frequency" %><br />
+    <select name="frequency" id="frequency">
+      <option value="">Select Frequency</option>
+      <option value="1">Daily</option>
+      <option value="2" >Every Other Day</option>
+      <option value="3">Every 7 Days</option>
+      <option value="4">Every 14 Days</option>
+    </select>
+  </div>
   <div class="actions">
     <%= submit_tag 'Accept request' %>
   </div>

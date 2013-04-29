@@ -46,9 +46,11 @@ class ReturnsController < ApplicationController
   # POST /returns.json
   def create
     @return = Return.new(params[:return])
+    dateTime = DateTime.new(params[:date][:year].to_d, params[:date][:month].to_d, params[:date][:day].to_d)
+    @reminder = @return.build_reminder(:return_date => dateTime, :frequency => params[:frequency])
 
     respond_to do |format|
-      if @return.save
+      if @return.save and @reminder.save
         format.html { redirect_to @return, notice: 'Return was successfully created.' }
         format.json { render json: @return, status: :created, location: @return }
       else
