@@ -20,6 +20,20 @@ Starfleet::Application.configure do
   # Generate digests for assets URLs
   config.assets.digest = true
 
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+  :openssl_verify_mode  => 'none',
+  :address => "smtp.gmail.com",
+  :port => 587,
+  :domain => 'gmail.com',
+  :user_name => 'snapbackapp@gmail.com',
+  :password => '6170starfleet',
+  :authentication => 'plain',
+  :enable_starttls_auto => true ,
+  :openssl_verify_mode => 'none'}
+
   # Defaults to nil and saved in location specified by config.assets.prefix
   # config.assets.manifest = YOUR_PATH
 
