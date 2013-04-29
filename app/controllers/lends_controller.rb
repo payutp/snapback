@@ -4,12 +4,12 @@ class LendsController < ApplicationController
   def index
 
     if current_user
-      @lends_others = Lend.where("user_id != ? and status == 'open'", current_user.id)
-      @lends_open = current_user.lends.where("status=='open'")
-      @lends_pending = current_user.lends.where("status=='pending'")
+      @lends_others = Lend.where("user_id != ? and status = 'open'", current_user.id)
+      @lends_open = current_user.lends.where("status='open'")
+      @lends_pending = current_user.lends.where("status='pending'")
     else
-      @lends_others = Lend.where("status == 'open'")
-      @lends = Lend.where("status == 'open'")
+      @lends_others = Lend.where("status = 'open'")
+      @lends = Lend.where("status = 'open'")
     end
 
     respond_to do |format|
