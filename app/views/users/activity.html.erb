@@ -1,23 +1,20 @@
-<table rules="all">
-  <tr>
-    <th>Item</th>
-    <th>Return Date</th>
-    <th>Action</th>
-  </tr>
-
-</table>
-
 <h2>Need to Return</h2>
 <% if !@returns.nil? %>
   <table>
-  <% @returns.each do |lend| %>
+  <tr>
+    <th>Status</th>
+    <th> To </th>
+    <th> User</th>
+  </tr>
+
+  <% @lends.each do |lend| %>
     <tr>
       <td><%= lend.status %></td>
       <td>
-        <% if lend.to == nil %>
+        <% if lend.to_id == nil %>
           <%= "Waiting" %>
         <% else %>
-          <%= lend.to %>
+          <%= User.find(lend.to_id).email %>
         <% end %>
       </td>
       <td><%= lend.item.name %> </td>
@@ -28,20 +25,74 @@
 
 <h2>What I've Lent</h2>
 
-<% if !@lends.nil? %>
+<% if !@returns_pending.nil? %>
   <table>
-
-  <% @lends.each do |lend| %>
+  <tr>
+    <th>Status</th>
+    <th> To </th>
+    <th> User</th>
+    <th> </th>
+  </tr>
+  <% @returns_pending.each do |r| %>
     <tr>
-      <td><%= lend.status %></td>
+      <td><%= r.status %></td>
       <td>
-        <% if lend.to == nil %>
+        <% if r.to_id == nil %>
           <%= "Waiting" %>
         <% else %>
-          <%= lend.to %>
+          <%= User.find(r.to_id).email %>
         <% end %>
       </td>
-      <td><%= lend.item.name %> </td>
+      <td><%= r.item.name %> </td>
+      <td><%= link_to "Cancel" %> </td>
+    </tr>
+  <% end %>
+  </table>
+<% end %>
+
+<% if !@returns_returned.nil? %>
+  <table>
+  <tr>
+    <th>Status</th>
+    <th> To </th>
+    <th> User</th>
+    <th> </th>
+  </tr>
+  <% @returns_returned.each do |r| %>
+    <tr>
+      <td><%= r.status %></td>
+      <td>
+        <% if r.to_id == nil %>
+          <%= "Waiting" %>
+        <% else %>
+          <%= User.find(r.to_id).email %>
+        <% end %>
+      </td>
+      <td><%= r.item.name %> </td>
+      <td><%= link_to "Confirm" %> </td>
+    </tr>
+  <% end %>
+  </table>
+<% end %>
+
+<% if !@returns_closed.nil? %>
+  <table>
+  <tr>
+    <th>Status</th>
+    <th> To </th>
+    <th> User</th>
+  </tr>
+  <% @returns_closed.each do |r| %>
+    <tr>
+      <td><%= r.status %></td>
+      <td>
+        <% if r.to_id == nil %>
+          <%= "Waiting" %>
+        <% else %>
+          <%= User.find(r.to_id).email %>
+        <% end %>
+      </td>
+      <td><%= r.item.name %> </td>
     </tr>
   <% end %>
   </table>

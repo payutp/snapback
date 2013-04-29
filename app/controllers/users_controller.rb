@@ -36,7 +36,9 @@ class UsersController < ApplicationController
 
   def activity
     @lends = Lend.where("to_id = ?", current_user)
-    @returns = current_user.returns
+    @returns_pending = current_user.returns.where("status = 'pending'")
+    @returns_returned = current_user.returns.where("status = 'returned'")
+    @returns_closed = current_user.returns.where("status = 'closed'")
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @lends }

@@ -1,22 +1,13 @@
-<%= form_for(@return) do |f| %>
+<%= form_tag('/returns/', :method => :post) %>
+  
+  <h2> Item </h2>
+  <div>
+    From: <%= current_user.email %>
+  </div>
+  <div>
+    To: <%= User.find(@lend_id).email %>
+  </div>
 
-  <div class="field">
-    <%= f.label :status %><br />
-    <%= f.text_field :status %>
-  </div>
-  <div class="field">
-    <%= f.label :to_id %><br />
-    <%= f.number_field :to_id %>
-  </div>
-  <div class="field">
-    <%= f.label :user_id %><br />
-    <%= f.number_field :user_id %>
-  </div>
-    <div class="field">
-    <%= label_tag :item %><br />
-    <%= number_field_tag :item_id, @item_id %>
-  </div>
   <div class="actions">
-    <%= f.submit "Save" %>
+    <%= submit_tag 'Accept request' %>
   </div>
-<% end %>

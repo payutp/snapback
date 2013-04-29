@@ -56,7 +56,7 @@
   <tr>
   <th> <%= User.find(lend.user_id).email %></th>
   <th> <%= lend.item.name %></th>
-  <td><%= link_to 'Accept', new_return_path(:id => lend.id), data: { confirm: 'Are you sure?' } %></td>
+  <td><%= link_to 'Accept', new_return_path(:id => lend.id) %></td>
   </tr>
   <% end %>
   </table>
