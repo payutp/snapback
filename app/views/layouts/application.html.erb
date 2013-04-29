@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>SnapBack</title>
-  <%= stylesheet_link_tag    "application" %>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
@@ -10,7 +10,7 @@
 
   <div id="mainNav" class="navbar">
             <div class="navbar-inner">
-            <div class="brand chunk">
+            <div class="brand">
                 <h1><a href="/"> SnapBack </a></h1>
             </div>
             <ul class="nav">

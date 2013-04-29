@@ -12,6 +12,18 @@
  *= require_tree .
  */
 
-.wrapC {
-	left:10px;
+.nav {
+	top:25px;
+	position: relative;
+}
+
+.navbar a:hover, .nav a:hover {
+	text-decoration: none;
+	color: #0064cc;
+	background-color: transparent;
+}
+
+.float {
+	float: left;
+	margin-right: 20px;
 }
