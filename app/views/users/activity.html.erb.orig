@@ -4,8 +4,12 @@
   <tr>
     <th>Status</th>
     <th> To </th>
-    <th> Item</th>
+<<<<<<< HEAD
+    <th> Item </th>
     <th> </th>
+=======
+    <th> Item</th>
+>>>>>>> e184296ba7de8f61bc9ef7d5c67a25d53be76b1a
     <th> </th>
   </tr>
 
@@ -35,7 +39,11 @@
   <tr>
     <th>Status</th>
     <th> To </th>
+<<<<<<< HEAD
+    <th> Item </th>
+=======
     <th> Item</th>
+>>>>>>> e184296ba7de8f61bc9ef7d5c67a25d53be76b1a
     <th> </th>
   </tr>
 <% if !@returns_open.nil? %>
