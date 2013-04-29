@@ -26,6 +26,7 @@ class Reminder < ActiveRecord::Base
   def should_mail
     if self.return.status == "close"
       return false
+    end
     if !self.last_sent
       return true
     elsif self.frequency == 1 and self.last_sent + 1.days <= DateTime.now
