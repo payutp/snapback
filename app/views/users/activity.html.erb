@@ -85,7 +85,7 @@
         <% end %>
       </td>
       <td><%= r.item.name %> </td>
-      <td><%= button_to "Confirm", :class => "btn btn-small btn-success"  %> </td>
+      <td><%= button_to "Confirm", confirm_item_path(r.item.id), method: :post, :class => "btn btn-small btn-success"  %> </td>
     </tr>
   <% end %>
 <% end %>
@@ -103,10 +103,13 @@
         <% end %>
       </td>
       <td><%= r.item.name %> </td>
+      <td> </td>
     </tr>
   <% end %>
 <% end %>
+</table>
 
+<!--
 <% if !@lends_close.nil? %>
 
   <% @lends_close.each do |r| %>
@@ -120,7 +123,8 @@
         <% end %>
       </td>
       <td><%= r.item.name %> </td>
+      <td> </td>
     </tr>
   <% end %>
 <% end %>
-</table>
+-->

@@ -7,7 +7,8 @@ Starfleet::Application.routes.draw do
   get "activity" => "users#activity", :as => "activity"
   post "returns/new" => "returns#new", :as => "new_return"
   post "returns/create_new" => "returns#create_new", :as => "return_new"
-  post "items/:id/return" => "items#return", :as => "return_item"
+  #post "items/:id/return" => "items#return"
+  post "items/:id/confirm" => "items#confirm", :as => "confirm"
   
   resources :users
   resources :sessions
@@ -15,7 +16,13 @@ Starfleet::Application.routes.draw do
   root :to => "lends#index"
 
   resources :reminders
-  resources :items
+  resources :items do
+    member do
+      post "return"
+      post "confirm"
+    end
+  end
+
   resources :returns do
     resource :reminders
   end
