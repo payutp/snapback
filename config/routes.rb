@@ -5,6 +5,7 @@ Starfleet::Application.routes.draw do
   get "signup" => "users#new", :as => "signup"
   get "about" => "about#index", :as => "about"
   get "activity" => "users#activity", :as => "activity"
+  post "returns/new" => "returns#new", :as => "new_return"
   
   resources :users
   resources :sessions

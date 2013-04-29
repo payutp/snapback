@@ -58,7 +58,7 @@
   <tr>
   <th> <%= User.find(lend.user_id).email %></th>
   <th> <%= lend.item.name %></th>
-  <td><%=button_to "Accept", new_return_path(:id => lend.id), method: :get, :class => "btn btn-small btn-success"%></td>
+  <td><%=button_to "Accept", new_return_path(:id => lend.id), :class => "btn btn-small btn-success"%></td>
   </tr>
   <% end %>
   </table>
