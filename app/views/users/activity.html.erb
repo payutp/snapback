@@ -1,6 +1,6 @@
 <h1>Need to Return</h1>
 <% if !@lends_pending.nil? %>
-  <table>
+  <table class="table table-striped">
   <tr>
     <th>Status</th>
     <th> To </th>
@@ -25,11 +25,13 @@
   </table>
 <% end %>
 
-<h1>What I've Lent</h1>
+<br>
 
+<h1>What I've Lent</h1>
+<br>
 <% if !@returns_pending.nil? %>
-  <h2> Still not returned </h2>
-  <table>
+  <!--<h2> Still not returned </h2> -->
+  <table class="table table-striped">
   <tr>
     <th>Status</th>
     <th> To </th>
@@ -53,9 +55,9 @@
   </table>
 <% end %>
 
-<% if !@returns_returned.nil? %>
+<!--<% if !@returns_returned.nil? %>
   <h2> Returned to you, please confirm </h2>
-  <table>
+  <table class="table">
   <tr>
     <th>Status</th>
     <th> To </th>
@@ -81,7 +83,7 @@
 
 <% if !@returns_close.nil? %>
   <h2> Close requests </h2>
-  <table>
+  <table class="table">
   <tr>
     <th>Status</th>
     <th> To </th>
@@ -105,7 +107,7 @@
 
 <h1> Past Returned Items </h1>
 <% if !@lends_close.nil? %>
-  <table>
+  <table class="table">
   <tr>
     <th>Status</th>
     <th> To </th>
@@ -125,4 +127,4 @@
     </tr>
   <% end %>
   </table>
-<% end %>
+<% end %> -->

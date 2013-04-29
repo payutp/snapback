@@ -7,6 +7,8 @@
   <div>
     <% if !@lend.nil? %>
       To: <%= @lend.user.email %>
+      <%= hidden_field :return, :to_id, :value => @lend.user.id %>
+        <%= hidden_field_tag :item_id, @lend.item.id %>
     <% else %>
       To: <% text_field_tag "email" %>
     <% end %>
@@ -26,9 +28,8 @@
     </select>
   </div>
 
-  <%= hidden_field :return, :to_id, :value => @lend.user.id %>
+
   <%= hidden_field :return, :user_id, :value => current_user.id %>
-  <%= hidden_field_tag :item_id, @lend.item.id %>
   <div class="actions">
     <%= submit_tag 'Accept request' %>
   </div>
