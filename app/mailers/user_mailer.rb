@@ -12,9 +12,7 @@ class UserMailer < ActionMailer::Base
   	@url = user_url(user.perishable_token)
   	mail(	:to => user.email, 
   			:subject => "Welcome to SnapBack", 
-  			:from => "SnapBack",
-  			:body => user_url(user.perishable_token)
+  			:from => "SnapBack"
   		)
   end
-
 end
