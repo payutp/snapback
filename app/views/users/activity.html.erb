@@ -51,7 +51,7 @@
         <% end %>
       </td>
       <td><%= r.item.name %> </td>
-      <td><%= button_to "Cancel", activity_path, method: :get,data: { confirm: 'Are you sure?' }, :class => "btn btn-small btn-danger" %></td>
+      <td><%= button_to "Cancel", r, method: :delete,data: { confirm: 'Are you sure?' }, :class => "btn btn-small btn-danger" %></td>
     </tr>
   <% end %>
 <% end %>
@@ -87,7 +87,7 @@
         <% end %>
       </td>
       <td><%= r.item.name %> </td>
-      <td><%= button_to "Confirm", :class => "btn btn-small btn-success"  %> </td>
+      <td><%= button_to "Confirm", confirm_item_path(r.item.id), method: :post, :class => "btn btn-small btn-success"  %> </td>
     </tr>
   <% end %>
 <% end %>
@@ -105,10 +105,13 @@
         <% end %>
       </td>
       <td><%= r.item.name %> </td>
+      <td> </td>
     </tr>
   <% end %>
 <% end %>
+</table>
 
+<!--
 <% if !@lends_close.nil? %>
 
   <% @lends_close.each do |r| %>
@@ -122,7 +125,8 @@
         <% end %>
       </td>
       <td><%= r.item.name %> </td>
+      <td> </td>
     </tr>
   <% end %>
 <% end %>
-</table>
+-->
