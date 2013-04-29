@@ -48,8 +48,14 @@ class ReturnsController < ApplicationController
     dateTime = DateTime.new(params[:date][:year].to_d, params[:date][:month].to_d, params[:date][:day].to_d)
     @reminder = @return.build_reminder(:return_date => dateTime, :frequency => params[:frequency])
 
+    # need to take care of the case where item not existed yet
+    @return.item = Item.find(params[:item_id])
+    @return.status = "pending"
+
     respond_to do |format|
       if @return.save and @reminder.save
+        lend = @return.item.lend
+        lend.update_attributes({:status => "pending"})
         format.html { redirect_to "/activity", notice: 'Return was successfully created.' }
         format.json { render json: @return, status: :created, location: @return }
       else

@@ -28,22 +28,22 @@ class UsersController < ApplicationController
     redirect_to login_path
   end
 
-	private  
-	def load_user_using_perishable_token  
-		@user = User.where("perishable_token = ?", params[:id])[0]
-		flash[:notice] = "Unable to find your account." unless @user
-	end
-
   def activity
     @lends = Lend.where("to_id = ?", current_user)
-    # @returns_pending = current_user.returns.where("status = 'pending'")
-    # @returns_returned = current_user.returns.where("status = 'returned'")
-    # @returns_closed = current_user.returns.where("status = 'closed'")
+    #@returns_pending = current_user.returns.where("status = 'pending'")
+    #@returns_returned = current_user.returns.where("status = 'returned'")
+    #@returns_closed = current_user.returns.where("status = 'closed'")
     @returns = current_user.returns
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @lends }
     end
   end
+
+	private  
+	def load_user_using_perishable_token  
+		@user = User.where("perishable_token = ?", params[:id])[0]
+		flash[:notice] = "Unable to find your account." unless @user
+	end
 
 end
