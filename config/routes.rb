@@ -6,6 +6,7 @@ Starfleet::Application.routes.draw do
   get "about" => "about#index", :as => "about"
   get "activity" => "users#activity", :as => "activity"
   post "returns/new" => "returns#new", :as => "new_return"
+  post "returns/create_new" => "returns#create_new", :as => "return_new"
   
   resources :users
   resources :sessions

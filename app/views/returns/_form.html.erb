@@ -1,5 +1,39 @@
-<%= form_tag('/returns/', :method => :post) %>
+<% if @lend.nil? %>
+<%= form_tag('/returns/create_new', :method => :post) %>
   
+  <div>
+    From: <%= current_user.email %>
+  </div>
+  <div>
+      <div class="field">
+      To: <%= text_field_tag :to_email %>
+    </div>
+      <div class="field">
+      Item: <%= text_field_tag :item_name %>
+    </div>
+  </div>
+  <div class="field">
+    <%= label_tag "return_date" %><br />
+    <%= select_date(date = Date.current) %>
+  </div>
+  <div class="field">
+    <%= label_tag "frequency" %><br />
+    <select name="frequency" id="frequency">
+      <option value="">Select Frequency</option>
+      <option value="1">Daily</option>
+      <option value="2" >Every Other Day</option>
+      <option value="3">Every 7 Days</option>
+      <option value="4">Every 14 Days</option>
+    </select>
+  </div>
+
+  <%= hidden_field :return, :user_id, :value => current_user.id %>
+  <div class="actions">
+    <%= submit_tag 'Accept request', :class => "btn btn-primary" %>
+  </div>
+<% else %>
+  <%= form_tag('/returns/', :method => :post) %>
+
   <div>
     From: <%= current_user.email %>
   </div>
@@ -37,3 +71,4 @@
   <div class="actions">
     <%= submit_tag 'Accept request', :class => "btn btn-primary" %>
   </div>
+<% end %>
