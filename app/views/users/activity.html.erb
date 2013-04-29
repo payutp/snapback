@@ -9,6 +9,7 @@
   </tr>
 
   <% @lends_pending.each do |lend| %>
+    <% if lend.item.return.status == "lent" %>
     <tr>
       <td><%= lend.status %></td>
       <td>
@@ -21,6 +22,20 @@
       <td><%= lend.item.name %> </td>
       <td><%= button_to "Return", activity_path, method: :get, :class => "btn btn-small btn-success" %> </td>
     </tr>
+    <% elsif lend.item.return.status == "returning" %>
+    <tr>
+      <td>Waiting for confirmation</td>
+      <td>
+        <% if lend.to_id == nil %>
+          <%= "Waiting" %>
+        <% else %>
+          <%= User.find(lend.to_id).email %>
+        <% end %>
+      </td>
+      <td><%= lend.item.name %> </td>
+      <td></td>
+    </tr>
+    <% end %>
   <% end %>
   </table>
 <% end %>

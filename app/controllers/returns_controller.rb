@@ -24,6 +24,7 @@ class ReturnsController < ApplicationController
   # GET /returns/new
   # GET /returns/new.json
   def new
+    @people = User.all
     @lend = nil
     if params.has_key?("id")
       @lend = Lend.find(params[:id])

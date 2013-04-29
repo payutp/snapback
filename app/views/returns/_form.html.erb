@@ -5,8 +5,9 @@
     From: <%= current_user.email %>
   </div>
   <div>
-      <div class="field">
-      To: <%= text_field_tag :to_email %>
+    <div class='field'>    
+        To:
+      <%= select_tag "to_email", options_from_collection_for_select(@people, "email", "email"), :class => "chzn-select" %>
     </div>
       <div class="field">
       Item: <%= text_field_tag :item_name %>
@@ -72,3 +73,5 @@
     <%= submit_tag 'Accept request', :class => "btn btn-primary" %>
   </div>
 <% end %>
+
+<%= render :partial => "form.js" %>
