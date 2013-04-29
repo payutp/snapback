@@ -5,4 +5,6 @@ class Lend < ActiveRecord::Base
 
   belongs_to :user
 
+  validates :item, :presence => true
+  validates_associated :item
 end

@@ -41,8 +41,12 @@
         <% end %>
       </td>
       <td><%= lend.item.name %> </td>
-      <td><%=button_to "Return", return_item_path(lend.item.id), method: :post, :class => "btn btn-small btn-success" %> </td>
+<<<<<<< HEAD
+      <td><%=button_to "Return", root_url, method: :get, :class => "btn btn-small btn-success" %> </td>
       <td><%= button_to "Cancel", lend, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-small btn-danger" %> </td>
+=======
+      <td><%=button_to "Return", return_item_path(lend.item.id), method: :post, :class => "btn btn-small btn-success" %> </td>
+>>>>>>> 0ed2987d79dc249fcb27d25da69d9bff5ce9d0c9
     </tr>
   <% end %>
   </table>

@@ -49,13 +49,12 @@ class LendsController < ApplicationController
   # POST /lends.json
   def create
     @lend = current_user.lends.new({:status => "open"})
-
+    @lend.build_item({:name => params[:item_name], :lend_id => current_user.id})
+    
     respond_to do |format|
       if @lend.save
         format.html { redirect_to lends_path, notice: 'Lend was successfully created.' }
         format.json { render json: @lend, status: :created, location: @lend }
-
-        @lend.create_item({:name => params[:item_name], :lend_id => current_user.id})
 
       else
         format.html { render action: "new" }
@@ -69,11 +68,17 @@ class LendsController < ApplicationController
   # DELETE /lends/1.json
   def destroy
     @lend = current_user.lends.find(params[:id])
+    @bad_return_request = @lend.item.return
+    if @bad_return_request != nil 
+      @bad_return_request.destroy
+    end
+
     @lend.destroy
 
     respond_to do |format|
-      format.html { redirect_to lends_url }
+      format.html { redirect_to :back }
       format.json { head :no_content }
     end
   end
+
 end
