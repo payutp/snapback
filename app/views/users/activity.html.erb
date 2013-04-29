@@ -25,6 +25,31 @@
 
 <h2>What I've Lent</h2>
 
+<% if !@returns.nil? %>
+  <table>
+  <tr>
+    <th>Status</th>
+    <th> To </th>
+    <th> User</th>
+    <th> </th>
+  </tr>
+  <% @returns.each do |r| %>
+    <tr>
+      <td><%= r.status %></td>
+      <td>
+        <% if r.to_id == nil %>
+          <%= "Waiting" %>
+        <% else %>
+          <%= User.find(r.to_id).email %>
+        <% end %>
+      </td>
+      <td><%= r.item.name %> </td>
+      <td><%= link_to "Cancel" %> </td>
+    </tr>
+  <% end %>
+  </table>
+<% end %>
+
 <% if !@returns_pending.nil? %>
   <table>
   <tr>

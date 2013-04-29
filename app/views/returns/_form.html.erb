@@ -5,8 +5,8 @@
     From: <%= current_user.email %>
   </div>
   <div>
-    <% if !@lend_id.nil? %>
-      To: <%= User.find(@lend_id).email %>
+    <% if !@lend.nil? %>
+      To: <%= @lend.user.email %>
     <% else %>
       To: <% text_field_tag "email" %>
     <% end %>
@@ -25,6 +25,10 @@
       <option value="4">Every 14 Days</option>
     </select>
   </div>
+
+  <%= hidden_field :return, :to_id, :value => @lend.user.id %>
+  <%= hidden_field :return, :user_id, :value => current_user.id %>
+  <%= hidden_field_tag :item_id, @lend.item.id %>
   <div class="actions">
     <%= submit_tag 'Accept request' %>
   </div>
