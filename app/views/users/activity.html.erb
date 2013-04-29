@@ -29,7 +29,7 @@
 
 <h1>What I've Lent</h1>
 <br>
-<% if !@returns_pending.nil? %>
+<% if !@returns_lent.nil? %>
   <!--<h2> Still not returned </h2> -->
   <table class="table table-striped">
   <tr>
@@ -38,7 +38,7 @@
     <th> User</th>
     <th> </th>
   </tr>
-  <% @returns_pending.each do |r| %>
+  <% @returns_lent.each do |r| %>
     <tr>
       <td><%= r.status %></td>
       <td>
@@ -75,7 +75,7 @@
         <% end %>
       </td>
       <td><%= r.item.name %> </td>
-      <td><%= link_to "Confirm" %> </td>
+      <td><%= button_to "Confirm", :class => "btn btn-small btn-success"  %> </td>
     </tr>
   <% end %>
   </table>
