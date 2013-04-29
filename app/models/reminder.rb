@@ -1,6 +1,12 @@
 class Reminder < ActiveRecord::Base
   attr_accessible :frequency, :last_sent, :return_date, :return_id, :sent
   belongs_to :return
+  after_create :set_default
+
+  # start sent at 0
+  def set_default
+    self.sent = 0
+  end
 
   def get_user_to
   	return User.find_by_id(self.return.to)
