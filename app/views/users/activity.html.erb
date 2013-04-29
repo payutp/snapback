@@ -4,7 +4,7 @@
   <tr>
     <th>Status</th>
     <th> To </th>
-    <th> User</th>
+    <th> Item</th>
     <th> </th>
   </tr>
 
@@ -29,16 +29,16 @@
 
 <h1>What I've Lent</h1>
 <br>
-<% if !@returns_lent.nil? %>
-  <!--<h2> Still not returned </h2> -->
   <table class="table table-striped">
   <tr>
     <th>Status</th>
     <th> To </th>
-    <th> User</th>
+    <th> Item</th>
     <th> </th>
   </tr>
-  <% @returns_lent.each do |r| %>
+<% if !@returns_open.nil? %>
+
+  <% @returns_open.each do |r| %>
     <tr>
       <td><%= r.status %></td>
       <td>
@@ -55,15 +55,27 @@
   </table>
 <% end %>
 
-<!--<% if !@returns_returned.nil? %>
-  <h2> Returned to you, please confirm </h2>
-  <table class="table">
-  <tr>
-    <th>Status</th>
-    <th> To </th>
-    <th> User</th>
-    <th> </th>
-  </tr>
+<% if !@returns_lent.nil? %>
+
+  <% @returns_lent.each do |r| %>
+    <tr>
+      <td><%= r.status %></td>
+      <td>
+        <% if r.to_id == nil %>
+          <%= "Waiting" %>
+        <% else %>
+          <%= User.find(r.to_id).email %>
+        <% end %>
+      </td>
+      <td><%= r.item.name %> </td>
+      <td> </td>
+    </tr>
+  <% end %>
+  </table>
+<% end %>
+
+  <% if !@returns_returned.nil? %>
+
   <% @returns_returned.each do |r| %>
     <tr>
       <td><%= r.status %></td>
@@ -87,7 +99,7 @@
   <tr>
     <th>Status</th>
     <th> To </th>
-    <th> User</th>
+    <th> Item</th>
   </tr>
   <% @returns_close.each do |r| %>
     <tr>
@@ -111,7 +123,7 @@
   <tr>
     <th>Status</th>
     <th> To </th>
-    <th> User</th>
+    <th> Item</th>
   </tr>
   <% @lends_close.each do |r| %>
     <tr>

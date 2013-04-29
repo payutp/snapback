@@ -32,8 +32,10 @@ class UsersController < ApplicationController
     @lends = current_user.lends.where("status = 'pending'")
     @lends_pending = current_user.lends.where("status = 'pending'")
     @lends_close = current_user.lends.where("status = 'close'")
+
+    @returns_open = current_user.returns.where("status = 'open'")
     @returns_lent = current_user.returns.where("status = 'lent'")
-    @returns_returned = current_user.returns.where("status = 'returned'")
+    @returns_returned = current_user.returns.where("status = 'returning'")
     @returns_close = current_user.returns.where("status = 'close'")
     #@returns = current_user.returns
     respond_to do |format|
