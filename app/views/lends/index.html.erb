@@ -1,4 +1,5 @@
-<% if current_user %> 
+<% if current_user %>
+<%= link_to 'New Lend', new_lend_path %> <%= link_to 'New Return', new_return_path %>
   <h1>My Active Lend Requests</h1>
 
   <table>
@@ -42,8 +43,6 @@
 
   <br />
 
-  <%= link_to 'New Lend', new_lend_path %>
-
   <h1> People are looking for these items: </h1>
 
   <table>
@@ -57,7 +56,7 @@
   <tr>
   <th> <%= User.find(lend.user_id).email %></th>
   <th> <%= lend.item.name %></th>
-  <th> <%= link_to "Accept" %> </th>
+  <td><%= link_to 'Accept', new_return_path(:id => lend.id), data: { confirm: 'Are you sure?' } %></td>
   </tr>
   <% end %>
   </table>

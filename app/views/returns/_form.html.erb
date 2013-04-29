@@ -5,12 +5,16 @@
     <%= f.text_field :status %>
   </div>
   <div class="field">
-    <%= f.label :to %><br />
-    <%= f.number_field :to %>
+    <%= f.label :to_id %><br />
+    <%= f.number_field :to_id %>
   </div>
   <div class="field">
     <%= f.label :user_id %><br />
     <%= f.number_field :user_id %>
+  </div>
+    <div class="field">
+    <%= label_tag :item %><br />
+    <%= number_field_tag :item_id, @item_id %>
   </div>
   <div class="actions">
     <%= f.submit "Save" %>

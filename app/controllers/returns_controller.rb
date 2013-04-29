@@ -24,6 +24,9 @@ class ReturnsController < ApplicationController
   # GET /returns/new
   # GET /returns/new.json
   def new
+    @item_id = params[:id]
+    puts "RIGHTHERE"
+    puts @item_id
     @return = Return.new
 
     respond_to do |format|
