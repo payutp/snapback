@@ -69,6 +69,11 @@ class LendsController < ApplicationController
   # DELETE /lends/1.json
   def destroy
     @lend = current_user.lends.find(params[:id])
+    @bad_return_request = @lend.item.return
+    if @bad_return_request != nil 
+      @bad_return_request.destroy
+    end
+
     @lend.destroy
 
     respond_to do |format|
@@ -76,4 +81,5 @@ class LendsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
 end

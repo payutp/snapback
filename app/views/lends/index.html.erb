@@ -12,6 +12,7 @@
       <th>To</th>
       <th> Item </th>
       <th></th>
+      <th></th>
     </tr>
 
   <% @lends_open.each do |lend| %>
@@ -41,6 +42,7 @@
       </td>
       <td><%= lend.item.name %> </td>
       <td><%=button_to "Return", root_url, method: :get, :class => "btn btn-small btn-success" %> </td>
+      <td><%= button_to "Cancel", lend, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-small btn-danger" %> </td>
     </tr>
   <% end %>
   </table>
