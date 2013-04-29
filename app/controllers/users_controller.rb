@@ -29,9 +29,9 @@ class UsersController < ApplicationController
   end
 
   def activity
-    @lends = current_user.lends.where("status == 'pending'")
-    @lends_pending = current_user.lends.where("status == 'pending'")
-    @lends_close = current_user.lends.where("status == 'close'")
+    @lends = current_user.lends.where("status = 'pending'")
+    @lends_pending = current_user.lends.where("status = 'pending'")
+    @lends_close = current_user.lends.where("status = 'close'")
     @returns_lent = current_user.returns.where("status = 'lent'")
     @returns_returned = current_user.returns.where("status = 'returned'")
     @returns_close = current_user.returns.where("status = 'close'")

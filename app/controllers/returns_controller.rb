@@ -45,7 +45,7 @@ class ReturnsController < ApplicationController
   # POST /returns.json
   def create
     @return = current_user.returns.create(params[:return])
-    dateTime = DateTime.new(params[:date][:year].to_d, params[:date][:month].to_d, params[:date][:day].to_d)
+    dateTime = DateTime.new(params[:date][:year].to_i, params[:date][:month].to_i, params[:date][:day].to_i)
     @reminder = @return.build_reminder(:return_date => dateTime, :frequency => params[:frequency])
 
     # need to take care of the case where item not existed yet
