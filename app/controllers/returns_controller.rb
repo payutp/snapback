@@ -29,6 +29,7 @@ class ReturnsController < ApplicationController
       @lend = Lend.find(params[:id])
     end
     @return = Return.new
+    @reminder = Reminder.new
 
     respond_to do |format|
       format.html # new.html.erb

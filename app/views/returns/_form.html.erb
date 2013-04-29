@@ -5,10 +5,10 @@
     From: <%= current_user.email %>
   </div>
   <div>
-    <% if !@lend.nil? %>
-      To: <%= @lend.user.email %>
+    <% if !@lend_id.nil? %>
+      To: <%= User.find(@lend_id).email %>
     <% else %>
-      To: <%= text_field_tag "email" %>
+      To: <% text_field_tag "email" %>
     <% end %>
   </div>
 
