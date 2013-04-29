@@ -7,10 +7,15 @@
   <div>
     <% if !@lend.nil? %>
       To: <%= @lend.user.email %>
-      <%= hidden_field :return, :to_id, :value => @lend.user.id %>
+        <%= hidden_field :return, :to_id, :value => @lend.user.id %>
         <%= hidden_field_tag :item_id, @lend.item.id %>
     <% else %>
-      To: <% text_field_tag "email" %>
+      <div class="field">
+      To: <%= text_field_tag "email" %>
+    </div>
+      <div class="field">
+      Item: <%= text_field_tag "item_name"%>
+    </div>
     <% end %>
   </div>
   <div class="field">
