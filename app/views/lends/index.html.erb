@@ -1,8 +1,10 @@
 <% if current_user %>
-<%= link_to 'New Lend', new_lend_path %> <%= link_to 'New Return', new_return_path %>
+<div class="btn-group">
+  <%= button_to 'New Lend', new_lend_path, :method=>:get, :class=>"btn btn-primary" %> <%= button_to 'New Return', new_return_path, :method=>:get, :class=>"btn btn-primary" %>
+</div>
   <h1>My Active Lend Requests</h1>
 
-  <table>
+  <table class="table">
     <tr>
       <th>Status</th>
       <th>To</th>
@@ -21,7 +23,7 @@
         <% end %>
       </td>
       <td><%= lend.item.name %> </td>
-      <td><%= link_to 'Cancel', lend, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <td><%=button_to "Cancel", lend, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-small btn-danger"%></td>
     </tr>
   <% end %>
 
@@ -45,7 +47,7 @@
 
   <h1> People are looking for these items: </h1>
 
-  <table>
+  <table class="table">
   <tr>
     <th> User </th>
     <th> Item </th>
@@ -56,7 +58,7 @@
   <tr>
   <th> <%= User.find(lend.user_id).email %></th>
   <th> <%= lend.item.name %></th>
-  <td><%= link_to 'Accept', new_return_path(:id => lend.id) %></td>
+  <td><%=button_to "Accept", new_return_path(:id => lend.id), method: :get, :class => "btn btn-small btn-success"%></td>
   </tr>
   <% end %>
   </table>

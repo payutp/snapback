@@ -2,35 +2,31 @@
 <html>
 <head>
   <title>SnapBack</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-<h1> SnapBack </h1>
-
   <div id="mainNav" class="navbar">
+            <div class="navbar-inner">
             <div class="brand chunk">
-                <a href="/"> 
-                    SnapBack
-                </a>
+                <h1><a href="/"> SnapBack </a></h1>
             </div>
-            <% if current_user %>
-              <div id="leftNav" class="nav_item chunk">
-                <p> Welcome, <%= current_user.email %></p>
-                <p id="btn_home"><%= link_to "Home", root_url %></p>
-                <p id="btn_act"><%= link_to "Activity", activity_path %></p>
-                <p id="btn_about"><%= link_to "About", about_path %></p>
-                <p id="btn_logout"><%= link_to "Log out", logout_path %></p>
-              </div>
-            <% else %>
-              <div id="leftNav" class="nav_item chunk">
-                <p id="btn_signup"><%= link_to "Sign up", signup_path %></p>
-                <p id="btn_login"><%= link_to "Log in", login_path %></p>
-                <p id="btn_about"><%= link_to "About", about_path %></p>
-              </div>
-            <% end %>
+            <ul class="nav">
+              <% if current_user %>
+                  <li> <a>Welcome, <%= current_user.email %></a></li>
+                  <li id="btn_home"><%= link_to "Home", root_url %></li>
+                  <li id="btn_act"><%= link_to "Activity", activity_path %></li>
+                  <li id="btn_about"><%= link_to "About", about_path %></li>
+                  <li id="btn_logout"><%= link_to "Log out", logout_path %></li>
+              <% else %>
+                  <li id="btn_signup"><%= link_to "Sign up", signup_path %></li>
+                  <li id="btn_login"><%= link_to "Log in", login_path %></li>
+                  <li id="btn_about"><%= link_to "About", about_path %></li>
+              <% end %>
+            </ul>
+          </div>
 
 
 
@@ -41,7 +37,10 @@
 
   <div class="wrap">
     <% flash.each do |name, msg| %>
-     <%= content_tag :div, msg, :id => "flash_#{name}" %>
+      <div class="alert">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <%= content_tag :div, msg, :id => "flash_#{name}" %>
+      </div>
     <% end %>
     <%= yield %>
   </div>
