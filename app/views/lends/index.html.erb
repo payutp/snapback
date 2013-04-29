@@ -67,8 +67,8 @@
 <% else %>
 <div class="hero-unit"><h1>About</h1> <br>With SnapBack, you can lend and borrow, with ease with the knowledge that you'll find what you need and get what you lend back in a snap! 
   <div >
-  <%= button_to "Sign up", signup_path, :class => "btn btn-large btn-primary float" %>
-  <%= button_to "Log in", login_path, :class => "btn btn-large btn-primary float" %>
+  <%= button_to "Sign up", signup_path, :method => "get", :class => "btn btn-large btn-primary float" %>
+  <%= button_to "Log in", login_path, :method => "get", :class => "btn btn-large btn-primary float" %>
   </div>
 </div>
   <br><br><br>
