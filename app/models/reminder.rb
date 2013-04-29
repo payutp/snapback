@@ -24,7 +24,7 @@ class Reminder < ActiveRecord::Base
   # 4 = every 7 days
   # 5 = every 14 days
   def should_mail
-    if self.return.status == "close"
+    if self.return and self.return.status == "close"
       return false
     end
     if !self.last_sent
