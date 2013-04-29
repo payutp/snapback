@@ -24,7 +24,7 @@ class ReturnsController < ApplicationController
   # GET /returns/new
   # GET /returns/new.json
   def new
-    @people = User.order("email")
+    @people = User.where("id != ?", current_user.id).order("email")
     @lend = nil
     if params.has_key?("id")
       @lend = Lend.find(params[:id])
