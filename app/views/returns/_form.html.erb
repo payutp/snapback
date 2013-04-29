@@ -5,9 +5,8 @@
     From: <%= current_user.email %>
   </div>
   <div>
-    <div class='field'>    
-        To:
-      <%= select_tag "to_email", options_from_collection_for_select(@people, "email", "email"), :class => "chzn-select" %>
+    <div class='field'>  
+      To: <input id="to_email" name="to_email"/>
     </div>
       <div class="field">
       Item: <%= text_field_tag :item_name %>
@@ -75,3 +74,4 @@
 <% end %>
 
 <%= render :partial => "form.js" %>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
