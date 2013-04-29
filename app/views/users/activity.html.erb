@@ -21,7 +21,7 @@
         <% end %>
       </td>
       <td><%= lend.item.name %> </td>
-      <td><%= button_to "Return", activity_path, method: :get, :class => "btn btn-small btn-success" %> </td>
+      <td><%= button_to "Return", return_item_path(lend.item.id), method: :get, :class => "btn btn-small btn-success" %> </td>
       <td><%= button_to "Cancel", lend, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-small btn-danger" %> </td>
     </tr>
     <% elsif lend.item.return.status == "returning" %>
