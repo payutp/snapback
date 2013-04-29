@@ -52,7 +52,6 @@
       <td><%= button_to "Cancel", activity_path, method: :get,data: { confirm: 'Are you sure?' }, :class => "btn btn-small btn-danger" %></td>
     </tr>
   <% end %>
-  </table>
 <% end %>
 
 <% if !@returns_lent.nil? %>
@@ -71,7 +70,6 @@
       <td> </td>
     </tr>
   <% end %>
-  </table>
 <% end %>
 
   <% if !@returns_returned.nil? %>
@@ -90,17 +88,10 @@
       <td><%= button_to "Confirm", :class => "btn btn-small btn-success"  %> </td>
     </tr>
   <% end %>
-  </table>
 <% end %>
 
 <% if !@returns_close.nil? %>
-  <h2> Close requests </h2>
-  <table class="table">
-  <tr>
-    <th>Status</th>
-    <th> To </th>
-    <th> Item</th>
-  </tr>
+
   <% @returns_close.each do |r| %>
     <tr>
       <td><%= r.status %></td>
@@ -114,17 +105,10 @@
       <td><%= r.item.name %> </td>
     </tr>
   <% end %>
-  </table>
 <% end %>
 
-<h1> Past Returned Items </h1>
 <% if !@lends_close.nil? %>
-  <table class="table">
-  <tr>
-    <th>Status</th>
-    <th> To </th>
-    <th> Item</th>
-  </tr>
+
   <% @lends_close.each do |r| %>
     <tr>
       <td><%= r.status %></td>
@@ -138,5 +122,5 @@
       <td><%= r.item.name %> </td>
     </tr>
   <% end %>
-  </table>
-<% end %> -->
+<% end %>
+</table>
