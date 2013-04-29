@@ -4,7 +4,8 @@
   <tr>
     <th>Status</th>
     <th> To </th>
-    <th> User</th>
+    <th> Item </th>
+    <th> </th>
     <th> </th>
   </tr>
 
@@ -20,6 +21,7 @@
       </td>
       <td><%= lend.item.name %> </td>
       <td><%= button_to "Return", activity_path, method: :get, :class => "btn btn-small btn-success" %> </td>
+      <td><%= button_to "Cancel", lend, method: :delete, :class => "btn btn-small btn-danger" %> </td>
     </tr>
   <% end %>
   </table>
@@ -35,7 +37,7 @@
   <tr>
     <th>Status</th>
     <th> To </th>
-    <th> User</th>
+    <th> Item </th>
     <th> </th>
   </tr>
   <% @returns_lent.each do |r| %>
