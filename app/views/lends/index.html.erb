@@ -40,7 +40,7 @@
         <% end %>
       </td>
       <td><%= lend.item.name %> </td>
-      <td><%=button_to "Return", root_url, method: :get, :class => "btn btn-small btn-success" %> </td>
+      <td><%=button_to "Return", return_item_path(lend.item.id), method: :get, :class => "btn btn-small btn-success" %> </td>
     </tr>
   <% end %>
   </table>
