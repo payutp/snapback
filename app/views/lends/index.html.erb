@@ -38,7 +38,7 @@
         <% end %>
       </td>
       <td><%= lend.item.name %> </td>
-      <td><%=button_to "Return", method: :get, :class => "btn btn-small btn-warning" %> </td>
+      <td><%=button_to "Return", root_url, method: :get, :class => "btn btn-small btn-warning" %> </td>
     </tr>
   <% end %>
   </table>
