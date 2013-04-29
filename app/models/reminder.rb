@@ -9,7 +9,7 @@ class Reminder < ActiveRecord::Base
   end
 
   def get_user_to
-  	return User.find_by_id(self.return.to)
+  	return User.find_by_id(self.return.to_id)
   end
 
   def get_user_from
