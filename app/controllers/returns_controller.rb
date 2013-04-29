@@ -24,9 +24,10 @@ class ReturnsController < ApplicationController
   # GET /returns/new
   # GET /returns/new.json
   def new
-    @lend_id = params[:id]
-    puts "RIGHTHERE"
-    puts @item_id
+    @lend = nil
+    if params.has_key?("id")
+      @lend = Lend.find(params[:id])
+    end
     @return = Return.new
 
     respond_to do |format|
