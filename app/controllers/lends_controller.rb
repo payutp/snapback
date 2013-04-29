@@ -8,8 +8,8 @@ class LendsController < ApplicationController
       @lends_open = current_user.lends.where("status=='open'")
       @lends_pending = current_user.lends.where("status=='pending'")
     else
-      @lends_others = Lend.all
-      @lends = Lend.all
+      @lends_others = Lend.where("status == 'open'")
+      @lends = Lend.where("status == 'open'")
     end
 
     respond_to do |format|

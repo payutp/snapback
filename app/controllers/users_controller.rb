@@ -29,7 +29,7 @@ class UsersController < ApplicationController
   end
 
   def activity
-    @lends = Lend.where("to_id = ?", current_user)
+    @lends = current_user.lends.where("status == 'pending'")
     #@returns_pending = current_user.returns.where("status = 'pending'")
     #@returns_returned = current_user.returns.where("status = 'returned'")
     #@returns_closed = current_user.returns.where("status = 'closed'")
