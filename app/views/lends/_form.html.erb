@@ -2,9 +2,14 @@
   window.alltags = <%=raw Tag.all.to_json %>;
 <% end %>
 
+<div class="modal hide fade">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3> What would you like to borrow? </h3>
+    <div>
+      <div class="modal-body">
+<p>
 <%= form_tag('/lends/', :method => :post)  %>
-
-  <h2> What would you like to borrow? </h2>
 
   <div>
     <span class="label">From:</span> <%= current_user.email %>
@@ -21,6 +26,9 @@
   <div class="actions">
     <%= submit_tag 'Create Request', :class => "btn btn-small btn-success" %>
   </div>
+</p>
+</div>
+</div>
 
   <script>
     $(function() {

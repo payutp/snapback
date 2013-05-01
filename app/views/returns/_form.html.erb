@@ -1,86 +1,101 @@
-<% if @lend.nil? %>
-<%= form_tag('/returns/create_new', :method => :post) %>
-  
-  <div>
-    <span class="label">From:</span> <%= current_user.email %>
-  </div><br>
-  <div>
-    <div class='field'>  
-      <span class="label">To:</span> <input id="to_email" name="to_email" type="text"/>
-    </div>
-      <div class="field">
-      <span class="label">Item:</span> <%= text_field_tag :item_name %>
-    </div>
-  </div>
-  <!--<div class="field">
-    <%= label_tag "return_date" %><br />
-    <%= select_date(date = Date.current) %>
-  </div>-->
-  <div class="field">
-    <span class="label">Return Date:</span> <input type="text" id="return_date" name="return_date" />
-  </div>
-  <div class="field">
-    <%= label_tag "frequency:", nil,:class => "label" %>
-    <select name="frequency" id="frequency">
-      <option value="">Select Frequency</option>
-      <option value="1">Daily</option>
-      <option value="2" >Every Other Day</option>
-      <option value="3">Every 7 Days</option>
-      <option value="4">Every 14 Days</option>
-    </select>
-  </div>
+<div class="modal hide fade">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3> New Return </h3>
+    <div>
+      <div class="modal-body">
+        <p>
+        <% if @lend.nil? %>
+        <%= form_tag('/returns/create_new', :method => :post) %>
+          
+          <div>
+            <span class="label">From:</span> <%= current_user.email %>
+          </div><br>
+          <div>
+            <div class='field'>  
+              <span class="label">To:</span> <input id="to_email" name="to_email" type="text"/>
+            </div>
+              <div class="field">
+              <span class="label">Item:</span> <%= text_field_tag :item_name %>
+            </div>
+          </div>
+          <!--<div class="field">
+            <%= label_tag "return_date" %><br />
+            <%= select_date(date = Date.current) %>
+          </div>-->
+          <div class="field">
+            <span class="label">Return Date:</span> <input type="text" id="return_date" name="return_date" />
+          </div>
+          <div class="field">
+            <%= label_tag "frequency:", nil,:class => "label" %>
+            <select name="frequency" id="frequency">
+              <option value="">Select Frequency</option>
+              <option value="1">Daily</option>
+              <option value="2" >Every Other Day</option>
+              <option value="3">Every 7 Days</option>
+              <option value="4">Every 14 Days</option>
+            </select>
+          </div>
 
-  <%= hidden_field :return, :user_id, :value => current_user.id %>
-  <div class="actions">
-    <%= submit_tag 'Accept request', :class => "btn btn-primary" %>
-  </div>
-<% else %>
-  <%= form_tag('/returns/', :method => :post) %>
+          <%= hidden_field :return, :user_id, :value => current_user.id %>
+          <div class="actions">
+            <%= submit_tag 'Create Request', :class => "btn btn-success" %>
+          </div>
+        <% else %>
+          <%= form_tag('/returns/', :method => :post) %>
 
-  <div>
-    <span class="label">From:</span> <%= current_user.email %>
-  </div><br>
-  <div>
-    <% if !@lend.nil? %>
-      To: <%= @lend.user.email %>
-        <%= hidden_field :return, :to_id, :value => @lend.user.id %>
-        <%= hidden_field_tag :item_id, @lend.item.id %>
-    <% else %>
-      <div class="field">
-      <span class="label">To:</span> <%= text_field_tag "email" %>
-    </div>
-      <div class="field">
-      <span class="label">Item:</span> <%= text_field_tag "item_name"%>
-    </div>
-    <% end %>
-  </div>
-  <!--
-  <div class="field">
-    <%= label_tag "return_date" %><br />
-    <%= select_date(date = Date.current) %>
-  </div>-->
+          <div>
+            <span class="label">From:</span> <%= current_user.email %>
+          </div><br>
+          <div>
+            <% if !@lend.nil? %>
+              <div>
+              <span class="label"> To: </span> <%= @lend.user.email %>
+              </div><br>
+              <div>
+              <span class="label"> Item: </span> <%= @lend.item.name %>
+              </div><br>
+                <%= hidden_field :return, :to_id, :value => @lend.user.id %>
+                <%= hidden_field_tag :item_id, @lend.item.id %>
+            <% else %>
+              <div class="field">
+              <span class="label">To:</span> <%= text_field_tag "email" %>
+            </div>
+              <div class="field">
+              <span class="label">Item:</span> <%= text_field_tag "item_name"%>
+            </div>
+            <% end %>
+          </div>
+          <!--
+          <div class="field">
+            <%= label_tag "return_date" %><br />
+            <%= select_date(date = Date.current) %>
+          </div>-->
 
-  
-  <div class="field">
-    <span class="label">Return Date:</span> <input type="text" id="return_date" name="return_date" />
-  </div>
-  <div class="field">
-    <%= label_tag "frequency:", nil,:class => 'label'%>
-    <select name="frequency" id="frequency">
-      <option value="">Select Frequency</option>
-      <option value="1">Daily</option>
-      <option value="2" >Every Other Day</option>
-      <option value="3">Every 7 Days</option>
-      <option value="4">Every 14 Days</option>
-    </select>
-  </div>
+          
+          <div class="field">
+            <span class="label">Return Date:</span> <input type="text" id="return_date" name="return_date" />
+          </div>
+          <div class="field">
+            <%= label_tag "frequency:", nil,:class => 'label'%>
+            <select name="frequency" id="frequency">
+              <option value="">Select Frequency</option>
+              <option value="1">Daily</option>
+              <option value="2" >Every Other Day</option>
+              <option value="3">Every 7 Days</option>
+              <option value="4">Every 14 Days</option>
+            </select>
+          </div>
 
 
-  <%= hidden_field :return, :user_id, :value => current_user.id %>
-  <div class="actions">
-    <%= submit_tag 'Accept request', :class => "btn btn-primary" %>
-  </div>
-<% end %>
+          <%= hidden_field :return, :user_id, :value => current_user.id %>
+          <div class="actions">
+            <%= submit_tag 'Accept request', :class => "btn btn-success" %>
+          </div>
+        <% end %>
+        </p>
+</div>
+</div>
 
-<%= render :partial => "form.js" %>
+<%= render :partial => "form_script", :format =>[:js] %>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/flick/jquery-ui.css" />

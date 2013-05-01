@@ -36,8 +36,9 @@ class LendsController < ApplicationController
     @tags = Tag.all
 
     respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @lend }
+      format.js {}
+      #format.html # new.html.erb
+      #format.json { render json: @lend }
     end
   end
 
