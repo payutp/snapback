@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :password, :password_confirmation, :perishable_token, :verified, :persistence_token
+  attr_accessible :email, :password, :password_confirmation, :perishable_token, :verified, :persistence_token, :rating 
 
   has_secure_password
   

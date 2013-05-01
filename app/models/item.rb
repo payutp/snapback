@@ -3,4 +3,6 @@ class Item < ActiveRecord::Base
 
   belongs_to :lend
   belongs_to :return
+
+  validates :name, :length => { :minimum => 1 }
 end

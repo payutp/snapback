@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130425053651) do
+ActiveRecord::Schema.define(:version => 20130501183754) do
 
   create_table "items", :force => true do |t|
     t.string   "name"
@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(:version => 20130425053651) do
     t.datetime "updated_at",                          :null => false
     t.string   "perishable_token", :default => "",    :null => false
     t.boolean  "verified",         :default => false
+    t.integer  "rating",           :default => 5
   end
 
   add_index "users", ["perishable_token"], :name => "index_users_on_perishable_token"

@@ -5,16 +5,19 @@
     From: <%= current_user.email %>
   </div>
   <div>
-      <div class="field">
-      To: <%= text_field_tag :to_email %>
+    <div class='field'>  
+      To: <input id="to_email" name="to_email" type="text"/>
     </div>
       <div class="field">
       Item: <%= text_field_tag :item_name %>
     </div>
   </div>
-  <div class="field">
+  <!--<div class="field">
     <%= label_tag "return_date" %><br />
     <%= select_date(date = Date.current) %>
+  </div>-->
+  <div class="field">
+    Return Date: <input type="text" id="return_date" name="return_date" />
   </div>
   <div class="field">
     <%= label_tag "frequency" %><br />
@@ -51,9 +54,15 @@
     </div>
     <% end %>
   </div>
+  <!--
   <div class="field">
     <%= label_tag "return_date" %><br />
     <%= select_date(date = Date.current) %>
+  </div>-->
+
+  
+  <div class="field">
+    Return Date: <input type="text" id="return_date" name="return_date" />
   </div>
   <div class="field">
     <%= label_tag "frequency" %><br />
@@ -72,3 +81,6 @@
     <%= submit_tag 'Accept request', :class => "btn btn-primary" %>
   </div>
 <% end %>
+
+<%= render :partial => "form.js" %>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />

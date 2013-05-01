@@ -49,13 +49,12 @@ class LendsController < ApplicationController
   # POST /lends.json
   def create
     @lend = current_user.lends.new({:status => "open"})
-
+    @lend.build_item({:name => params[:item_name], :lend_id => current_user.id})
+    
     respond_to do |format|
       if @lend.save
         format.html { redirect_to lends_path, notice: 'Lend was successfully created.' }
         format.json { render json: @lend, status: :created, location: @lend }
-
-        @lend.create_item({:name => params[:item_name], :lend_id => current_user.id})
 
       else
         format.html { render action: "new" }
