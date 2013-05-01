@@ -2,7 +2,7 @@ class ReminderMailer < ActionMailer::Base
   default from: "snapbackapp@gmail.com"
 
   def reminder_email(reminder)
-    if !reminder
+    if !reminder or !Return.find_by_id(reminder.return_id)
         return
     end
 
