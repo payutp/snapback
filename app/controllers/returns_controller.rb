@@ -32,6 +32,7 @@ class ReturnsController < ApplicationController
     @return = Return.new
 
     respond_to do |format|
+      format.js
       format.html # new.html.erb
       format.json { render json: @return }
     end
