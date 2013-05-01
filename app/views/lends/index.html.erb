@@ -11,6 +11,7 @@
       <th>Status</th>
       <th>To</th>
       <th> Item </th>
+      <th> Return by </th>
       <th></th>
       <th></th>
     </tr>
@@ -27,6 +28,7 @@
       </td>
       <td><%= lend.item.name %> </td>
       <td> </td>
+      <td> </td>
       <td><%=button_to "Cancel", lend, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-small btn-danger"%></td>
     </tr>
   <% end %>
@@ -42,6 +44,7 @@
         <% end %>
       </td>
       <td><%= lend.item.name %> </td>
+      <td><%= lend.item.return.reminder.return_date.strftime("%d %b %Y") %></td>
       <td><%=button_to "Return", return_item_path(lend.item.id), method: :post, :class => "btn btn-small btn-success" %> </td>
       <td><%= button_to "Cancel", lend, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-small btn-danger" %> </td>
     </tr>
