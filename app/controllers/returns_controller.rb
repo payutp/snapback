@@ -56,6 +56,7 @@ class ReturnsController < ApplicationController
 
     respond_to do |format|
       if @return.save and @reminder.save
+        ReminderMailer.reminder_email(@reminder).deliver
         lend = @return.item.lend
         lend.update_attributes({:status => "pending", :to_id => current_user.id})
 
@@ -83,6 +84,7 @@ class ReturnsController < ApplicationController
 
     respond_to do |format|
       if @return.save and @reminder.save
+        ReminderMailer.reminder_email(@reminder).deliver
         lend = to.lends.create(:to_id => current_user.id, :status => "pending")
         lend.item = Item.find(@return.item.id)
         lend.save
