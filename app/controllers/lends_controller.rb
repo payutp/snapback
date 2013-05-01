@@ -55,9 +55,15 @@ class LendsController < ApplicationController
     tags.each do |tag|
       stripped = tag.lstrip.rstrip
       t = Tag.where("tag = ?", stripped)
-      if t.empty? and !stripped.empty?
-        c = current_user.tags.new(:tag => stripped)
-        c.save
+      if t.empty?
+        if !stripped.empty?
+          c = current_user.tags.new(:tag => stripped)
+          if c.save
+            c.lends << @lend
+          end
+        end
+      else
+        t[0].lends << @lend
       end
     end
     
