@@ -2,14 +2,14 @@
 <%= form_tag('/returns/create_new', :method => :post) %>
   
   <div>
-    From: <%= current_user.email %>
-  </div>
+    <span class="label">From:</span> <%= current_user.email %>
+  </div><br>
   <div>
     <div class='field'>  
-      To: <input id="to_email" name="to_email" type="text"/>
+      <span class="label">To:</span> <input id="to_email" name="to_email" type="text"/>
     </div>
       <div class="field">
-      Item: <%= text_field_tag :item_name %>
+      <span class="label">Item:</span> <%= text_field_tag :item_name %>
     </div>
   </div>
   <!--<div class="field">
@@ -17,10 +17,10 @@
     <%= select_date(date = Date.current) %>
   </div>-->
   <div class="field">
-    Return Date: <input type="text" id="return_date" name="return_date" />
+    <span class="label">Return Date:</span> <input type="text" id="return_date" name="return_date" />
   </div>
   <div class="field">
-    <%= label_tag "frequency" %><br />
+    <%= label_tag "frequency:", nil,:class => "label" %>
     <select name="frequency" id="frequency">
       <option value="">Select Frequency</option>
       <option value="1">Daily</option>
@@ -38,8 +38,8 @@
   <%= form_tag('/returns/', :method => :post) %>
 
   <div>
-    From: <%= current_user.email %>
-  </div>
+    <span class="label">From:</span> <%= current_user.email %>
+  </div><br>
   <div>
     <% if !@lend.nil? %>
       To: <%= @lend.user.email %>
@@ -47,10 +47,10 @@
         <%= hidden_field_tag :item_id, @lend.item.id %>
     <% else %>
       <div class="field">
-      To: <%= text_field_tag "email" %>
+      <span class="label">To:</span> <%= text_field_tag "email" %>
     </div>
       <div class="field">
-      Item: <%= text_field_tag "item_name"%>
+      <span class="label">Item:</span> <%= text_field_tag "item_name"%>
     </div>
     <% end %>
   </div>
@@ -62,10 +62,10 @@
 
   
   <div class="field">
-    Return Date: <input type="text" id="return_date" name="return_date" />
+    <span class="label">Return Date:</span> <input type="text" id="return_date" name="return_date" />
   </div>
   <div class="field">
-    <%= label_tag "frequency" %><br />
+    <%= label_tag "frequency:", nil,:class => 'label'%>
     <select name="frequency" id="frequency">
       <option value="">Select Frequency</option>
       <option value="1">Daily</option>

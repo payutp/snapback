@@ -7,15 +7,15 @@
   <h2> What would you like to borrow? </h2>
 
   <div>
-    From: <%= current_user.email %>
+    <span class="label">From:</span> <%= current_user.email %>
   </div>
 
 </br>
   <div class="field">
-    Item: <%= text_field_tag "item_name" %>
+    <span class="label">Item:</span> <%= text_field_tag "item_name" %>
   </div>
   <div class="field">
-    Tags:   <%= text_field_tag "tags" %>
+    <span class="label">Tags:</span>   <%= text_field_tag "tags" %>
   </div>
   
   <div class="actions">
