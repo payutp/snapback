@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/paneq/calendar_date_select.git
+  revision: 977048211b94599fe0f08eb37a481f3d69df48f6
+  specs:
+    calendar_date_select (1.16.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -123,6 +129,7 @@ PLATFORMS
 DEPENDENCIES
   authlogic
   bcrypt-ruby (~> 3.0.0)
+  calendar_date_select!
   chosen-rails
   coffee-rails (~> 3.2.1)
   jquery-rails

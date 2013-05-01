@@ -6,5 +6,7 @@ $(function() {
 	$("#to_email").autocomplete({
 		source: tags
 	});
+
+	$("#return_date").datepicker({ minDate: 0 });
 });
 </script>

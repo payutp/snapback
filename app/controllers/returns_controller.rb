@@ -46,7 +46,8 @@ class ReturnsController < ApplicationController
   # POST /returns.json
   def create
     @return = current_user.returns.create(params[:return])
-    dateTime = DateTime.new(params[:date][:year].to_i, params[:date][:month].to_i, params[:date][:day].to_i)
+    #dateTime = DateTime.new(params[:date][:year].to_i, params[:date][:month].to_i, params[:date][:day].to_i)
+    dateTime = DateTime.parse(params[:return_date])
     @reminder = @return.build_reminder(:return_date => dateTime, :frequency => params[:frequency])
 
     @return.item = Item.find(params[:item_id])
@@ -72,7 +73,8 @@ class ReturnsController < ApplicationController
   def create_new
     to = User.where("email = ?",params[:to_email])[0]
     @return = current_user.returns.create({:to_id => to.id})
-    dateTime = DateTime.new(params[:date][:year].to_i, params[:date][:month].to_i, params[:date][:day].to_i)
+    #dateTime = DateTime.new(params[:date][:year].to_i, params[:date][:month].to_i, params[:date][:day].to_i)
+    dateTime = DateTime.parse(params[:return_date])
     @reminder = @return.build_reminder(:return_date => dateTime, :frequency => params[:frequency])
 
     # need to take care of the case where item not existed yet

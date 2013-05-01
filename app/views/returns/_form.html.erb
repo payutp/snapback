@@ -12,9 +12,12 @@
       Item: <%= text_field_tag :item_name %>
     </div>
   </div>
-  <div class="field">
+  <!--<div class="field">
     <%= label_tag "return_date" %><br />
     <%= select_date(date = Date.current) %>
+  </div>-->
+  <div class="field">
+    Return Date: <input type="text" id="return_date" name="return_date" />
   </div>
   <div class="field">
     <%= label_tag "frequency" %><br />
@@ -51,9 +54,15 @@
     </div>
     <% end %>
   </div>
+  <!--
   <div class="field">
     <%= label_tag "return_date" %><br />
     <%= select_date(date = Date.current) %>
+  </div>-->
+
+  
+  <div class="field">
+    Return Date: <input type="text" id="return_date" name="return_date" />
   </div>
   <div class="field">
     <%= label_tag "frequency" %><br />
