@@ -33,6 +33,7 @@ class LendsController < ApplicationController
   # GET /lends/new.json
   def new
     @lend = current_user.lends.new
+    @tags = Tag.all
 
     respond_to do |format|
       format.html # new.html.erb
@@ -50,6 +51,15 @@ class LendsController < ApplicationController
   def create
     @lend = current_user.lends.new({:status => "open"})
     @lend.build_item({:name => params[:item_name], :lend_id => current_user.id})
+    tags = params[:tags].split(",")
+    tags.each do |tag|
+      stripped = tag.lstrip.rstrip
+      t = Tag.where("tag = ?", stripped)
+      if t.empty? and !stripped.empty?
+        c = current_user.tags.new(:tag => stripped)
+        c.save
+      end
+    end
     
     respond_to do |format|
       if @lend.save

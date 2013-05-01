@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
 
   has_many :lends
   has_many :returns
+  has_many :tags
 
   def verify!
     self.verified = true

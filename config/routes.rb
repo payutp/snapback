@@ -1,5 +1,8 @@
 Starfleet::Application.routes.draw do
 
+  resources :tags
+
+
   get "logout" => "sessions#destroy", :as => "logout"
   get "login" => "sessions#new", :as => "login"
   get "signup" => "users#new", :as => "signup"
