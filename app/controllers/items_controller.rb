@@ -17,6 +17,11 @@ class ItemsController < ApplicationController
     lend.update_attributes(:status => "close")
     r.update_attributes(:status => "close")
 
+    lenduser = lend.user
+    current_date = DateTime.now 
+    return_date = r.reminder.return_date
+    lenduser.update_rating(current_date, return_date)
+
     redirect_to activity_path
   end
 end

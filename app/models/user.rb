@@ -29,4 +29,14 @@ class User < ActiveRecord::Base
 	self.perishable_token = random
   end
 
+  def update_rating(current_date, return_date)
+    days_elapsed = current_date.day - return_date.day 
+    if days_elapsed < 10
+      reduction = -1*days_elapsed/2.0
+    else 
+      reduction = -5 
+    end
+    self.rating = (self.rating + reduction)/2.0 
+  end
+
 end
