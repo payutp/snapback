@@ -1,14 +1,26 @@
 <% if current_user %>
 <div>
+  <br>
   <!--<div id="lend_btn"><%= button_to 'New Lend', new_lend_path, :method=>:get, :class=>"btn btn-primary float" %>
   <div id="return_btn"><%= button_to 'New Return', new_return_path, :method=>:get, :class=>"btn btn-primary float" %></div>
   <input type="button" value="New Return" id="return_btn" class="btn btn-primary float"/>-->
-  <%= button_to 'New Lend', new_lend_path, :remote => true, :method => :get, :class => "btn btn-primary float" %>
-  <%= button_to 'New Return', new_return_path, :remote => true, :method => :get, :class => "btn btn-primary float" %>
+  <div style="text-align:center; white-space:nowrap;">
+    <div class="btn-toolbar">
+      <div class="btn-group">
+  <%= button_to 'New Lend', new_lend_path, :remote => true, :method => :get, :class => "btn btn-large btn-primary" %>
+</div>
+            <div class="btn-group"> </div>
+
+      <div class="btn-group">
+  <%= button_to 'New Return', new_return_path, :remote => true, :method => :get, :class => "btn btn-large btn-primary" %>
+</div>
+</div>
+  </div>
+
 
   <div class="modal" style="display:none;">
   </div>
-<br><br>
+<br>
   <h1>My Active Lend Requests</h1>
 
   <table class="table table-striped">
@@ -76,11 +88,15 @@
   <% end %>
   </table>
 <% else %>
-<div class="hero-unit"><h1>About</h1> <br>With SnapBack, you can lend and borrow, with ease with the knowledge that you'll find what you need and get what you lend back in a snap! 
+<div class="hero-unit"><h1>About</h1> <br>
+  With SnapBack, you can lend and borrow, with ease with the knowledge that you'll find what you need and get what you lend back in a snap!
+  
   <div >
   <%= button_to "Sign up", signup_path, :method => "get", :class => "btn btn-large btn-primary float" %>
   <%= button_to "Log in", login_path, :method => "get", :class => "btn btn-large btn-primary float" %>
   </div>
+
+  <br><br>
 </div>
-  <br><br><br>
+
 <% end %>

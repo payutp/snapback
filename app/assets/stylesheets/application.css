@@ -35,3 +35,7 @@
 	background-color: white !important;
 	font-weight: normal !important;
 }
+
+.glyphw{
+    background-image: url(/assets/images/glyphicons-halflings-white.png);
+}

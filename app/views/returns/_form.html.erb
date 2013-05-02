@@ -9,11 +9,14 @@
         <%= form_tag('/returns/create_new', :method => :post) %>
           
           <div>
-            <span class="label">From:</span> <%= current_user.email %>
+            <span class="label">From:</span>
+                <%= current_user.email %>
           </div><br>
           <div>
             <div class='field'>  
-              <span class="label">To:</span> <input id="to_email" name="to_email" type="text"/>
+              <span class="label">To:</span>
+                <div class="input-prepend"><span class="add-on"><i class="icon-envelope"></i></span><input id="to_email" name="to_email" type="text"/>
+                </div>
             </div>
               <div class="field">
               <span class="label">Item:</span> <%= text_field_tag :item_name %>
