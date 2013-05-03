@@ -1,0 +1,134 @@
+<p id="notice"><%= notice %></p>
+
+<div>
+  <h2><b>User:</b>
+  <%= @user.email %></h2>
+</div>
+
+<h3>Need to Return</h3>
+<% if !@lends_pending.nil? %>
+  <table class="table table-striped">
+  <tr>
+    <th>Status</th>
+    <th> To </th>
+    <th> Item</th>
+    <th> Return by </th>
+  </tr>
+
+  <% @lends_pending.each do |lend| %>
+    <% if lend.item.return.status == "lent" %>
+    <tr>
+      <td><%= lend.status %></td>
+      <td>
+        <% if lend.to_id == nil %>
+          <%= "Waiting" %>
+        <% else %>
+          <%= User.find(lend.to_id).email %>
+        <% end %>
+      </td>
+      <td><%= lend.item.name %> </td>
+      <td><%= lend.item.return.reminder.return_date.strftime("%d %b %Y") %></td>
+    </tr>
+    <% elsif lend.item.return.status == "returning" %>
+    <tr>
+      <td>Waiting for confirmation</td>
+      <td>
+        <% if lend.to_id == nil %>
+          <%= "Waiting" %>
+        <% else %>
+          <%= User.find(lend.to_id).email %>
+        <% end %>
+      </td>
+      <td><%= lend.item.name %> </td>
+      <td><%= lend.item.return.reminder.return_date.strftime("%d %b %Y") %></td>
+      <td></td>
+    </tr>
+    <% end %>
+  <% end %>
+  </table>
+<% end %>
+
+<br>
+
+<h3>Lent</h3>
+<br>
+  <table class="table table-striped">
+  <tr>
+    <th>Status</th>
+    <th> To </th>
+    <th> Item</th>
+    <th> Return by </th>
+  </tr>
+<% if !@returns_open.nil? %>
+
+  <% @returns_open.each do |r| %>
+    <tr>
+      <td><%= r.status %></td>
+      <td>
+        <% if r.to_id == nil %>
+          <%= "Waiting" %>
+        <% else %>
+          <%= User.find(r.to_id).email %>
+        <% end %>
+      </td>
+      <td><%= r.item.name %> </td>
+      <td><%= r.reminder.return_date.strftime("%d %b %Y") %></td>
+    </tr>
+  <% end %>
+<% end %>
+
+<% if !@returns_lent.nil? %>
+
+  <% @returns_lent.each do |r| %>
+    <tr>
+      <td><%= r.status %></td>
+      <td>
+        <% if r.to_id == nil %>
+          <%= "Waiting" %>
+        <% else %>
+          <%= User.find(r.to_id).email %>
+        <% end %>
+      </td>
+      <td><%= r.item.name %> </td>
+      <td><%= r.reminder.return_date.strftime("%d %b %Y") %></td>
+      <td> </td>
+    </tr>
+  <% end %>
+<% end %>
+
+  <% if !@returns_returned.nil? %>
+
+  <% @returns_returned.each do |r| %>
+    <tr>
+      <td><%= r.status %></td>
+      <td>
+        <% if r.to_id == nil %>
+          <%= "Waiting" %>
+        <% else %>
+          <%= User.find(r.to_id).email %>
+        <% end %>
+      </td>
+      <td><%= r.item.name %> </td>
+      <td><%= r.reminder.return_date.strftime("%d %b %Y") %></td>
+    </tr>
+  <% end %>
+<% end %>
+
+<% if !@returns_close.nil? %>
+
+  <% @returns_close.each do |r| %>
+    <tr>
+      <td><%= r.status %></td>
+      <td>
+        <% if r.to_id == nil %>
+          <%= "Waiting" %>
+        <% else %>
+          <%= User.find(r.to_id).email %>
+        <% end %>
+      </td>
+      <td><%= r.item.name %> </td>
+      <td><%= r.reminder.return_date.strftime("%d %b %Y") %></td>
+    </tr>
+  <% end %>
+<% end %>
+</table>

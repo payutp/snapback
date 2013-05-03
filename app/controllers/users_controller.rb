@@ -24,8 +24,19 @@ class UsersController < ApplicationController
   	if @user
       @user.verify!
       flash[:notice] = "Thank you for verifying your account. You may now login."
+    elsif current_user
+      @user = User.find(params[:id])
+      @lends = @user.lends.where("status = 'pending'")
+      @lends_pending = @user.lends.where("status = 'pending'")
+      @lends_close = @user.lends.where("status = 'close'")
+
+      @returns_open = @user.returns.where("status = 'open'")
+      @returns_lent = @user.returns.where("status = 'lent'")
+      @returns_returned = @user.returns.where("status = 'returning'")
+      @returns_close = @user.returns.where("status = 'close'")
+    else
+      redirect_to login_path
     end
-    redirect_to login_path
   end
 
   def activity
@@ -47,7 +58,7 @@ class UsersController < ApplicationController
 	private  
 	def load_user_using_perishable_token  
 		@user = User.where("perishable_token = ?", params[:id])[0]
-		flash[:notice] = "Unable to find your account." unless @user
+		flash[:notice] = "Unable to find your account." unless @user or current_user
 	end
 
 end
