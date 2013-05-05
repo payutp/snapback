@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User:</b>
+  <%= @item_report.user_id %>
+</p>
+
+<p>
+  <b>Item:</b>
+  <%= @item_report.item_id %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @item_report.description %>
+</p>
+
+
+<%= link_to 'Edit', edit_item_report_path(@item_report) %> |
+<%= link_to 'Back', item_reports_path %>

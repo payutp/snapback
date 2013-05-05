@@ -2,8 +2,8 @@
 <html>
 <head>
   <title>SnapBack</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+  <%= stylesheet_link_tag "application", :media => "all" %>
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/flick/jquery-ui.css" />
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
@@ -18,6 +18,7 @@
               <% if current_user %>
                   <li> <a>Welcome, <%= current_user.email %></a></li>
                   <li id="btn_home"><%= link_to "Home", root_url %></li>
+                  <li id="btn_profile"><%= link_to "Profile", user_path(:id => current_user.id) %></li>
                   <li id="btn_act"><%= link_to "Activity", activity_path %></li>
                   <li id="btn_about"><%= link_to "About", about_path %></li>
                   <li id="btn_logout"><%= link_to "Log out", logout_path %></li>

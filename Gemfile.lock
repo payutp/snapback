@@ -40,6 +40,8 @@ GEM
       activesupport (>= 3.2)
     bcrypt-ruby (3.0.1)
     bcrypt-ruby (3.0.1-x86-mingw32)
+    bootstrap-sass (2.3.1.0)
+      sass (~> 3.2)
     builder (3.0.4)
     chosen-rails (0.9.13)
       coffee-rails (>= 3.2)
@@ -129,6 +131,7 @@ PLATFORMS
 DEPENDENCIES
   authlogic
   bcrypt-ruby (~> 3.0.0)
+  bootstrap-sass (~> 2.3.1.0)
   calendar_date_select!
   chosen-rails
   coffee-rails (~> 3.2.1)

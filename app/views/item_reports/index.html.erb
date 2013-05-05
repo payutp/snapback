@@ -1,0 +1,27 @@
+<h1>Listing item_reports</h1>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Item</th>
+    <th>Description</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @item_reports.each do |item_report| %>
+  <tr>
+    <td><%= item_report.user_id %></td>
+    <td><%= item_report.item_id %></td>
+    <td><%= item_report.description %></td>
+    <td><%= link_to 'Show', item_report %></td>
+    <td><%= link_to 'Edit', edit_item_report_path(item_report) %></td>
+    <td><%= link_to 'Destroy', item_report, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Item report', new_item_report_path %>

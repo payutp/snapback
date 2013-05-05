@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   has_many :lends
   has_many :returns
   has_many :tags
+  has_many :item_reports
 
   def verify!
     self.verified = true

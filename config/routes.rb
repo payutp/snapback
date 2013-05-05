@@ -1,8 +1,4 @@
 Starfleet::Application.routes.draw do
-
-  resources :tags
-
-
   get "logout" => "sessions#destroy", :as => "logout"
   get "login" => "sessions#new", :as => "login"
   get "signup" => "users#new", :as => "signup"
@@ -12,13 +8,9 @@ Starfleet::Application.routes.draw do
   post "returns/create_new" => "returns#create_new", :as => "return_new"
   #post "items/:id/return" => "items#return"
   post "items/:id/confirm" => "items#confirm", :as => "confirm"
-  
-  resources :users
-  resources :sessions
 
   root :to => "lends#index"
 
-  resources :reminders
   resources :items do
     member do
       post "return"
@@ -29,8 +21,13 @@ Starfleet::Application.routes.draw do
   resources :returns do
     resource :reminders
   end
+  
   resources :lends
   resources :about
+  resources :item_reports
+  resources :tags
+  resources :users
+  resources :sessions
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
