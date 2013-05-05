@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
 
   has_many :lends
   has_many :returns
+  has_many :tags
 
   def verify!
     self.verified = true
@@ -19,14 +20,14 @@ class User < ActiveRecord::Base
   end
 
   def deliver_verification_instructions!  
-	reset_perishable_token!  
-	UserMailer.verification_email(self).deliver 
+  	reset_perishable_token!
+  	UserMailer.verification_email(self).deliver 
   end  
 
   def generate_perishable_token
   	o =  [('a'..'z'),('A'..'Z'),(1..9)].map{|i| i.to_a}.flatten
-	random  =  (0...25).map{ o[rand(o.length)] }.join
-	self.perishable_token = random
+  	random  =  (0...25).map{ o[rand(o.length)] }.join
+  	self.perishable_token = random
   end
 
   def update_rating(current_date, return_date)
@@ -36,7 +37,14 @@ class User < ActiveRecord::Base
     else 
       reduction = -5 
     end
-    self.rating = (self.rating + reduction)/2.0 
+    reduced_rating = self.rating + reduction 
+    
+    if reduced_rating <= 0
+      reduced_rating = 0
+    end
+
+    self.rating = (self.rating + reduced_rating)/2.0
+
   end
 
 end

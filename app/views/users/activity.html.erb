@@ -5,6 +5,7 @@
     <th>Status</th>
     <th> To </th>
     <th> Item</th>
+    <th> Return by </th>
     <th> </th>
     <th> </th>
   </tr>
@@ -21,7 +22,8 @@
         <% end %>
       </td>
       <td><%= lend.item.name %> </td>
-      <td><%= button_to "Return", return_item_path(lend.item.id), method: :get, :class => "btn btn-small btn-success" %> </td>
+      <td><%= lend.item.return.reminder.return_date.strftime("%d %b %Y") %></td>
+      <td><%= button_to "Return", return_item_path(lend.item.id), method: :post, :class => "btn btn-small btn-success" %> </td>
       <td><%= button_to "Cancel", lend, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-small btn-danger" %> </td>
     </tr>
     <% elsif lend.item.return.status == "returning" %>
@@ -35,6 +37,7 @@
         <% end %>
       </td>
       <td><%= lend.item.name %> </td>
+      <td><%= lend.item.return.reminder.return_date.strftime("%d %b %Y") %></td>
       <td></td>
     </tr>
     <% end %>
@@ -51,6 +54,7 @@
     <th>Status</th>
     <th> To </th>
     <th> Item</th>
+    <th> Return by </th>
     <th> </th>
   </tr>
 <% if !@returns_open.nil? %>
@@ -66,6 +70,7 @@
         <% end %>
       </td>
       <td><%= r.item.name %> </td>
+      <td><%= r.reminder.return_date.strftime("%d %b %Y") %></td>
       <td><%= button_to "Cancel", r, method: :delete,data: { confirm: 'Are you sure?' }, :class => "btn btn-small btn-danger" %></td>
     </tr>
   <% end %>
@@ -84,6 +89,7 @@
         <% end %>
       </td>
       <td><%= r.item.name %> </td>
+      <td><%= r.reminder.return_date.strftime("%d %b %Y") %></td>
       <td> </td>
     </tr>
   <% end %>
@@ -102,6 +108,7 @@
         <% end %>
       </td>
       <td><%= r.item.name %> </td>
+      <td><%= r.reminder.return_date.strftime("%d %b %Y") %></td>
       <td><%= button_to "Confirm", confirm_item_path(r.item.id), method: :post, :class => "btn btn-small btn-success"  %> </td>
     </tr>
   <% end %>
@@ -120,6 +127,7 @@
         <% end %>
       </td>
       <td><%= r.item.name %> </td>
+      <td><%= r.reminder.return_date.strftime("%d %b %Y") %></td>
       <td> </td>
     </tr>
   <% end %>
