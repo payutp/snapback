@@ -29,16 +29,12 @@ group :assets do
 end
 
 gem 'jquery-rails'
-
 gem 'bcrypt-ruby', '~> 3.0.0'
-
 gem 'chosen-rails'
-
 gem 'calendar_date_select', :git => 'git://github.com/paneq/calendar_date_select.git'
-
 gem 'bootstrap-sass', '~> 2.3.1.0'
-
 gem 'geocoder'
+gem 'filepicker-rails'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
