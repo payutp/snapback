@@ -19,4 +19,10 @@ class ItemsController < ApplicationController
 
     redirect_to activity_path
   end
+
+  def view_location
+  end
+
+  def edit_location
+  end
 end
