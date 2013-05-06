@@ -12,7 +12,6 @@
 # It's strongly recommended to check this file into your version control system.
 
 ActiveRecord::Schema.define(:version => 20130502171612) do
->>>>>>> 7a588222308791369f5638e174d5051215209aa9
 
   create_table "item_reports", :force => true do |t|
     t.integer  "user_id"

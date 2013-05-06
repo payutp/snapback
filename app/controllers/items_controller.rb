@@ -22,6 +22,10 @@ class ItemsController < ApplicationController
     return_date = r.reminder.return_date
     lenduser.update_rating(current_date, return_date)
 
-    redirect_to activity_path
+    respond_to do |format|
+      format.js {}
+      #format.html # new.html.erb
+      #format.json { render json: @lend }
+    end
   end
 end

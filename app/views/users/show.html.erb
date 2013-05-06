@@ -3,6 +3,14 @@
 <div>
   <h2><b>User:</b>
   <%= @user.email %></h2>
+
+  <% (1..@user.rating.round).each do |i| %>
+    <div style="float:left" id="rating"><%= image_tag "full_star.png" %></div>
+  <%end%>
+  <% (1..5-@user.rating.round).each do |i| %>
+    <div style="float:left" id="rating"><%= image_tag "empty_star.png" %></div>
+  <%end%>
+</br>
 </div>
 
 <h3>Need to Return</h3>

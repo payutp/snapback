@@ -33,7 +33,9 @@ class User < ActiveRecord::Base
 
   def update_rating(current_date, return_date)
     days_elapsed = current_date.day - return_date.day 
-    if days_elapsed < 10
+    if days_elapsed < 0
+      reduction = 0
+    elsif days_elapsed < 10
       reduction = -1*days_elapsed/2.0
     else 
       reduction = -5 
