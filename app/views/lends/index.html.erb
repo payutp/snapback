@@ -40,7 +40,7 @@
         <% if lend.to_id == nil %>
           <%= "Waiting for a nice person to lend" %>
         <% else %>
-          <%= User.find(lend.to_id).email %>
+          <%= link_to User.find(lend.user_id).email, user_path(:id => lend.user_id) %>
         <% end %>
       </td>
       <td><%= lend.item.name %> </td>
@@ -57,7 +57,7 @@
         <% if lend.to_id == nil %>
           <%= "Waiting for a nice person to lend" %>
         <% else %>
-          <%= User.find(lend.to_id).email %>
+          <%= link_to User.find(lend.user_id).email, user_path(:id => lend.user_id)%>
         <% end %>
       </td>
       <td><%= lend.item.name %> </td>
@@ -82,7 +82,7 @@
 
   <% @lends_others.each do |lend| %>
   <tr>
-  <td> <%= User.find(lend.user_id).email %></td>
+  <td> <%= link_to User.find(lend.user_id).email, user_path(:id => lend.user_id) %></td>
   <td> <%= lend.item.name %></td>
   <td><%= button_to 'Accept', new_return_path(:id => lend.id), :remote => true, :method => :get, :class => "btn btn-small btn-success" %></td>
   <td>
