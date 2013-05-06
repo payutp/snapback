@@ -18,7 +18,7 @@
         <% if lend.to_id == nil %>
           <%= "Waiting" %>
         <% else %>
-          <%= User.find(lend.to_id).email %>
+          <%= link_to User.find(lend.to_id).email, user_path(:id => lend.to_id) %>
         <% end %>
       </td>
       <td><%= lend.item.name %> </td>
@@ -33,7 +33,7 @@
         <% if lend.to_id == nil %>
           <%= "Waiting" %>
         <% else %>
-          <%= User.find(lend.to_id).email %>
+          <%= link_to User.find(lend.to_id).email, user_path(:id => lend.to_id) %>
         <% end %>
       </td>
       <td><%= lend.item.name %> </td>
@@ -66,7 +66,7 @@
         <% if r.to_id == nil %>
           <%= "Waiting" %>
         <% else %>
-          <%= User.find(r.to_id).email %>
+          <%= link_to User.find(r.to_id).email, user_path(:id => r.to_id) %>
         <% end %>
       </td>
       <td><%= r.item.name %> </td>
@@ -85,7 +85,7 @@
         <% if r.to_id == nil %>
           <%= "Waiting" %>
         <% else %>
-          <%= User.find(r.to_id).email %>
+          <%= link_to User.find(r.to_id).email, user_path(:id => r.to_id) %>
         <% end %>
       </td>
       <td><%= r.item.name %> </td>
@@ -104,7 +104,7 @@
         <% if r.to_id == nil %>
           <%= "Waiting" %>
         <% else %>
-          <%= User.find(r.to_id).email %>
+          <%= link_to User.find(r.to_id).email, user_path(:id => r.to_id) %>
         <% end %>
       </td>
       <td><%= r.item.name %> </td>
@@ -123,7 +123,7 @@
         <% if r.to_id == nil %>
           <%= "Waiting" %>
         <% else %>
-          <%= User.find(r.to_id).email %>
+          <%= link_to User.find(r.to_id).email, user_path(:id => r.to_id) %>
         <% end %>
       </td>
       <td><%= r.item.name %> </td>
