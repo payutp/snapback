@@ -36,6 +36,24 @@
 	font-weight: normal !important;
 }
 
-.glyphw{
+.glyphw {
     background-image: url(/assets/images/glyphicons-halflings-white.png);
 }
+
+#btn_filter {
+	-webkit-user-select: none;
+}
+.tagView {
+	display: none;
+	position: absolute;
+	background-color: white;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	border-radius: 6px;
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+	min-width: 160px;
+	-webkit-user-select: none;
+}
+
+ .tagView input {
+ 	margin-left: 20px !important;
+ }

@@ -7,6 +7,10 @@ class LendsController < ApplicationController
       @lends_others = Lend.where("user_id != ? and status = 'open'", current_user.id)
       @lends_open = current_user.lends.where("status='open'")
       @lends_pending = current_user.lends.where("status='pending'")
+      @tags = []
+      @lends_open.each do |tag|
+        @tags << tag.tags
+      end
     else
       @lends_others = Lend.where("status = 'open'")
       @lends = Lend.where("status = 'open'")

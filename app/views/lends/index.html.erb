@@ -20,6 +20,11 @@
 
   <div class="modal hide fade" style="display:none;">
   </div>
+  <div class="btn_group">
+    <a class="btn dropdown-toggle" id="btn_filter">Filter <span class="caret"></span></a>
+  </div>
+  <div class="tagView" id="tagView">
+  </div>
 <br>
   <h2>My Active Lend Requests</h2>
 
@@ -29,12 +34,12 @@
       <th>To</th>
       <th> Item </th>
       <th> Return by </th>
-      <th></th>
+      <th> Tags </th>
       <th></th>
     </tr>
 
-  <% @lends_open.each do |lend| %>
-    <tr>
+  <% @lends_open.each_with_index do |lend,index| %>
+    <tr class="lend" data-tags="<%=@tags[index].map { |val| val.id }%>">
       <td><%= lend.status %></td>
       <td>
         <% if lend.to_id == nil %>
@@ -45,7 +50,7 @@
       </td>
       <td><%= lend.item.name %> </td>
       <td> </td>
-      <td> </td>
+      <td> <%= (@tags[index].map { |val| val.tag }).join(", ") %> </td>
       <td><%=button_to "Cancel", lend, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-small btn-danger"%></td>
     </tr>
   <% end %>
