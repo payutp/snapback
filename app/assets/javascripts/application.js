@@ -176,7 +176,8 @@ $(function() {
 			tag = ""
 		} else {
 			tag = 'btn_filter';
-			$('#tagView').css('display','block');
+			var position = $('#btn_filter').offset();
+			$('#tagView').css({display:'block',left:position.left,top:position.top+30});
 			$.ajax({ url : "get_tags",
 				 success : function (result) {
 					msg = result.msg;
