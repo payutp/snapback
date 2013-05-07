@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   attr_accessible :email, :password, :avatar, :password_confirmation, :perishable_token, :verified, :persistence_token, :rating 
-  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" },
+  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "30x30>" },
           :default_url => "/images/:style/missing.png",
           :url  => "/images/:style/:id/:basename.:extension",
           :path => ":rails_root/public/images/:style/:id/:basename.:extension"

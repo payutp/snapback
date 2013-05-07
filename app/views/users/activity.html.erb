@@ -22,6 +22,7 @@
         <% if lend.to_id == nil %>
           <%= "Waiting" %>
         <% else %>
+          <%= image_tag User.find(lend.to_id).avatar.url(:thumb) %>
           <%= link_to User.find(lend.to_id).email, user_path(:id => lend.to_id) %>
         <% end %>
       </td>
@@ -45,6 +46,7 @@
         <% if lend.to_id == nil %>
           <%= "Waiting" %>
         <% else %>
+          <%= image_tag User.find(lend.to_id).avatar.url(:thumb) %>
           <%= link_to User.find(lend.to_id).email, user_path(:id => lend.to_id) %>
         <% end %>
       </td>
@@ -82,6 +84,7 @@
         <% if r.to_id == nil %>
           <%= "Waiting" %>
         <% else %>
+        <%= image_tag User.find(r.to_id).avatar.url(:thumb) %>
           <%= link_to User.find(r.to_id).email, user_path(:id => r.to_id) %>
         <% end %>
       </td>
@@ -104,6 +107,7 @@
         <% if r.to_id == nil %>
           <%= "Waiting" %>
         <% else %>
+          <%= image_tag User.find(r.to_id).avatar.url(:thumb) %>
           <%= link_to User.find(r.to_id).email, user_path(:id => r.to_id) %>
         <% end %>
       </td>
@@ -124,6 +128,7 @@
         <% if r.to_id == nil %>
           <%= "Waiting" %>
         <% else %>
+        <%= image_tag User.find(r.to_id).avatar.url(:thumb) %>
           <%= link_to User.find(r.to_id).email, user_path(:id => r.to_id) %>
         <% end %>
       </td>

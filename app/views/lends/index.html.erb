@@ -42,6 +42,7 @@
         <% if lend.to_id == nil %>
           <%= "Waiting for a nice person to lend" %>
         <% else %>
+          <%= image_tag User.find(lend.user_id).avatar.url(:thumb) %>
           <%= link_to User.find(lend.user_id).email, user_path(:id => lend.user_id) %>
         <% end %>
       </td>
@@ -68,7 +69,8 @@
 
   <% @lends_others.each_with_index do |lend,index| %>
   <tr class="lend" data-tags="<%=@tags_others[index].map { |val| val.id }%>">
-  <td> <%= link_to User.find(lend.user_id).email, user_path(:id => lend.user_id) %></td>
+  <td>  <%= image_tag User.find(lend.user_id).avatar.url(:thumb) %>
+    <%= link_to User.find(lend.user_id).email, user_path(:id => lend.user_id) %></td>
   <td> <%= lend.item.name %></td>
   <td><%= (@tags_others[index].map { |val| val.tag }).join(", ") %></td>
   <td>
