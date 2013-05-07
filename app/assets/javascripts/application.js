@@ -14,7 +14,7 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require bootstrap
-//= require_tree .
+//= require jquery.raty
 
 $(function() {
 	tag = "";
@@ -194,5 +194,3 @@ $(function() {
 	});
 
 });
-//= require bootstrap
-//= require jquery.raty
