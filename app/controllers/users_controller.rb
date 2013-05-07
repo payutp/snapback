@@ -32,11 +32,9 @@ class UsersController < ApplicationController
   def show
   	if @user
       @user.verify!
-      flash[:notice] = "Thank you for verifying your account. You may now login."
-    elsif current_user
+      redirect_to login_path, :notice => "Thank you for verifying your account. You may now login."
+    else
       @user = User.find(params[:id])
-      @lends = @user.lends.where("status = 'pending'")
-      @lends_pending = @user.lends.where("status = 'pending'")
       @lends_close = @user.lends.where("status = 'close'")
 
       @returns_open = @user.returns.where("status = 'open'")
@@ -45,8 +43,6 @@ class UsersController < ApplicationController
       @returns_close = @user.returns.where("status = 'close'")
 
       @user_rating = @user.rating
-    else
-      redirect_to login_path
     end
   end
 
@@ -59,7 +55,7 @@ class UsersController < ApplicationController
     @returns_lent = current_user.returns.where("status = 'lent'")
     @returns_returned = current_user.returns.where("status = 'returning'")
     @returns_close = current_user.returns.where("status = 'close'")
-    #@returns = current_user.returns
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @lends }
