@@ -24,11 +24,12 @@
 
 <div class="modal hide fade" style="display:none;">
 </div>
-
+<% if current_user.id == @user.id %>
 <%= form_for current_user, :user => user_path(@user), :html => { :multipart => true } do |f| %>
   <%= f.file_field :avatar %> <br/><br/>
   <%= f.submit "Upload", :class => 'btn btn-small btn-success' %>
 <% end %>
+<%end%>
 
 <script type="text/javascript">
   /*
