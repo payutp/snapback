@@ -11,6 +11,10 @@
     <%end%>
   <% if @user.id != current_user.id %>
   <br><br>
+    <span>First Name: </span><%= @user.first_name %><br/>
+    <span>Last Name: </span><%= @user.last_name %><br/>
+    <span>Living: </span><%= @user.living %><br/>
+    <span>Class: </span><%= @user.class_year %><br/><br/>
     <% if current_user.user_reports.where(:reported_user => @user.id).empty?%>
     <%= button_to 'Report User', new_user_report_path(:reported_id => @user.id), :remote => true, :method => :get, :class => "btn btn-small btn-warning" %>
     <% else %>
