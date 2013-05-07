@@ -176,7 +176,8 @@ $(function() {
 			tag = ""
 		} else {
 			tag = 'btn_filter';
-			$('#tagView').css('display','block');
+			var position = $('#btn_filter').offset();
+			$('#tagView').css({display:'block',left:position.left,top:position.top+30});
 			$.ajax({ url : "get_tags",
 				 success : function (result) {
 					msg = result.msg;
@@ -191,6 +192,29 @@ $(function() {
 			});
 		}
 
+	});
+
+	$('#search').keypress(function(e){
+		if(e.which == 13) {
+			var search = $('#search').val().toLowerCase();
+			$('.lend').each(function(index,value){
+				var found = false;
+				var cells = value.cells
+				if (cells !== undefined) {
+					$(cells).each(function(index,value){
+						if ($(value).text().toLowerCase().indexOf(search) > -1) {
+							found = true;
+						}
+					});
+				}
+				if (found) {
+					$(this).css('display','table-row');
+				} else {
+					$(this).css('display','none');
+				}
+			});
+
+		}
 	});
 
 });

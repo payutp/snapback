@@ -3,11 +3,12 @@ class UserReportsController < ApplicationController
   # GET /user_reports/1
   # GET /user_reports/1.json
   def show
-    @user_report = UserReport.find(params[:id])
+    @user_report = current_user.user_reports.where(:reported_user => params[:reported_id]).first
 
     respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @user_report }
+      format.js {}
+      #format.html # show.html.erb
+      #format.json { render json: @user_report }
     end
   end
 

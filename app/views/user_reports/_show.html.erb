@@ -1,0 +1,17 @@
+<div class="modal hide fade">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3> User Report</h3>
+    <div>
+      <div class="modal-body">
+          <div class="field">
+            <span class="label">Report From:</span> <%= current_user.email %>
+          </div>
+          <div class="field">
+            <span class="label">User Reporting:</span> <%= User.find(@user_report.reported_user).email %>
+          </div>
+          <div class="field">
+            <span class="label">Description:</span>   <%= @user_report.description %>
+          </div>
+      </div>
+</div>
