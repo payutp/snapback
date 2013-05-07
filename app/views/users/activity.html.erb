@@ -26,7 +26,7 @@
           <%= link_to User.find(lend.to_id).email, user_path(:id => lend.to_id) %>
         <% end %>
       </td>
-      <td><%= lend.item.name %> </td>
+      <td><%= image_tag lend.photo.url(:thumb)%><%= lend.item.name %> </td>
       <td><%= lend.item.return.reminder.return_date.strftime("%d %b %Y") %></td>
       <td><%= (@tags_pending[index].map { |val| val.tag }).join(", ") %> </td>
       <td>
@@ -50,7 +50,7 @@
           <%= link_to User.find(lend.to_id).email, user_path(:id => lend.to_id) %>
         <% end %>
       </td>
-      <td><%= lend.item.name %> </td>
+      <td><%= image_tag lend.photo.url(:thumb)%><%= lend.item.name %> </td>
       <td><%= lend.item.return.reminder.return_date.strftime("%d %b %Y") %></td>
       <td><%= (@tags_close[index].map { |val| val.tag }).join(", ") %> </td>
       <td>

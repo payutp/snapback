@@ -62,7 +62,8 @@ class LendsController < ApplicationController
   # POST /lends
   # POST /lends.json
   def create
-    @lend = current_user.lends.new({:status => "open"})
+    @lend = current_user.lends.create(params[:lend])
+    @lend.update_attributes({:status => "open"})
     @lend.build_item({:name => params[:item_name], :lend_id => current_user.id})
     tags = params[:tags].split(",")
     tags.each do |tag|
