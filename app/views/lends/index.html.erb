@@ -52,26 +52,6 @@
     </tr>
   <% end %>
 
-  <% @lends_pending.each_with_index do |lend,index| %>
-    <tr class="lend" data-tags="<%=@tags_pending[index].map { |val| val.id }%>">
-      <td><%= lend.status %></td>
-      <td>
-        <% if lend.to_id == nil %>
-          <%= "Waiting for a nice person to lend" %>
-        <% else %>
-          <%= link_to User.find(lend.user_id).email, user_path(:id => lend.user_id)%>
-        <% end %>
-      </td>
-      <td><%= lend.item.name %> </td>
-      <td><%= lend.item.return.reminder.return_date.strftime("%d %b %Y") %></td>
-      <td><%= (@tags_pending[index].map { |val| val.tag }).join(", ") %></td>
-      <td>
-        <div class="btn-group">
-        <%=button_to "Return", return_item_path(lend.item.id), method: :post, :class => "btn btn-small btn-success" %></div>
-        <div class="btn-group">
-        <%= button_to "Cancel", lend, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-small btn-danger" %></div> </td>
-    </tr>
-  <% end %>
   </table>
 
   <br />
