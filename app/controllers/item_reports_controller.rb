@@ -3,7 +3,7 @@ class ItemReportsController < ApplicationController
   # GET /item_reports/1
   # GET /item_reports/1.json
   def show
-    @item_report = ItemReport.find(params[:id])
+    @item_report = current_user.item_reports.where(:item_id => params[:id]).first
 
     respond_to do |format|
       format.js {}
