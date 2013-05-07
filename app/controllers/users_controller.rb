@@ -34,6 +34,8 @@ class UsersController < ApplicationController
       @returns_lent = @user.returns.where("status = 'lent'")
       @returns_returned = @user.returns.where("status = 'returning'")
       @returns_close = @user.returns.where("status = 'close'")
+
+      @user_rating = @user.rating
     else
       redirect_to login_path
     end

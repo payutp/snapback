@@ -18,7 +18,7 @@
         <% if lend.to_id == nil %>
           <%= "Waiting" %>
         <% else %>
-          <%= User.find(lend.to_id).email %>
+          <%= link_to User.find(lend.to_id).email, user_path(:id => lend.to_id) %>
         <% end %>
       </td>
       <td><%= lend.item.name %> </td>
@@ -33,7 +33,7 @@
         <% if lend.to_id == nil %>
           <%= "Waiting" %>
         <% else %>
-          <%= User.find(lend.to_id).email %>
+          <%= link_to User.find(lend.to_id).email, user_path(:id => lend.to_id) %>
         <% end %>
       </td>
       <td><%= lend.item.name %> </td>
@@ -66,7 +66,7 @@
         <% if r.to_id == nil %>
           <%= "Waiting" %>
         <% else %>
-          <%= User.find(r.to_id).email %>
+          <%= link_to User.find(r.to_id).email, user_path(:id => r.to_id) %>
         <% end %>
       </td>
       <td><%= r.item.name %> </td>
@@ -85,7 +85,7 @@
         <% if r.to_id == nil %>
           <%= "Waiting" %>
         <% else %>
-          <%= User.find(r.to_id).email %>
+          <%= link_to User.find(r.to_id).email, user_path(:id => r.to_id) %>
         <% end %>
       </td>
       <td><%= r.item.name %> </td>
@@ -95,6 +95,9 @@
   <% end %>
 <% end %>
 
+  <div class="modal" style="display:none;">
+  </div>
+  
   <% if !@returns_returned.nil? %>
 
   <% @returns_returned.each do |r| %>
@@ -104,12 +107,12 @@
         <% if r.to_id == nil %>
           <%= "Waiting" %>
         <% else %>
-          <%= User.find(r.to_id).email %>
+          <%= link_to User.find(r.to_id).email, user_path(:id => r.to_id) %>
         <% end %>
       </td>
       <td><%= r.item.name %> </td>
       <td><%= r.reminder.return_date.strftime("%d %b %Y") %></td>
-      <td><%= button_to "Confirm", confirm_item_path(r.item.id), method: :post, :class => "btn btn-small btn-success"  %> </td>
+      <td><%= button_to "Confirm", confirm_item_path(r.item.id), :remote => true, method: :post, :class => "btn btn-small btn-success"  %> </td>
     </tr>
   <% end %>
 <% end %>
@@ -123,7 +126,7 @@
         <% if r.to_id == nil %>
           <%= "Waiting" %>
         <% else %>
-          <%= User.find(r.to_id).email %>
+          <%= link_to User.find(r.to_id).email, user_path(:id => r.to_id) %>
         <% end %>
       </td>
       <td><%= r.item.name %> </td>

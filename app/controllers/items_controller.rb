@@ -17,12 +17,15 @@ class ItemsController < ApplicationController
     lend.update_attributes(:status => "close")
     r.update_attributes(:status => "close")
 
-    redirect_to activity_path
-  end
+    lenduser = lend.user
+    current_date = DateTime.now 
+    return_date = r.reminder.return_date
+    lenduser.update_rating(current_date, return_date)
 
-  def view_location
-  end
-
-  def edit_location
+    respond_to do |format|
+      format.js {}
+      #format.html # new.html.erb
+      #format.json { render json: @lend }
+    end
   end
 end

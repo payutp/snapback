@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(:version => 20130502171612) do
     t.datetime "updated_at",                          :null => false
     t.string   "perishable_token", :default => "",    :null => false
     t.boolean  "verified",         :default => false
+    t.integer  "rating",           :default => 5
   end
 
   add_index "users", ["perishable_token"], :name => "index_users_on_perishable_token"
