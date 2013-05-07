@@ -8,6 +8,7 @@ Starfleet::Application.routes.draw do
   post "returns/create_new" => "returns#create_new", :as => "return_new"
   #post "items/:id/return" => "items#return"
   post "items/:id/confirm" => "items#confirm", :as => "confirm"
+  post "get_tags" => "tags#index"
 
   root :to => "lends#index"
 

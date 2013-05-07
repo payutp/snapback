@@ -100,5 +100,18 @@
 </div>
 </div>
 
-<%= render :partial => "form_script", :format =>[:js] %>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/flick/jquery-ui.css" />
+<script type="text/javascript">
+var emails = <%= @people.map{ |i| i.email}.to_json.html_safe %>;
+$('.modal').on('hidden', function() {
+  $("#return_date").datepicker("destroy");
+});
+$('.modal').on('show', function() {
+  $("#return_date").datepicker({ minDate: 0 });
+  $("#to_email").autocomplete({
+    source: emails,
+  });
+  $("#to_email").attr("autocomplete", true);
+});
+
+</script>

@@ -2,11 +2,28 @@ class TagsController < ApplicationController
   # GET /tags
   # GET /tags.json
   def index
-    @tags = Tag.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @tags }
+    if current_user
+      tags = Tag.all
+      checked = []
+      if params[:id] == "all"
+        tags.each do |tag|
+          checked << tag.id
+        end
+      else
+        note = current_user.sticky_notes.find(params[:id])
+        tags.each do |tag|
+          if tag.sticky_notes.include? note
+            checked << tag.id
+          end
+        end
+      end
+      respond_to do |format|
+        format.json { render :json => { :tags => tags.as_json, :checked => checked.as_json, :msg => "Success" } }
+      end
+    else
+      respond_to do |format|
+        format.json { render :json => { :msg => "Success: Guest Account not saved" } }
+      end
     end
   end
 

@@ -7,6 +7,18 @@ class LendsController < ApplicationController
       @lends_others = Lend.where("user_id != ? and status = 'open'", current_user.id)
       @lends_open = current_user.lends.where("status='open'")
       @lends_pending = current_user.lends.where("status='pending'")
+      @tags_open = []
+      @lends_open.each do |lend|
+        @tags_open << lend.item.tags
+      end
+      @tags_pending = []
+      @lends_pending.each do |lend|
+        @tags_pending << lend.item.tags
+      end
+      @tags_others = []
+      @lends_others.each do |lend|
+        @tags_others << lend.item.tags
+      end
     else
       @lends_others = Lend.where("status = 'open'")
       @lends = Lend.where("status = 'open'")
@@ -60,11 +72,11 @@ class LendsController < ApplicationController
         if !stripped.empty?
           c = current_user.tags.new(:tag => stripped)
           if c.save
-            c.lends << @lend
+            c.items << @lend.item
           end
         end
       else
-        t[0].lends << @lend
+        t[0].items << @lend.item
       end
     end
     

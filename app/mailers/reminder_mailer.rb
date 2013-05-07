@@ -28,4 +28,17 @@ class ReminderMailer < ActionMailer::Base
 
     mail(:to => @user_to.email, :subject => "Reminder: Return Item")
   end
+
+  def accept_email(reminder)
+    if !reminder or !Return.find_by_id(reminder.return_id)
+        return
+    end
+
+    return_request = Return.find(reminder.return_id)
+    @user_to = reminder.get_user_to
+    @user_from = reminder.get_user_from
+    @item = return_request.item
+    @return_date = reminder.return_date
+    mail(:to => @user_to.email, :subject => "Lend Request Accepted")
+  end
 end

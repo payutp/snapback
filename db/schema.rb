@@ -29,17 +29,17 @@ ActiveRecord::Schema.define(:version => 20130506185511) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "items_tags", :id => false, :force => true do |t|
+    t.integer "item_id"
+    t.integer "tag_id"
+  end
+
   create_table "lends", :force => true do |t|
     t.string   "status"
     t.integer  "to_id"
     t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-  end
-
-  create_table "lends_tags", :id => false, :force => true do |t|
-    t.integer "lend_id"
-    t.integer "tag_id"
   end
 
   create_table "reminders", :force => true do |t|
@@ -83,10 +83,15 @@ ActiveRecord::Schema.define(:version => 20130506185511) do
   create_table "users", :force => true do |t|
     t.string   "email"
     t.string   "password_digest"
-    t.datetime "created_at",                          :null => false
-    t.datetime "updated_at",                          :null => false
-    t.string   "perishable_token", :default => "",    :null => false
-    t.boolean  "verified",         :default => false
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
+    t.string   "perishable_token",    :default => "",    :null => false
+    t.boolean  "verified",            :default => false
+    t.integer  "rating",              :default => 5
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   add_index "users", ["perishable_token"], :name => "index_users_on_perishable_token"

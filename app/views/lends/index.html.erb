@@ -1,9 +1,6 @@
 <% if current_user %>
 <div>
   <br>
-  <!--<div id="lend_btn"><%= button_to 'New Lend', new_lend_path, :method=>:get, :class=>"btn btn-primary float" %>
-  <div id="return_btn"><%= button_to 'New Return', new_return_path, :method=>:get, :class=>"btn btn-primary float" %></div>
-  <input type="button" value="New Return" id="return_btn" class="btn btn-primary float"/>-->
   <div style="text-align:center; white-space:nowrap;">
     <div class="btn-toolbar">
       <div class="btn-group">
@@ -20,6 +17,11 @@
 
   <div class="modal hide fade" style="display:none;">
   </div>
+  <div class="btn_group">
+    <a class="btn dropdown-toggle" id="btn_filter">Filter <span class="caret"></span></a>
+  </div>
+  <div class="tagView" id="tagView">
+  </div>
 <br>
   <h2>My Active Lend Requests</h2>
 
@@ -29,12 +31,12 @@
       <th>To</th>
       <th> Item </th>
       <th> Return by </th>
-      <th></th>
+      <th> Tags </th>
       <th></th>
     </tr>
 
-  <% @lends_open.each do |lend| %>
-    <tr>
+  <% @lends_open.each_with_index do |lend,index| %>
+    <tr class="lend" data-tags="<%=@tags_open[index].map { |val| val.id }%>">
       <td><%= lend.status %></td>
       <td>
         <% if lend.to_id == nil %>
@@ -45,13 +47,13 @@
       </td>
       <td><%= lend.item.name %> </td>
       <td> </td>
-      <td> </td>
+      <td> <%= (@tags_open[index].map { |val| val.tag }).join(", ") %> </td>
       <td><%=button_to "Cancel", lend, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-small btn-danger"%></td>
     </tr>
   <% end %>
 
-  <% @lends_pending.each do |lend| %>
-    <tr>
+  <% @lends_pending.each_with_index do |lend,index| %>
+    <tr class="lend" data-tags="<%=@tags_pending[index].map { |val| val.id }%>">
       <td><%= lend.status %></td>
       <td>
         <% if lend.to_id == nil %>
@@ -62,8 +64,12 @@
       </td>
       <td><%= lend.item.name %> </td>
       <td><%= lend.item.return.reminder.return_date.strftime("%d %b %Y") %></td>
-      <td><%=button_to "Return", return_item_path(lend.item.id), method: :post, :class => "btn btn-small btn-success" %> </td>
-      <td><%= button_to "Cancel", lend, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-small btn-danger" %> </td>
+      <td><%= (@tags_pending[index].map { |val| val.tag }).join(", ") %></td>
+      <td>
+        <div class="btn-group">
+        <%=button_to "Return", return_item_path(lend.item.id), method: :post, :class => "btn btn-small btn-success" %></div>
+        <div class="btn-group">
+        <%= button_to "Cancel", lend, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-small btn-danger" %></div> </td>
     </tr>
   <% end %>
   </table>
@@ -76,18 +82,22 @@
   <tr>
     <th> User </th>
     <th> Item </th>
-    <th> </th>
+    <th> Tags </th>
     <th> </th>
   </tr>
 
-  <% @lends_others.each do |lend| %>
-  <tr>
+  <% @lends_others.each_with_index do |lend,index| %>
+  <tr class="lend" data-tags="<%=@tags_others[index].map { |val| val.id }%>">
   <td> <%= link_to User.find(lend.user_id).email, user_path(:id => lend.user_id) %></td>
   <td> <%= lend.item.name %></td>
-  <td><%= button_to 'Accept', new_return_path(:id => lend.id), :remote => true, :method => :get, :class => "btn btn-small btn-success" %></td>
+  <td><%= (@tags_others[index].map { |val| val.tag }).join(", ") %></td>
   <td>
+    <div class="btn-group">
+    <%= button_to 'Accept', new_return_path(:id => lend.id), :remote => true, :method => :get, :class => "btn btn-small btn-success" %></div>
+    <div class="btn-group">
     <% if lend.item.item_reports.where(:user_id=>current_user.id).empty? %> 
       <%= button_to 'Report', new_item_report_path(:id => lend.item.id), :remote => true, :method => :get, :class => "btn btn-small btn-warning" %>
+    </div>
     <% else %>
       <span class="btn btn-small btn-danger">Reported</span>
     <% end %>
