@@ -80,7 +80,7 @@
       <%= button_to 'Report', new_item_report_path(:id => lend.item.id), :remote => true, :method => :get, :class => "btn btn-small btn-warning" %>
     </div>
     <% else %>
-      <span class="btn btn-small btn-danger">Reported</span>
+       <%= button_to 'Reported', item_report_path(:id => lend.item.id), :remote => true, :method => :get, :class => "btn btn-small btn-danger" %>
     <% end %>
   </td>
   </tr>

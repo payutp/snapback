@@ -16,8 +16,9 @@ class ItemReportsController < ApplicationController
     @item_report = ItemReport.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @item_report }
+      format.js {}
+      #format.html # show.html.erb
+      #format.json { render json: @item_report }
     end
   end
 

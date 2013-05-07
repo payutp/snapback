@@ -1,0 +1,19 @@
+<div class="modal hide fade">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3> Item Report</h3>
+    <div>
+      <div class="modal-body">
+          <div class="field">
+            <span class="label">Report From:</span> <%= @item_report.user.email %>
+          </div>
+          <div class="field">
+            <span class="label">Item:</span> <%= @item_report.item.name %>
+          </div>
+          <div class="field">
+            <span class="label">Description:</span>   <%= @item_report.description %>
+          </div>
+          
+        </p>
+      </div>
+</div>
