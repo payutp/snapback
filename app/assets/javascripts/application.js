@@ -193,4 +193,27 @@ $(function() {
 
 	});
 
+	$('#search').keypress(function(e){
+		if(e.which == 13) {
+			var search = $('#search').val().toLowerCase();
+			$('.lend').each(function(index,value){
+				var found = false;
+				var cells = value.cells
+				if (cells !== undefined) {
+					$(cells).each(function(index,value){
+						if ($(value).text().toLowerCase().indexOf(search) > -1) {
+							found = true;
+						}
+					});
+				}
+				if (found) {
+					$(this).css('display','table-row');
+				} else {
+					$(this).css('display','none');
+				}
+			});
+
+		}
+	});
+
 });
