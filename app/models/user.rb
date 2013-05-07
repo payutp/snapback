@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
   has_many :returns
   has_many :tags
   has_many :item_reports
+  has_many :user_reports
 
   def verify!
     self.verified = true

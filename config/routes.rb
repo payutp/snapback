@@ -28,6 +28,7 @@ Starfleet::Application.routes.draw do
   resources :tags
   resources :users
   resources :sessions
+  resources :user_reports
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

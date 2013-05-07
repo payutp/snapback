@@ -3,6 +3,16 @@
 <div>
   <h2><b>User:</b>
   <%= @user.email %></h2>
+  <% if @user.id != current_user.id %>
+    <% if current_user.user_reports.where(:reported_user => @user.id).empty?%>
+    <%= button_to 'Report User', new_user_report_path(:reported_id => @user.id), :remote => true, :method => :get, :class => "btn btn-small btn-warning" %>
+    <% else %>
+      <span class="btn btn-small btn-danger">Reported</span>
+    <% end %>
+  <% end %>
+</div>
+
+<div class="modal hide fade" style="display:none;">
 </div>
 
 <h3>Need to Return</h3>
