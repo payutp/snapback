@@ -30,10 +30,11 @@
       <td><%= lend.item.return.reminder.return_date.strftime("%d %b %Y") %></td>
       <td><%= (@tags_pending[index].map { |val| val.tag }).join(", ") %> </td>
       <td>
+        <% if lend.item.return.status == "lent" %>
         <div class="btn-group">
           <%= button_to "Return", return_item_path(lend.item.id), method: :post, :class => "btn btn-small btn-success" %></div>
-          <div class="btn-group">
-        <%= button_to "Cancel", lend, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-small btn-danger" %> </div></td>
+          <% end %>
+          </td>
     </tr>
   <% end %>
   <% end %>
