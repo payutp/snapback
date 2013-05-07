@@ -3,14 +3,20 @@
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
     <h3> Confirmation </h3>
     <div class="modal-body">
-      <div id="star"></div> 
+      <%= form_tag(confirm_item_path(@item), :method => :post) %>
+      <p> From a scale of 1 through 5, where 1 is unsatisfactory and 5 is very satisfied, please 
+        rate your lending/borrowing experience with this person. You may choose to give no rating. </p>
+        <p>
+          <span class="label">Rating:</span> <div id="star"></div>
+        </p>
+      <%= submit_tag 'Confirm', :class => "btn btn-success" %>
     </div>
   </div>
 </div>
 
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/flick/jquery-ui.css" />
 <script type="text/javascript">
-$(function() {
-  $('#star').raty();
-});
+  $('#star').raty({
+    cancel    : true,
+    cancelHint: 'cancel the rating'
+  });
 </script>

@@ -6,6 +6,7 @@ Starfleet::Application.routes.draw do
   get "activity" => "users#activity", :as => "activity"
   post "returns/new" => "returns#new", :as => "new_return"
   post "returns/create_new" => "returns#create_new", :as => "return_new"
+  get "items/:id/confirm_form" => "items#confirm_form", :as => "confirm_form"
   #post "items/:id/return" => "items#return"
   post "items/:id/confirm" => "items#confirm", :as => "confirm"
 

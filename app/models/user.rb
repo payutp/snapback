@@ -46,8 +46,12 @@ class User < ActiveRecord::Base
       reduced_rating = 0
     end
 
-    self.rating = (self.rating + reduced_rating)/2.0
+    self.update_attribute(:rating, (self.rating + reduced_rating)/2.0)
 
+  end
+
+  def update_rating_manual(score)
+    self.update_attribute(:rating, (self.rating + score)/2.0)
   end
 
 end

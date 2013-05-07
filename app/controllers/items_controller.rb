@@ -9,6 +9,14 @@ class ItemsController < ApplicationController
     redirect_to activity_path
   end
 
+  def confirm_form 
+    @item = Item.find(params[:id])
+
+    respond_to do |format|
+      format.js {}
+    end
+  end 
+
   def confirm
     item = Item.find(params[:id])
     lend = item.lend
@@ -22,10 +30,12 @@ class ItemsController < ApplicationController
     return_date = r.reminder.return_date
     lenduser.update_rating(current_date, return_date)
 
-    respond_to do |format|
-      format.js {}
-      #format.html # new.html.erb
-      #format.json { render json: @lend }
+    score = params[:score]
+    score = score.to_i
+    if score != 0
+      lenduser.update_rating_manual(score)
     end
+
+    redirect_to activity_path
   end
 end

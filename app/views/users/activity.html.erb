@@ -112,7 +112,7 @@
       </td>
       <td><%= r.item.name %> </td>
       <td><%= r.reminder.return_date.strftime("%d %b %Y") %></td>
-      <td><%= button_to "Confirm", confirm_item_path(r.item.id), :remote => true, method: :post, :class => "btn btn-small btn-success"  %> </td>
+      <td><%= button_to "Confirm", confirm_form_path(r.item.id), :remote => true, method: :get, :class => "btn btn-small btn-success"  %> </td>
     </tr>
   <% end %>
 <% end %>

@@ -31,7 +31,6 @@ class ReturnsController < ApplicationController
     end
     @return = Return.new
 
-
     respond_to do |format|
       format.js {}
       #format.html # new.html.erb
@@ -71,7 +70,6 @@ class ReturnsController < ApplicationController
       end
     end
   end
-
 
   # create at item
   def create_new
