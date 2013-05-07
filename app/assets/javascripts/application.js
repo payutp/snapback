@@ -18,11 +18,14 @@
 //= require chosen-jquery
 $(function() {
 	tag = "";
+	checked = [];
+	allTags = [];
 
 	// Click listener to allow clicking off navigation views to hide them
 	var clearNav = function() {
 		$('#tagView').css('display','none');
 		$('#tagView').empty();
+		tag = "";
 	}
 	$('html').click(clearNav);
 	// Handler when a tag is checked/unchecked
@@ -114,7 +117,7 @@ $(function() {
 	};
 
 	// Method to allow user to load all tags from the database
-	var viewFilterTags = function(id,tags,checked) {
+	var viewFilterTags = function(id,tags) {
 		var view = $('#tagView');
 		if (id < 0){
 			var position = $('#btn_filter').offset();
@@ -124,6 +127,10 @@ $(function() {
 			$('#note_'+id).append(view);
 		}
 		$.each(tags,function(index,value) {
+			if (allTags.indexOf(value.id) == -1){
+				allTags.push(value.id);
+				checked.push(value.id);
+			}
 			var c = "";
 			if (checked.indexOf(value.id) > -1) {
 				c = "checked";
@@ -149,6 +156,9 @@ $(function() {
 					$('.lend').each(function(index){
 	    				if ($(this).data('tags').indexOf(t) > -1) {
 	    					$(this).css('display','none');
+	    					console.log(checked[checked.indexOf(t)]);
+	    					delete checked[checked.indexOf(t)];
+	    					console.log(checked);
 	    				}
 	    			});
 				}
