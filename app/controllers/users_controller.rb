@@ -35,15 +35,6 @@ class UsersController < ApplicationController
       redirect_to login_path, :notice => "Thank you for verifying your account. You may now login."
     else
       @user = User.find(params[:id])
-      @lends = @user.lends.where("status = 'pending'")
-      @lends_pending = @user.lends.where("status = 'pending'")
-      @lends_close = @user.lends.where("status = 'close'")
-
-      @returns_open = @user.returns.where("status = 'open'")
-      @returns_lent = @user.returns.where("status = 'lent'")
-      @returns_returned = @user.returns.where("status = 'returning'")
-      @returns_close = @user.returns.where("status = 'close'")
-
       @user_rating = @user.rating
     end
   end

@@ -29,17 +29,17 @@ ActiveRecord::Schema.define(:version => 20130507015548) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "items_tags", :id => false, :force => true do |t|
+    t.integer "item_id"
+    t.integer "tag_id"
+  end
+
   create_table "lends", :force => true do |t|
     t.string   "status"
     t.integer  "to_id"
     t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-  end
-
-  create_table "lends_tags", :id => false, :force => true do |t|
-    t.integer "lend_id"
-    t.integer "tag_id"
   end
 
   create_table "reminders", :force => true do |t|
@@ -83,6 +83,10 @@ ActiveRecord::Schema.define(:version => 20130507015548) do
   create_table "users", :force => true do |t|
     t.string   "email"
     t.string   "password_digest"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "living"
+    t.string   "class_year"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
     t.string   "perishable_token",    :default => "",    :null => false

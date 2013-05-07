@@ -4,8 +4,7 @@
   <h2><b>User:</b>
   <%= @user.email %></h2>
   <%= image_tag @user.avatar.url(:medium) %>
-    <!--<input id="new_image" type="file" title="Choose profile picture"></input>-->
-    <br />
+    <br /><br /><div style="float:left"> Rating: </div> 
     <% (1..@user.rating.round).each do |i| %>
       <div style="float:left" id="rating"><%= image_tag "full_star.png" %></div>
     <%end%>
@@ -27,8 +26,18 @@
 </div>
 <% if current_user.id == @user.id %>
 <%= form_for current_user, :user => user_path(@user), :html => { :multipart => true } do |f| %>
+  <%= f.label "Avatar: ", :style => "float:left"%>
   <%= f.file_field :avatar %> <br/><br/>
-  <%= f.submit "Upload", :class => 'btn btn-small btn-success' %>
+  <%= f.label :first_name %>
+  <%= f.text_field :first_name, :value => current_user.first_name %> 
+  <%= f.label :last_name %>
+  <%= f.text_field :last_name, :value => current_user.last_name %>
+  <%= f.label :living %>
+  <%= f.text_field :living, :value => current_user.living %>
+  <%= f.label :class_year %>
+  <%= f.text_field :class_year, :value => current_user.class_year %>
+  <br/><br/>
+  <%= f.submit "Save", :class => 'btn btn-small btn-success' %>
 <% end %>
 <%end%>
 
