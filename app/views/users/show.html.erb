@@ -17,7 +17,7 @@
     <% if current_user.user_reports.where(:reported_user => @user.id).empty?%>
     <%= button_to 'Report User', new_user_report_path(:reported_id => @user.id), :remote => true, :method => :get, :class => "btn btn-small btn-warning" %>
     <% else %>
-      <span class="btn btn-small btn-danger">Reported</span>
+       <%= button_to 'Reported User', user_report_path(:user_id => current_user.id, :reported_id => @user.id), :remote => true, :method => :get, :class => "btn btn-small btn-danger" %>
     <% end %>
   <% end %>
 </div>
