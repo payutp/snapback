@@ -23,8 +23,8 @@ class UsersController < ApplicationController
   def show
   	if @user
       @user.verify!
-      flash[:notice] = "Thank you for verifying your account. You may now login."
-    elsif current_user
+      redirect_to login_path, :notice => "Thank you for verifying your account. You may now login."
+    else
       @user = User.find(params[:id])
       @lends = @user.lends.where("status = 'pending'")
       @lends_pending = @user.lends.where("status = 'pending'")
@@ -36,8 +36,6 @@ class UsersController < ApplicationController
       @returns_close = @user.returns.where("status = 'close'")
 
       @user_rating = @user.rating
-    else
-      redirect_to login_path
     end
   end
 

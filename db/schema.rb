@@ -29,17 +29,17 @@ ActiveRecord::Schema.define(:version => 20130502171612) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "items_tags", :id => false, :force => true do |t|
+    t.integer "item_id"
+    t.integer "tag_id"
+  end
+
   create_table "lends", :force => true do |t|
     t.string   "status"
     t.integer  "to_id"
     t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-  end
-
-  create_table "lends_tags", :id => false, :force => true do |t|
-    t.integer "lend_id"
-    t.integer "tag_id"
   end
 
   create_table "reminders", :force => true do |t|

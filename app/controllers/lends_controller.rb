@@ -8,8 +8,8 @@ class LendsController < ApplicationController
       @lends_open = current_user.lends.where("status='open'")
       @lends_pending = current_user.lends.where("status='pending'")
       @tags = []
-      @lends_open.each do |tag|
-        @tags << tag.tags
+      @lends_open.each do |lend|
+        @tags << lend.item.tags
       end
     else
       @lends_others = Lend.where("status = 'open'")
