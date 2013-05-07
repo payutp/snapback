@@ -1,0 +1,145 @@
+  <div class="btn_group">
+    <a class="btn dropdown-toggle" id="btn_filter">Filter <span class="caret"></span></a>
+  </div>
+  <div class="tagView" id="tagView">
+  </div>
+<h1>Need to Return</h1>
+
+  <table class="table table-striped">
+  <tr>
+    <th>Status</th>
+    <th> To </th>
+    <th> Item</th>
+    <th> Return by </th>
+    <th> Tags</th>
+    <th> </th>
+  </tr>
+<% if !@lends_pending.nil? %>
+  <% @lends_pending.each_with_index do |lend,index| %>
+    <tr class="lend" data-tags="<%=@tags_pending[index].map { |val| val.id }%>">
+      <td><%= lend.status %></td>
+      <td>
+        <% if lend.to_id == nil %>
+          <%= "Waiting" %>
+        <% else %>
+          <%= image_tag User.find(lend.to_id).avatar.url(:thumb) %>
+          <%= link_to User.find(lend.to_id).email, user_path(:id => lend.to_id) %>
+        <% end %>
+      </td>
+      <td><%= lend.item.name %> </td>
+      <td><%= lend.item.return.reminder.return_date.strftime("%d %b %Y") %></td>
+      <td><%= (@tags_pending[index].map { |val| val.tag }).join(", ") %> </td>
+      <td>
+        <div class="btn-group">
+          <%= button_to "Return", return_item_path(lend.item.id), method: :post, :class => "btn btn-small btn-success" %></div>
+          <div class="btn-group">
+        <%= button_to "Cancel", lend, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-small btn-danger" %> </div></td>
+    </tr>
+  <% end %>
+  <% end %>
+
+  <% if !@lends_close.nil? %>
+  <% @lends_close.each_with_index do |lend,index| %>
+    <tr class="lend" data-tags="<%=@tags_close[index].map { |val| val.id }%>">
+      <td><%= lend.status %></td>
+      <td>
+        <% if lend.to_id == nil %>
+          <%= "Waiting" %>
+        <% else %>
+          <%= image_tag User.find(lend.to_id).avatar.url(:thumb) %>
+          <%= link_to User.find(lend.to_id).email, user_path(:id => lend.to_id) %>
+        <% end %>
+      </td>
+      <td><%= lend.item.name %> </td>
+      <td><%= lend.item.return.reminder.return_date.strftime("%d %b %Y") %></td>
+      <td><%= (@tags_close[index].map { |val| val.tag }).join(", ") %> </td>
+      <td>
+        </td>
+    </tr>
+  <% end %>
+  <% end %>
+
+  </table>
+
+<br>
+
+<h1>What I've Lent</h1>
+<br>
+  <table class="table table-striped">
+  <tr>
+    <th>Status</th>
+    <th> To </th>
+    <th> Item</th>
+    <th> Return by </th>
+    <th> Tags </th>
+    <th> </th>
+  </tr>
+
+<% if !@returns_lent.nil? %>
+
+  <% @returns_lent.each_with_index do |r,index| %>
+    <tr class="lend" data-tags="<%=@tags_lent[index].map { |val| val.id }%>">
+      <td><%= r.status %></td>
+      <td>
+        <% if r.to_id == nil %>
+          <%= "Waiting" %>
+        <% else %>
+        <%= image_tag User.find(r.to_id).avatar.url(:thumb) %>
+          <%= link_to User.find(r.to_id).email, user_path(:id => r.to_id) %>
+        <% end %>
+      </td>
+      <td><%= r.item.name %> </td>
+      <td><%= r.reminder.return_date.strftime("%d %b %Y") %></td>
+      <td><%= (@tags_lent[index].map { |val| val.tag }).join(", ") %> </td>
+    </tr>
+  <% end %>
+<% end %>
+
+  <div class="modal" style="display:none;">
+  </div>
+  
+  <% if !@returns_returned.nil? %>
+
+  <% @returns_returned.each_with_index do |r,index| %>
+    <tr class="lend" data-tags="<%=@tags_returned[index].map { |val| val.id }%>">
+      <td><%= r.status %></td>
+      <td>
+        <% if r.to_id == nil %>
+          <%= "Waiting" %>
+        <% else %>
+          <%= image_tag User.find(r.to_id).avatar.url(:thumb) %>
+          <%= link_to User.find(r.to_id).email, user_path(:id => r.to_id) %>
+        <% end %>
+      </td>
+      <td><%= r.item.name %> </td>
+      <td><%= r.reminder.return_date.strftime("%d %b %Y") %></td>
+<<<<<<< HEAD
+      <td><%= button_to "Confirm", confirm_form_path(r.item.id), :remote => true, method: :get, :class => "btn btn-small btn-success"  %> </td>
+=======
+      <td><%= (@tags_returned[index].map { |val| val.tag }).join(", ") %></td>
+      <td><%= button_to "Confirm", confirm_item_path(r.item.id), :remote => true, method: :post, :class => "btn btn-small btn-success"  %> </td>
+>>>>>>> ef0c39cf12cef48f08e2604ad7219c64f7ac68aa
+    </tr>
+  <% end %>
+<% end %>
+
+<% if !@returns_close.nil? %>
+
+  <% @returns_close.each_with_index do |r,index| %>
+    <tr class="lend" data-tags="<%=@tags_rclose[index].map { |val| val.id }%>">
+      <td><%= r.status %></td>
+      <td>
+        <% if r.to_id == nil %>
+          <%= "Waiting" %>
+        <% else %>
+        <%= image_tag User.find(r.to_id).avatar.url(:thumb) %>
+          <%= link_to User.find(r.to_id).email, user_path(:id => r.to_id) %>
+        <% end %>
+      </td>
+      <td><%= r.item.name %> </td>
+      <td><%= r.reminder.return_date.strftime("%d %b %Y") %></td>
+      <td> <%= (@tags_rclose[index].map { |val| val.tag }).join(", ") %></td>
+    </tr>
+  <% end %>
+<% end %>
+</table>

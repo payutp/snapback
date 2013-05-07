@@ -1,0 +1,27 @@
+<div class="modal hide fade">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3> User Report</h3>
+    <div>
+      <div class="modal-body">
+        <p>
+        <%= form_tag('/user_reports/', :method => :post)  %>
+          <div>
+            <span class="label">Report From:</span> <%= current_user.email %>
+          </div>
+
+        </br>
+          <div class="field">
+            <span class="label">User:</span> <%= @user.email %>
+            <%= hidden_field_tag :reported_id, @user.id %>
+          </div>
+          <div class="field">
+            <span class="label">Description:</span>   <%= text_area_tag "description" %>
+          </div>
+          
+          <div class="actions">
+            <%= submit_tag 'Report User', data: { confirm: 'Are you sure?' }, :class => "btn btn-small btn-success" %>
+          </div>
+        </p>
+      </div>
+</div>

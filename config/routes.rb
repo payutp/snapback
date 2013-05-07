@@ -9,6 +9,7 @@ Starfleet::Application.routes.draw do
   get "items/:id/confirm_form" => "items#confirm_form", :as => "confirm_form"
   #post "items/:id/return" => "items#return"
   post "items/:id/confirm" => "items#confirm", :as => "confirm"
+  post "get_tags" => "tags#index"
 
   root :to => "lends#index"
 
@@ -29,6 +30,7 @@ Starfleet::Application.routes.draw do
   resources :tags
   resources :users
   resources :sessions
+  resources :user_reports
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

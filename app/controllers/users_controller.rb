@@ -6,6 +6,15 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def update
+    respond_to do |format|
+      if current_user.update_attributes(params[:user])
+        format.html { redirect_to current_user, notice: 'Your photo has been updated.' }
+        format.json { head :no_content }
+      end
+    end
+  end
+
   def create
     @user = User.new(params[:user])
     @user.generate_perishable_token
@@ -23,8 +32,8 @@ class UsersController < ApplicationController
   def show
   	if @user
       @user.verify!
-      flash[:notice] = "Thank you for verifying your account. You may now login."
-    elsif current_user
+      redirect_to login_path, :notice => "Thank you for verifying your account. You may now login."
+    else
       @user = User.find(params[:id])
       @lends = @user.lends.where("status = 'pending'")
       @lends_pending = @user.lends.where("status = 'pending'")
@@ -36,21 +45,37 @@ class UsersController < ApplicationController
       @returns_close = @user.returns.where("status = 'close'")
 
       @user_rating = @user.rating
-    else
-      redirect_to login_path
     end
   end
 
   def activity
-    @lends = current_user.lends.where("status = 'pending'")
-    @lends_pending = current_user.lends.where("status = 'pending'")
+    @lends_pending = current_user.lends.where("status='pending'")
+    @tags_pending = []
+      @lends_pending.each do |lend|
+        @tags_pending << lend.item.tags
+      end
     @lends_close = current_user.lends.where("status = 'close'")
+    @tags_close = []
+      @lends_close.each do |lend|
+        @tags_close << lend.item.tags
+      end
 
-    @returns_open = current_user.returns.where("status = 'open'")
     @returns_lent = current_user.returns.where("status = 'lent'")
+    @tags_lent = []
+      @returns_lent.each do |lend|
+        @tags_lent << lend.item.tags
+      end
     @returns_returned = current_user.returns.where("status = 'returning'")
+        @tags_returned = []
+      @returns_returned.each do |lend|
+        @tags_returned << lend.item.tags
+      end
     @returns_close = current_user.returns.where("status = 'close'")
-    #@returns = current_user.returns
+        @tags_rclose = []
+      @returns_close.each do |lend|
+        @tags_rclose << lend.item.tags
+      end
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @lends }

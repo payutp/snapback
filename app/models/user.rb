@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :password, :password_confirmation, :perishable_token, :verified, :persistence_token, :rating 
-
+  attr_accessible :email, :password, :avatar, :password_confirmation, :perishable_token, :verified, :persistence_token, :rating 
+  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "30x30>" },
+          :default_url => "/images/:style/missing.png"
+          
   has_secure_password
   
   # Simple validations.
@@ -14,6 +16,7 @@ class User < ActiveRecord::Base
   has_many :returns
   has_many :tags
   has_many :item_reports
+  has_many :user_reports
 
   def verify!
     self.verified = true

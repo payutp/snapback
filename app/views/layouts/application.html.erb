@@ -16,7 +16,8 @@
             </div>
             <ul class="nav">
               <% if current_user %>
-                  <li> <a>Welcome, <%= current_user.email %></a></li>
+
+                  <li class="welcome-nav"> <a><%= image_tag current_user.avatar.url(:thumb) %> Welcome, <%= current_user.email %>  </a></li>
                   <li id="btn_home"><%= link_to "Home", root_url %></li>
                   <li id="btn_profile"><%= link_to "Profile", user_path(:id => current_user.id) %></li>
                   <li id="btn_act"><%= link_to "Activity", activity_path %></li>
@@ -27,6 +28,7 @@
                   <li id="btn_login"><%= link_to "Log in", login_path %></li>
               <% end %>
             </ul>
+
           </div>
 
 
@@ -35,7 +37,6 @@
           </div>
       </div>
   </div>
-
   <div class="container">
     <% flash.each do |name, msg| %>
       <div class="alert">
