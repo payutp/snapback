@@ -26,6 +26,8 @@ class UsersController < ApplicationController
       redirect_to login_path, :notice => "Thank you for verifying your account. You may now login."
     else
       @user = User.find(params[:id])
+      @lends = @user.lends.where("status = 'pending'")
+      @lends_pending = @user.lends.where("status = 'pending'")
       @lends_close = @user.lends.where("status = 'close'")
 
       @returns_open = @user.returns.where("status = 'open'")
@@ -38,8 +40,7 @@ class UsersController < ApplicationController
   end
 
   def activity
-    @lends = current_user.lends.where("status = 'pending'")
-    @lends_pending = current_user.lends.where("status = 'pending'")
+    @lends_pending = current_user.lends.where("status='pending'")
     @lends_close = current_user.lends.where("status = 'close'")
 
     @returns_open = current_user.returns.where("status = 'open'")

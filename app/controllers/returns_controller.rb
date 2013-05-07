@@ -83,7 +83,7 @@ class ReturnsController < ApplicationController
 
     # need to take care of the case where item not existed yet
     @return.item = Item.new(:name => params[:item_name])
-    @return.status = "open"
+    @return.status = "lent"
 
     respond_to do |format|
       if @return.save and @reminder.save
