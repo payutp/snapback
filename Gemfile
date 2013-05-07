@@ -36,6 +36,7 @@ gem 'calendar_date_select', :git => 'git://github.com/paneq/calendar_date_select
 gem 'bootstrap-sass', '~> 2.3.1.0'
 gem 'geocoder'
 gem 'filepicker-rails'
+gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
