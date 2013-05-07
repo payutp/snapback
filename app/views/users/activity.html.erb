@@ -95,6 +95,7 @@
       <td><%= r.item.name %> </td>
       <td><%= r.reminder.return_date.strftime("%d %b %Y") %></td>
       <td><%= (@tags_lent[index].map { |val| val.tag }).join(", ") %> </td>
+      <td></td>
     </tr>
   <% end %>
 <% end %>
@@ -139,6 +140,7 @@
       <td><%= r.item.name %> </td>
       <td><%= r.reminder.return_date.strftime("%d %b %Y") %></td>
       <td> <%= (@tags_rclose[index].map { |val| val.tag }).join(", ") %></td>
+      <td></td>
     </tr>
   <% end %>
 <% end %>
