@@ -6,6 +6,15 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def update
+    respond_to do |format|
+      if current_user.update_attributes(params[:user])
+        format.html { redirect_to current_user, notice: 'Your photo has been updated.' }
+        format.json { head :no_content }
+      end
+    end
+  end
+
   def create
     @user = User.new(params[:user])
     @user.generate_perishable_token
