@@ -1,8 +1,9 @@
 <p id="notice"><%= notice %></p>
 
 <div>
-  <h2><%= @user.email %></h2>
-<%= image_tag @user.avatar.url(:medium) %>
+  <h2><b>User:</b>
+  <%= @user.email %></h2>
+  <%= image_tag @user.avatar.url(:medium) %>
     <!--<input id="new_image" type="file" title="Choose profile picture"></input>-->
     <br />
     <% (1..@user.rating.round).each do |i| %>
@@ -11,7 +12,18 @@
     <% (1..5-@user.rating.round).each do |i| %>
       <div style="float:left" id="rating"><%= image_tag "empty_star.png" %></div>
     <%end%>
+  <% if @user.id != current_user.id %>
+  <br><br>
+    <% if current_user.user_reports.where(:reported_user => @user.id).empty?%>
+    <%= button_to 'Report User', new_user_report_path(:reported_id => @user.id), :remote => true, :method => :get, :class => "btn btn-small btn-warning" %>
+    <% else %>
+      <span class="btn btn-small btn-danger">Reported</span>
+    <% end %>
+  <% end %>
+</div>
 </br></br>
+
+<div class="modal hide fade" style="display:none;">
 </div>
 <% if current_user.id == @user.id %>
 <%= form_for current_user, :user => user_path(@user), :html => { :multipart => true } do |f| %>
