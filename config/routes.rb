@@ -9,6 +9,7 @@ Starfleet::Application.routes.draw do
   get "items/:id/confirm_form" => "items#confirm_form", :as => "confirm_form"
   #post "items/:id/return" => "items#return"
   post "items/:id/confirm" => "items#confirm", :as => "confirm"
+  get "lends/:id/show_image" => "lends#show_image", :as => "show_image"
   post "get_tags" => "tags#index"
 
   root :to => "lends#index"

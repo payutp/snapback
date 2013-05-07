@@ -8,8 +8,9 @@
     <h3> What would you like to borrow? </h3>
     <div>
       <div class="modal-body">
+<!--
 <p>
-<%= form_tag('/lends/', :method => :post)  %>
+<%= form_tag('/lends/', :method => :post, :html => { :multipart => true })  %>
 
   <div>
     <span class="label">From:</span> <%= current_user.email %>
@@ -22,11 +23,36 @@
   <div class="field">
     <span class="label">Tags:</span>   <%= text_field_tag "tags" %>
   </div>
+
+  <div class="field">
+    <span class="label">Photo:</span> <%= file_field_tag 'photo', :class => "btn" %>
+  </div>
   
   <div class="actions">
     <%= submit_tag 'Create Request', :class => "btn btn-small btn-success" %>
   </div>
-</p>
+</p>-->
+<%= form_for @lend, :url => lends_path, :html => { :multipart => true } do |f| %>
+
+  <div>
+    <span class="label">From:</span> <%= current_user.email %>
+  </div>
+
+</br>
+  <div class="field">
+    <span class="label">Item:</span> <%= text_field_tag "item_name" %>
+  </div>
+  <div class="field">
+    <span class="label">Tags:</span>   <%= text_field_tag "tags" %>
+  </div>
+
+  <div class="field">
+    <span class="label">Photo:</span> <%= f.file_field :photo %>
+  </div>
+  <div class="actions">
+    <%= submit_tag 'Create Request', :class => "btn btn-small btn-success" %>
+  </div>
+  <% end %>
 </div>
 </div>
 

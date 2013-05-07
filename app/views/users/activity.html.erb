@@ -1,5 +1,4 @@
   <div class="btn_group">
-    <input id="search" type="text" class="search-query" placeholder="Search">
     <a class="btn dropdown-toggle" id="btn_filter">Filter <span class="caret"></span></a>
   </div>
   <div class="tagView" id="tagView">
@@ -27,17 +26,14 @@
           <%= link_to User.find(lend.to_id).email, user_path(:id => lend.to_id) %>
         <% end %>
       </td>
-      <td><%= lend.item.name %> </td>
+      <td><%= image_tag lend.photo.url(:thumb)%><%= lend.item.name %> </td>
       <td><%= lend.item.return.reminder.return_date.strftime("%d %b %Y") %></td>
       <td><%= (@tags_pending[index].map { |val| val.tag }).join(", ") %> </td>
       <td>
-        <% if lend.item.return.status == "lent" %>
         <div class="btn-group">
           <%= button_to "Return", return_item_path(lend.item.id), method: :post, :class => "btn btn-small btn-success" %></div>
           <div class="btn-group">
-         </div>
-         <% end %>
-       </td>
+        <%= button_to "Cancel", lend, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-small btn-danger" %> </div></td>
     </tr>
   <% end %>
   <% end %>
@@ -54,7 +50,7 @@
           <%= link_to User.find(lend.to_id).email, user_path(:id => lend.to_id) %>
         <% end %>
       </td>
-      <td><%= lend.item.name %> </td>
+      <td><%= image_tag lend.photo.url(:thumb)%><%= lend.item.name %> </td>
       <td><%= lend.item.return.reminder.return_date.strftime("%d %b %Y") %></td>
       <td><%= (@tags_close[index].map { |val| val.tag }).join(", ") %> </td>
       <td>
@@ -95,6 +91,7 @@
       <td><%= r.item.name %> </td>
       <td><%= r.reminder.return_date.strftime("%d %b %Y") %></td>
       <td><%= (@tags_lent[index].map { |val| val.tag }).join(", ") %> </td>
+      <td></td>
     </tr>
   <% end %>
 <% end %>
@@ -139,6 +136,7 @@
       <td><%= r.item.name %> </td>
       <td><%= r.reminder.return_date.strftime("%d %b %Y") %></td>
       <td> <%= (@tags_rclose[index].map { |val| val.tag }).join(", ") %></td>
+      <td></td>
     </tr>
   <% end %>
 <% end %>
