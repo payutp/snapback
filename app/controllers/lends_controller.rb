@@ -111,4 +111,11 @@ class LendsController < ApplicationController
     end
   end
 
+  def show_image
+    @lend = Lend.find(params[:id])
+
+    respond_to do |format|
+      format.js
+    end
+  end
 end
