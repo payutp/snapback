@@ -15,7 +15,7 @@
 //= require jquery-ui
 //= require bootstrap
 //= require_tree .
-//= require chosen-jquery
+
 $(function() {
 	tag = "";
 	checked = [];
