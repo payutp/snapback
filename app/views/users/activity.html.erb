@@ -1,18 +1,22 @@
+  <div class="btn_group">
+    <a class="btn dropdown-toggle" id="btn_filter">Filter <span class="caret"></span></a>
+  </div>
+  <div class="tagView" id="tagView">
+  </div>
 <h1>Need to Return</h1>
-<% if !@lends_pending.nil? %>
+
   <table class="table table-striped">
   <tr>
     <th>Status</th>
     <th> To </th>
     <th> Item</th>
     <th> Return by </th>
-    <th> </th>
+    <th> Tags</th>
     <th> </th>
   </tr>
-
-  <% @lends_pending.each do |lend| %>
-    <% if lend.item.return.status == "lent" %>
-    <tr>
+<% if !@lends_pending.nil? %>
+  <% @lends_pending.each_with_index do |lend,index| %>
+    <tr class="lend" data-tags="<%=@tags_pending[index].map { |val| val.id }%>">
       <td><%= lend.status %></td>
       <td>
         <% if lend.to_id == nil %>
@@ -23,12 +27,20 @@
       </td>
       <td><%= lend.item.name %> </td>
       <td><%= lend.item.return.reminder.return_date.strftime("%d %b %Y") %></td>
-      <td><%= button_to "Return", return_item_path(lend.item.id), method: :post, :class => "btn btn-small btn-success" %> </td>
-      <td><%= button_to "Cancel", lend, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-small btn-danger" %> </td>
+      <td><%= (@tags_pending[index].map { |val| val.tag }).join(", ") %> </td>
+      <td>
+        <div class="btn-group">
+          <%= button_to "Return", return_item_path(lend.item.id), method: :post, :class => "btn btn-small btn-success" %></div>
+          <div class="btn-group">
+        <%= button_to "Cancel", lend, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-small btn-danger" %> </div></td>
     </tr>
-    <% elsif lend.item.return.status == "returning" %>
-    <tr>
-      <td>Waiting for confirmation</td>
+  <% end %>
+  <% end %>
+
+  <% if !@lends_close.nil? %>
+  <% @lends_close.each_with_index do |lend,index| %>
+    <tr class="lend" data-tags="<%=@tags_close[index].map { |val| val.id }%>">
+      <td><%= lend.status %></td>
       <td>
         <% if lend.to_id == nil %>
           <%= "Waiting" %>
@@ -38,12 +50,14 @@
       </td>
       <td><%= lend.item.name %> </td>
       <td><%= lend.item.return.reminder.return_date.strftime("%d %b %Y") %></td>
-      <td></td>
+      <td><%= (@tags_close[index].map { |val| val.tag }).join(", ") %> </td>
+      <td>
+        </td>
     </tr>
-    <% end %>
   <% end %>
+  <% end %>
+
   </table>
-<% end %>
 
 <br>
 
@@ -55,31 +69,14 @@
     <th> To </th>
     <th> Item</th>
     <th> Return by </th>
+    <th> Tags </th>
     <th> </th>
   </tr>
-<% if !@returns_open.nil? %>
-
-  <% @returns_open.each do |r| %>
-    <tr>
-      <td><%= r.status %></td>
-      <td>
-        <% if r.to_id == nil %>
-          <%= "Waiting" %>
-        <% else %>
-          <%= link_to User.find(r.to_id).email, user_path(:id => r.to_id) %>
-        <% end %>
-      </td>
-      <td><%= r.item.name %> </td>
-      <td><%= r.reminder.return_date.strftime("%d %b %Y") %></td>
-      <td><%= button_to "Cancel", r, method: :delete,data: { confirm: 'Are you sure?' }, :class => "btn btn-small btn-danger" %></td>
-    </tr>
-  <% end %>
-<% end %>
 
 <% if !@returns_lent.nil? %>
 
-  <% @returns_lent.each do |r| %>
-    <tr>
+  <% @returns_lent.each_with_index do |r,index| %>
+    <tr class="lend" data-tags="<%=@tags_lent[index].map { |val| val.id }%>">
       <td><%= r.status %></td>
       <td>
         <% if r.to_id == nil %>
@@ -90,7 +87,7 @@
       </td>
       <td><%= r.item.name %> </td>
       <td><%= r.reminder.return_date.strftime("%d %b %Y") %></td>
-      <td> </td>
+      <td><%= (@tags_lent[index].map { |val| val.tag }).join(", ") %> </td>
     </tr>
   <% end %>
 <% end %>
@@ -100,8 +97,8 @@
   
   <% if !@returns_returned.nil? %>
 
-  <% @returns_returned.each do |r| %>
-    <tr>
+  <% @returns_returned.each_with_index do |r,index| %>
+    <tr class="lend" data-tags="<%=@tags_returned[index].map { |val| val.id }%>">
       <td><%= r.status %></td>
       <td>
         <% if r.to_id == nil %>
@@ -112,6 +109,7 @@
       </td>
       <td><%= r.item.name %> </td>
       <td><%= r.reminder.return_date.strftime("%d %b %Y") %></td>
+      <td><%= (@tags_returned[index].map { |val| val.tag }).join(", ") %></td>
       <td><%= button_to "Confirm", confirm_item_path(r.item.id), :remote => true, method: :post, :class => "btn btn-small btn-success"  %> </td>
     </tr>
   <% end %>
@@ -119,8 +117,8 @@
 
 <% if !@returns_close.nil? %>
 
-  <% @returns_close.each do |r| %>
-    <tr>
+  <% @returns_close.each_with_index do |r,index| %>
+    <tr class="lend" data-tags="<%=@tags_rclose[index].map { |val| val.id }%>">
       <td><%= r.status %></td>
       <td>
         <% if r.to_id == nil %>
@@ -131,28 +129,8 @@
       </td>
       <td><%= r.item.name %> </td>
       <td><%= r.reminder.return_date.strftime("%d %b %Y") %></td>
-      <td> </td>
+      <td> <%= (@tags_rclose[index].map { |val| val.tag }).join(", ") %></td>
     </tr>
   <% end %>
 <% end %>
 </table>
-
-<!--
-<% if !@lends_close.nil? %>
-
-  <% @lends_close.each do |r| %>
-    <tr>
-      <td><%= r.status %></td>
-      <td>
-        <% if r.to_id == nil %>
-          <%= "Waiting" %>
-        <% else %>
-          <%= User.find(r.to_id).email %>
-        <% end %>
-      </td>
-      <td><%= r.item.name %> </td>
-      <td> </td>
-    </tr>
-  <% end %>
-<% end %>
--->
