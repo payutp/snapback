@@ -9,8 +9,7 @@ class ReminderMailerTest < ActionMailer::TestCase
     @user_from = User.create(:email=>"b@mit.edu", :password=>"test")
     ret = @user_from.returns.create(:to_id => @user_to.id)
     ret.create_item(:name=>"test item")
-
-    @reminder = ret.create_reminder(:frequency=>1, :return_date=>DateTime.now + 3.days)
+    @reminder = ret.create_reminder(:frequency => 1, :return_date=> DateTime.now + 3.days)
 
   end
 
