@@ -90,7 +90,6 @@ class LendsController < ApplicationController
     end
   end
 
-
   # delete a request
   def destroy
     @lend = current_user.lends.find(params[:id])
