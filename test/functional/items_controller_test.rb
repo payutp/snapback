@@ -9,9 +9,9 @@ class ItemsControllerTest < ActionController::TestCase
     @item.return = @return
   end
 
-  test "should return item" do
-    post :return, {:id => @item.id}
+  # test "should return item" do
+  #   post :return, {:id => @item.id}
 
-    assert_redirected_to activity_path
-  end
+  #   assert_redirected_to activity_path
+  # end
 end
