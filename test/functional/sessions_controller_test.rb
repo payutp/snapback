@@ -1,6 +1,7 @@
 require 'test_helper'
 
 class SessionsControllerTest < ActionController::TestCase
+	
 	setup do
 	    @user = User.create( :email => 'steph', :password => 'a')
 	    session[:user_id] = @user.id
@@ -15,4 +16,5 @@ class SessionsControllerTest < ActionController::TestCase
 	    xhr :delete, :destroy
 	    assert_response 302
   	end
+
 end

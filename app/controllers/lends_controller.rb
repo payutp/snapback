@@ -93,7 +93,6 @@ class LendsController < ApplicationController
     end
   end
 
-
   # DELETE /lends/1
   # DELETE /lends/1.json
   def destroy
