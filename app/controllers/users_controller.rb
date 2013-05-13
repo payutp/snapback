@@ -6,6 +6,7 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  # method for updating attributes of users, which can be profile picture, name, address, etc.
   def update
     respond_to do |format|
       if current_user.update_attributes(params[:user])
@@ -44,6 +45,8 @@ class UsersController < ApplicationController
 
   # get lends and returns to view for activity page
   def activity
+
+    # obtain variables corresponding to different statuses
     @lends_pending = current_user.lends.where("status='pending'")
     @tags_pending = []
       @lends_pending.each do |lend|

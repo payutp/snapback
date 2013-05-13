@@ -45,8 +45,9 @@ class ReturnsController < ApplicationController
   # create a new return, and generate a new reminder
   def create
     @return = current_user.returns.create(params[:return])
-    #dateTime = DateTime.new(params[:date][:year].to_i, params[:date][:month].to_i, params[:date][:day].to_i)
     dateTime = DateTime.strptime(params[:return_date], '%m/%d/%Y')
+
+    # generate a new reminder based on date and time
     @reminder = @return.build_reminder(:return_date => dateTime, :frequency => params[:frequency])
 
     @return.item = Item.find(params[:item_id]) # setting return.item to an appropriate item
@@ -55,7 +56,7 @@ class ReturnsController < ApplicationController
 
     respond_to do |format|
       if @return.save and @reminder.save
-        ReminderMailer.accept_email(@reminder).deliver
+        ReminderMailer.accept_email(@reminder).deliver # send an accept email
         ReminderMailer.reminder_email(@reminder).deliver
         lend = @return.item.lend
         lend.update_attributes({:status => "pending", :to_id => current_user.id})
@@ -73,7 +74,7 @@ class ReturnsController < ApplicationController
   def create_new
     to = User.where("email = ?",params[:to_email])[0]
     @return = current_user.returns.create({:to_id => to.id})
-    #dateTime = DateTime.new(params[:date][:year].to_i, params[:date][:month].to_i, params[:date][:day].to_i)
+    
     dateTime = DateTime.strptime(params[:return_date], '%m/%d/%Y')
     @reminder = @return.build_reminder(:return_date => dateTime, :frequency => params[:frequency])
 

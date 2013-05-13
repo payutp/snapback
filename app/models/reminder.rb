@@ -8,10 +8,12 @@ class Reminder < ActiveRecord::Base
     self.sent = 0
   end
 
+  # helper method for getting user (who borrowed the item)
   def get_user_to
   	return User.find_by_id(self.return.to_id)
   end
 
+  # helper method for getting user (who lent the item)
   def get_user_from
   	return User.find_by_id(self.return.user_id)
   end
