@@ -29,11 +29,6 @@ ActiveRecord::Schema.define(:version => 20130507060036) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "items_tags", :id => false, :force => true do |t|
-    t.integer "item_id"
-    t.integer "tag_id"
-  end
-
   create_table "lends", :force => true do |t|
     t.string   "status"
     t.integer  "to_id"
@@ -44,6 +39,11 @@ ActiveRecord::Schema.define(:version => 20130507060036) do
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
+  end
+
+  create_table "lends_tags", :id => false, :force => true do |t|
+    t.integer "lend_id"
+    t.integer "tag_id"
   end
 
   create_table "reminders", :force => true do |t|
@@ -87,10 +87,6 @@ ActiveRecord::Schema.define(:version => 20130507060036) do
   create_table "users", :force => true do |t|
     t.string   "email"
     t.string   "password_digest"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "living"
-    t.string   "class_year"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
     t.string   "perishable_token",    :default => "",    :null => false
