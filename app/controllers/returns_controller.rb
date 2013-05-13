@@ -1,6 +1,6 @@
 class ReturnsController < ApplicationController
-  # GET /returns
-  # GET /returns.json
+  
+  # get all returns
   def index
     @returns = Return.all
 
@@ -10,8 +10,7 @@ class ReturnsController < ApplicationController
     end
   end
 
-  # GET /returns/1
-  # GET /returns/1.json
+  # show a return
   def show
     @return = Return.find(params[:id])
 
@@ -21,12 +20,12 @@ class ReturnsController < ApplicationController
     end
   end
 
-  # GET /returns/new
-  # GET /returns/new.json
+  # get a form for new return request
   def new
-    @people = User.where("id != ?", current_user.id).order("email")
+    @people = User.where("id != ?", current_user.id).order("email") # for email autocomplete
     @lend = nil
-    if params.has_key?("id")
+    if params.has_key?("id") # check if this is an independent return request,
+      # or this is a return request generated from an accept button
       @lend = Lend.find(params[:id])
     end
     @return = Return.new
@@ -43,16 +42,15 @@ class ReturnsController < ApplicationController
     @return = Return.find(params[:id])
   end
 
-  # POST /returns
-  # POST /returns.json
+  # create a new return, and generate a new reminder
   def create
     @return = current_user.returns.create(params[:return])
     #dateTime = DateTime.new(params[:date][:year].to_i, params[:date][:month].to_i, params[:date][:day].to_i)
     dateTime = DateTime.strptime(params[:return_date], '%m/%d/%Y')
     @reminder = @return.build_reminder(:return_date => dateTime, :frequency => params[:frequency])
 
-    @return.item = Item.find(params[:item_id])
-    @return.status = "lent"
+    @return.item = Item.find(params[:item_id]) # setting return.item to an appropriate item
+    @return.status = "lent" # set the return status after return request is generated
     @return.to_id = @return.item.lend.user_id
 
     respond_to do |format|
@@ -71,7 +69,7 @@ class ReturnsController < ApplicationController
     end
   end
 
-  # create at item
+  # create a return request independently. A new item object also needs to be created
   def create_new
     to = User.where("email = ?",params[:to_email])[0]
     @return = current_user.returns.create({:to_id => to.id})
@@ -85,7 +83,7 @@ class ReturnsController < ApplicationController
 
     respond_to do |format|
       if @return.save and @reminder.save
-        ReminderMailer.reminder_email(@reminder).deliver
+        ReminderMailer.reminder_email(@reminder).deliver # send an email to the borrower
         lend = to.lends.create(:to_id => current_user.id, :status => "pending")
         lend.item = Item.find(@return.item.id)
         lend.save

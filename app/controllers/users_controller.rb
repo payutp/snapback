@@ -15,6 +15,7 @@ class UsersController < ApplicationController
     end
   end
 
+  # creating a user, along with perishable token for verification
   def create
     @user = User.new(params[:user])
     @user.generate_perishable_token
@@ -29,6 +30,8 @@ class UsersController < ApplicationController
     end
   end
 
+  # method for showing a user, either after verification, or when viewing a profile page.
+  # Two cases can be determined from @user variable
   def show
   	if @user
       @user.verify!
@@ -39,6 +42,7 @@ class UsersController < ApplicationController
     end
   end
 
+  # get lends and returns to view for activity page
   def activity
     @lends_pending = current_user.lends.where("status='pending'")
     @tags_pending = []

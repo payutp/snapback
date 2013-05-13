@@ -41,7 +41,7 @@ class User < ActiveRecord::Base
     days_elapsed = current_date.day - return_date.day 
     if days_elapsed < 0
       reduction = 0
-    elsif days_elapsed < 10
+    elsif days_elapsed < 10 # have a redution of 1 point for every 2 days up to 10 days
       reduction = -1*days_elapsed/2.0
     else 
       reduction = -5 
@@ -57,7 +57,7 @@ class User < ActiveRecord::Base
   end
 
   def update_rating_manual(score)
-    self.update_attribute(:rating, (self.rating + score)/2.0)
+    self.update_attribute(:rating, (self.rating + score)/2.0) # update the rating manually
   end
 
 end
