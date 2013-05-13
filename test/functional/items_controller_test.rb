@@ -7,8 +7,9 @@ class ItemsControllerTest < ActionController::TestCase
     @item = Item.create(:name => "test", :lend_id => @user.id)
     @lend = @user.lends.create(:status => "pending", :to_id => @user.id, :user_id => @user.id)
     @lend.id = 1
+    @lend.save
     @return = Return.create(:status => "pending", :to_id => @user.id, :user_id => @user.id)
-    @lend.item = @item
+    @item.lend = @lend
     @item.return = @return
 
     @item.save
@@ -25,9 +26,4 @@ class ItemsControllerTest < ActionController::TestCase
     post :return, {:id => @item.id}
     assert_redirected_to activity_path
   end
-
-  test "should confirm item" do
-    post :return, {:id => @item.id}
-    assert_redirected_to activity_path
-  end  
 end
