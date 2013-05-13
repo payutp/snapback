@@ -1,8 +1,8 @@
 class UserReportsController < ApplicationController
 
-  # GET /user_reports/1
-  # GET /user_reports/1.json
+  # show a report of a user 
   def show
+    # user_report shows the report on specified user made by you (current_user)
     @user_report = current_user.user_reports.where(:reported_user => params[:reported_id]).first
 
     respond_to do |format|
@@ -25,8 +25,7 @@ class UserReportsController < ApplicationController
     end
   end
 
-  # POST /user_reports
-  # POST /user_reports.json
+  # generate a new report for the user with reported_id
   def create
     @user_report = UserReport.new(:reported_user => params[:reported_id], :user_id=>current_user.id, :description => params[:description])
 

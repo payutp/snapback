@@ -1,7 +1,9 @@
 require 'test_helper'
 
 class UserFlowTest < ActionDispatch::IntegrationTest
-  setup do
+	setup do
+		@u1 = User.create(:email=>"a@mit.edu", :password=>"a")
+    @u2 = User.create(:email=>"b@mit.edu", :password=>"ta")
     @user = User.create(:email => 'steph', :password => 'a')
   end
 
