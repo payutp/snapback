@@ -1,6 +1,6 @@
 class TagsController < ApplicationController
-  # GET /tags
-  # GET /tags.json
+  
+  # get all tags
   def index
     if current_user
       tags = Tag.all

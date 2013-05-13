@@ -1,6 +1,6 @@
 class RemindersController < ApplicationController
-  # GET /reminders
-  # GET /reminders.json
+  
+  # return all reminders
   def index
     @reminders = Reminder.all
 
@@ -10,8 +10,7 @@ class RemindersController < ApplicationController
     end
   end
 
-  # GET /reminders/1
-  # GET /reminders/1.json
+  # show a particular reminder
   def show
     @reminder = Return.find(params[:return_id]).reminder
     @return = Return.find(params[:return_id])
@@ -22,8 +21,7 @@ class RemindersController < ApplicationController
     end
   end
 
-  # GET /reminders/new
-  # GET /reminders/new.json
+  # form for creating a new reminder
   def new
     @reminder = Reminder.new
 
@@ -33,14 +31,13 @@ class RemindersController < ApplicationController
     end
   end
 
-  # GET /reminders/1/edit
+  # edit a reminder
   def edit
     @reminder = Return.find(params[:return_id]).reminder
     @return = Return.find(params[:return_id])
   end
 
-  # POST /reminders
-  # POST /reminders.json
+  # create a reminder
   def create
     @reminder = Reminder.new(params[:reminder])
 

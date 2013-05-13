@@ -1,7 +1,6 @@
 class ItemReportsController < ApplicationController
 
-  # GET /item_reports/1
-  # GET /item_reports/1.json
+  # show the report
   def show
     @item_report = current_user.item_reports.where(:item_id => params[:id]).first
 
@@ -12,8 +11,7 @@ class ItemReportsController < ApplicationController
     end
   end
 
-  # GET /item_reports/new
-  # GET /item_reports/new.json
+  # create a new report
   def new
     @item = Item.find(params[:id])
     @item_report = ItemReport.new
@@ -25,8 +23,7 @@ class ItemReportsController < ApplicationController
     end
   end
 
-  # POST /item_reports
-  # POST /item_reports.json
+  # create a new report
   def create
     @item_report = ItemReport.new(:item_id => params[:item_id], :user_id=>current_user.id, :description => params[:description])
 

@@ -1,6 +1,6 @@
 class LendsController < ApplicationController
-  # GET /lends
-  # GET /lends.json
+
+  # get lends of self and others to show up on the main page
   def index
 
     if current_user
@@ -30,8 +30,7 @@ class LendsController < ApplicationController
     end
   end
 
-  # GET /lends/1
-  # GET /lends/1.json
+  # show a particular request
   def show
     @lend = current_user.lends.find(params[:id])
 
@@ -41,8 +40,7 @@ class LendsController < ApplicationController
     end
   end
 
-  # GET /lends/new
-  # GET /lends/new.json
+  # get form for creating the new lend
   def new
     @lend = current_user.lends.new
     @tags = Tag.all
@@ -59,8 +57,7 @@ class LendsController < ApplicationController
     @lend = current_user.lends.find(params[:id])
   end
 
-  # POST /lends
-  # POST /lends.json
+  # create a lend, along with items associated with it
   def create
     @lend = current_user.lends.create(params[:lend])
     @lend.update_attributes({:status => "open"})
@@ -68,7 +65,7 @@ class LendsController < ApplicationController
     tags = params[:tags].split(",")
     tags.each do |tag|
       stripped = tag.lstrip.rstrip
-      t = Tag.where("tag = ?", stripped)
+      t = Tag.where("tag = ?", stripped) # get all tags which are separarated by commas
       if t.empty?
         if !stripped.empty?
           c = current_user.tags.new(:tag => stripped)
@@ -94,8 +91,7 @@ class LendsController < ApplicationController
   end
 
 
-  # DELETE /lends/1
-  # DELETE /lends/1.json
+  # delete a request
   def destroy
     @lend = current_user.lends.find(params[:id])
     @bad_return_request = @lend.item.return
@@ -111,6 +107,7 @@ class LendsController < ApplicationController
     end
   end
 
+  # show image of an item
   def show_image
     @lend = Lend.find(params[:id])
 
