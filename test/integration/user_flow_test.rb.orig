@@ -1,6 +1,7 @@
 require 'test_helper'
 
 class UserFlowTest < ActionDispatch::IntegrationTest
+<<<<<<< HEAD
   setup do
     @user = User.create(:email => 'steph', :password => 'a')
   end
@@ -12,6 +13,7 @@ class UserFlowTest < ActionDispatch::IntegrationTest
 		xhr :delete, "/sessions/:id" 
 		assert_response 302
 	end
+=======
 	setup do
 		@u1 = User.create(:email=>"a@mit.edu", :password=>"a")
     @u2 = User.create(:email=>"b@mit.edu", :password=>"ta")
@@ -22,4 +24,5 @@ class UserFlowTest < ActionDispatch::IntegrationTest
   	assert_equal '/', path
   	assert_equal @u1.id, session[:user_id]
   end
+>>>>>>> 6bbe3efe16b038ef82fa41012ae22d61c05bedbe
 end
